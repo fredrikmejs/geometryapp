@@ -40,14 +40,23 @@ public class FindCoordinateWithLineSymmetry implements Level {
             level3();
         } else if (levelNum == 4) {
             level4();
+        } else if (levelNum == 5) {
+            level5();
+        } else if (levelNum == 6) {
+            level6();
+        } else if (levelNum == 7) {
+            level7();
+        } else if (levelNum == 8) {
+            level8();
         } else {
             throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
         }
     }
 
     public void level1() {
+        int[] easyNumbers = {2,3,4,5,10};
         origin = new Coordinate(0, 0);
-        Xscale = randomPoint(1, 10);
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
         Yscale = Xscale;
         selectedDot = new SelectedDot(new Coordinate(5,5));
         if (randomPoint(0, 1) == 0) {
@@ -62,14 +71,14 @@ public class FindCoordinateWithLineSymmetry implements Level {
     }
 
     public void level2() {
+        int[] advancedNumbers = {6,7,8,9};
         origin = new Coordinate(0, 0);
-        Xscale = randomPoint(1, 10);
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
         Yscale = Xscale;
         selectedDot = new SelectedDot(new Coordinate(5,5));
-        int randomIndex = randomPoint(0, 1);
-        if (randomIndex == 0) {
+        if (randomPoint(0, 1) == 0) {
             symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
-        } else if (randomIndex == 1) {
+        } else {
             symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
         }
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
@@ -79,8 +88,9 @@ public class FindCoordinateWithLineSymmetry implements Level {
     }
 
     public void level3() {
-        origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
-        Xscale = randomPoint(1, 10);
+        int[] easyNumbers = {2,3,4,5,10};
+        origin = new Coordinate(0, 0);
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
         Yscale = Xscale;
         selectedDot = new SelectedDot(new Coordinate(5,5));
         int randomIndex = randomPoint(0, 1);
@@ -96,8 +106,61 @@ public class FindCoordinateWithLineSymmetry implements Level {
     }
 
     public void level4() {
+        int[] advancedNumbers = {6,7,8,9};
+        origin = new Coordinate(0, 0);
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        Yscale = Xscale;
+        selectedDot = new SelectedDot(new Coordinate(5,5));
+        if (randomPoint(0, 1) == 0) {
+            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
+        } else {
+            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
+        }
+        targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {
+            targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        }
+    }
+
+    public void level5() {
+        int[] easyNumbers = {2,3,4,5,10};
         origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
-        Xscale = randomPoint(1, 10);
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        Yscale = Xscale;
+        selectedDot = new SelectedDot(new Coordinate(5,5));
+        int randomIndex = randomPoint(0, 1);
+        if (randomIndex == 0) {
+            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
+        } else if (randomIndex == 1) {
+            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
+        }
+        targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {
+            targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        }
+    }
+
+    public void level6() {
+        int[] advancedNumbers = {6,7,8,9};
+        origin = new Coordinate(0, 0);
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        Yscale = Xscale;
+        selectedDot = new SelectedDot(new Coordinate(5,5));
+        if (randomPoint(0, 1) == 0) {
+            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
+        } else {
+            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
+        }
+        targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {
+            targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        }
+    }
+
+    public void level7() {
+        int[] easyNumbers = {2,3,4,5,10};
+        origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
         Yscale = Xscale;
         selectedDot = new SelectedDot(new Coordinate(5,5));
         int randomIndex = randomPoint(0, 1);
@@ -105,6 +168,22 @@ public class FindCoordinateWithLineSymmetry implements Level {
             symmetryLine = new SymmetryLine(new Coordinate(0, 0), new Coordinate(10, 10));
         } else {
             symmetryLine = new SymmetryLine(new Coordinate(0, 10), new Coordinate(10, 0));
+        }
+        targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {
+            targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
+        }
+    }
+    public void level8() {
+        int[] advancedNumbers = {6,7,8,9};
+        origin = new Coordinate(0, 0);
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        Yscale = Xscale;
+        selectedDot = new SelectedDot(new Coordinate(5,5));
+        if (randomPoint(0, 1) == 0) {
+            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
+        } else {
+            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
         }
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
         while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {

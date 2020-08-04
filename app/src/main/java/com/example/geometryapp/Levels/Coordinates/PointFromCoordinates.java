@@ -10,6 +10,7 @@ import com.example.geometryapp.Interface.Level;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.POINTFROMCOORDINATES;
@@ -40,6 +41,8 @@ public class PointFromCoordinates implements Level {
             level5();
         } else if (levelNum == 6) {
             level6();
+        } else if (levelNum == 7) {
+            level7();
         } else {
             throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
         }
@@ -85,13 +88,26 @@ public class PointFromCoordinates implements Level {
                 , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
     }
 
+    // Easy numbers: 2,3,4,5,10
     public void level6() {
+        int[] easyNumbers = {2,3,4,5,10};
         origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Xscale = randomPoint(1, 10);
-        Yscale = randomPoint(1, 10);
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        Yscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
         targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
                 , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
     }
+
+    // Advanced numbers: 6,7,8,9
+    public void level7() {
+        int[] advancedNumbers = {6,7,8,9};
+        origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        Yscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+    }
+
 
     public int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;

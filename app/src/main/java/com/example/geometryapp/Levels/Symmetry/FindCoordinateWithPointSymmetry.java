@@ -39,6 +39,8 @@ public class FindCoordinateWithPointSymmetry implements Level {
             level3();
         } else if (levelNum == 4) {
             level4();
+        } else if (levelNum == 5) {
+            level5();
         } else {
             throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
         }
@@ -84,9 +86,24 @@ public class FindCoordinateWithPointSymmetry implements Level {
     }
 
     public void level4() {
+        int[] easyNumbers = {2,3,4,5,10};
         origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Xscale = randomPoint(1, 10);
-        Yscale = randomPoint(1, 10);
+        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        Yscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        symmetryPoint = new Coordinate(randomPoint(3, 7), randomPoint(3, 7));
+        selectedDot = new SelectedDot(new Coordinate(5,5));
+        Coordinate targetCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));
+        while (isCorrectAnswerNotOnGrid(targetCoordinate, symmetryPoint)) {
+            targetCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));
+        }
+        targetDot = new TargetDot(targetCoordinate);
+    }
+
+    public void level5() {
+        int[] advancedNumbers = {6,7,8,9};
+        origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        Yscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
         symmetryPoint = new Coordinate(randomPoint(3, 7), randomPoint(3, 7));
         selectedDot = new SelectedDot(new Coordinate(5,5));
         Coordinate targetCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));

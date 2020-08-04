@@ -156,17 +156,17 @@ public class TestFragment extends Fragment {
         RGLevel.removeAllViews();
         if (categoryIndex == 1) {
             //Amount of levels in this category
-            addRadioButtons(6);
+            addRadioButtons(7);
         } else if (categoryIndex == 2) {
             addRadioButtons(6);
         } else if (categoryIndex == 3) {
             addRadioButtons(2);
         } else if (categoryIndex == 4) {
-            addRadioButtons(4);
+            addRadioButtons(8);
         } else if (categoryIndex == 5) {
             addRadioButtons(2);
         } else if (categoryIndex == 6) {
-            addRadioButtons(4);
+            addRadioButtons(5);
         } else if (categoryIndex == 7) {
             addRadioButtons(1);
         } else if (categoryIndex == 8) {
