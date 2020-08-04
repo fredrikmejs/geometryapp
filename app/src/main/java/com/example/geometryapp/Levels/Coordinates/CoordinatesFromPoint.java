@@ -75,9 +75,9 @@ public class CoordinatesFromPoint implements Level {
     }
 
     public void level5() {
-        origin = new Coordinate(5, 5);
-        Xscale = 10;
-        Yscale = 10;
+        origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
+        Xscale = 1;
+        Yscale = 1;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
