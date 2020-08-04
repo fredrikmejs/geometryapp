@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8019e74a-08ed-42a1-b69d-478421d3ed73" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+    <list default="true" id="121af32f-b431-48cc-8435-b4b3b0a12482" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +113,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8019e74a-08ed-42a1-b69d-478421d3ed73" name="Default Changelist" comment="" />
+      <changelist id="121af32f-b431-48cc-8435-b4b3b0a12482" name="Default Changelist" comment="" />
       <created>1596527507170</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -136,6 +141,10 @@
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state x="983" y="366" width="2008" height="1476" key="SettingsEditor/134.55.3706.2105@134.55.3706.2105" timestamp="1596528027980" />
+    <state x="1319" y="755" key="com.intellij.ide.util.TipDialog" timestamp="1596547304392">
+      <screen x="134" y="55" width="3706" height="2105" />
+    </state>
+    <state x="1319" y="755" key="com.intellij.ide.util.TipDialog/134.55.3706.2105@134.55.3706.2105" timestamp="1596547304392" />
     <state x="1235" y="470" width="1494" height="1237" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1596529066929">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
