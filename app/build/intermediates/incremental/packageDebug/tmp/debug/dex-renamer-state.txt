@@ -1,4 +1,0 @@
-#Tue Aug 04 09:53:41 CEST 2020
-base.0=/home/fredrik/Dokumenter/UpWork/App_1/geometryapp/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
