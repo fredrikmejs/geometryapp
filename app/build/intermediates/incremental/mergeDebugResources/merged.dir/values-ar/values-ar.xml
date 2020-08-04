@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="CompleteFigureFromArea" translatable="false">Draw a shape with the above perimeter</string>
+    <string name="CompleteFigureFromPerimeter" translatable="false">Draw a shape with the above perimeter</string>
+    <string name="CoordinatesFromPointQuestion" translatable="false">Enter the coordinates of the orange dot</string>
+    <string name="FindAreaFromFigure" translatable="false">Find the area</string>
+    <string name="FindPointWithLinePoint" translatable="false">Find the coordinates of the point that is symmetric to orange point with regard to given symmetry point</string>
+    <string name="FindPointWithLineSymmetry" translatable="false">Find the point that is symmetric to the orange dot with regard to the given axis</string>
+    <string name="FindSymmetryFigure" translatable="false">Draw the figure that is symmetric to the orange one</string>
+    <string name="FindThePerimeterOfAFigure" translatable="false">Find the perimeter</string>
+    <string name="PointFromCoordinatesQuestion" translatable="false">Find the correct coordinate</string>
+    <string msgid="4600421777120114993" name="abc_action_bar_home_description">"التنقل إلى الشاشة الرئيسية"</string>
+    <string msgid="1594238315039666878" name="abc_action_bar_up_description">"التنقل إلى أعلى"</string>
+    <string msgid="3588849162933574182" name="abc_action_menu_overflow_description">"خيارات إضافية"</string>
+    <string msgid="4076576682505996667" name="abc_action_mode_done">"تم"</string>
+    <string msgid="7468859129482906941" name="abc_activity_chooser_view_see_all">"عرض الكل"</string>
+    <string msgid="2031811694353399454" name="abc_activitychooserview_choose_application">"اختيار تطبيق"</string>
+    <string msgid="121134116657445385" name="abc_capital_off">"إيقاف"</string>
+    <string msgid="3405795526292276155" name="abc_capital_on">"تشغيل"</string>
+    <string msgid="1302280443949172191" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="1324831542140195728" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="8362206064229013510" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="8341180395196749340" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="4792426091847145555" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="7643535737296831317" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="8126296154200614004" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="2378550843553983978" name="abc_menu_space_shortcut_label">"space"</string>
+    <string msgid="9002602288060866689" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="1351762916121158029" name="abc_prepend_shortcut_label">"القائمة+"</string>
+    <string msgid="7723749260725869598" name="abc_search_hint">"بحث…"</string>
+    <string msgid="3691816814315814921" name="abc_searchview_description_clear">"محو طلب البحث"</string>
+    <string msgid="2550479030709304392" name="abc_searchview_description_query">"طلب البحث"</string>
+    <string msgid="8264924765203268293" name="abc_searchview_description_search">"بحث"</string>
+    <string msgid="8928215447528550784" name="abc_searchview_description_submit">"إرسال طلب البحث"</string>
+    <string msgid="893419373245838918" name="abc_searchview_description_voice">"البحث الصوتي"</string>
+    <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"مشاركة مع"</string>
+    <string msgid="3300176832234831527" name="abc_shareactionprovider_share_with_application">"مشاركة مع <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"تصغير"</string>
+    <string name="app_name" translatable="false">GeometryApp</string>
+    <string name="num0" translatable="false">0</string>
+    <string name="num1" translatable="false">1</string>
+    <string name="num2" translatable="false">2</string>
+    <string name="num3" translatable="false">3</string>
+    <string name="num4" translatable="false">4</string>
+    <string name="num5" translatable="false">5</string>
+    <string name="num6" translatable="false">6</string>
+    <string name="num7" translatable="false">7</string>
+    <string name="num8" translatable="false">8</string>
+    <string name="num9" translatable="false">9</string>
+    <string name="numDot" translatable="false">.</string>
+    <string name="numMinus" translatable="false">-</string>
+    <string name="numPi" translatable="false">𝜋</string>
+    <string msgid="146198913615257606" name="search_menu_title">"البحث"</string>
+    <string msgid="7988687684186075107" name="status_bar_notification_info_overflow">"999+"</string>
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name" translatable="false">GeometryApp</string>
+    <string name="PointFromCoordinatesQuestion" translatable="false">Find the correct coordinate</string>
+    <string name="CoordinatesFromPointQuestion" translatable="false">Enter the coordinates of the orange dot</string>
+    <string name="FindPointWithLineSymmetry" translatable="false">Find the point that is symmetric to the orange dot with regard to the given axis</string>
+    <string name="FindPointWithLinePoint" translatable="false">Find the coordinates of the point that is symmetric to orange point with regard to given symmetry point</string>
+    <string name="FindSymmetryFigure" translatable="false">Draw the figure that is symmetric to the orange one</string>
+    <string name="FindThePerimeterOfAFigure" translatable="false">Find the perimeter</string>
+    <string name="CompleteFigureFromPerimeter" translatable="false">Draw a shape with the above perimeter</string>
+    <string name="FindAreaFromFigure" translatable="false">Find the area</string>
+    <string name="CompleteFigureFromArea" translatable="false">Draw a shape with the above perimeter</string>
+    <string name="num1" translatable="false">1</string>
+    <string name="num2" translatable="false">2</string>
+    <string name="num3" translatable="false">3</string>
+    <string name="num4" translatable="false">4</string>
+    <string name="num5" translatable="false">5</string>
+    <string name="num6" translatable="false">6</string>
+    <string name="num7" translatable="false">7</string>
+    <string name="num8" translatable="false">8</string>
+    <string name="num9" translatable="false">9</string>
+    <string name="numMinus" translatable="false">-</string>
+    <string name="numPi" translatable="false">𝜋</string>
+    <string name="numDot" translatable="false">.</string>
+    <string name="num0" translatable="false">0</string>
+</resources>

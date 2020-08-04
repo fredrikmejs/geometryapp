@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    //Day theme
+    <color name="BG">#ffffff</color>
+    <color name="NavigationTopBar">#CCCCCC</color>
+    <color name="ButtonBGLight">#CCCCCC</color>
+    <color name="ButtonBGDark">#8D8D8D</color>
+    <color name="AnswerAreaFront">#8D8D8D</color>
+    <color name="AnswerAreaBG">#CCCCCC</color>
+    <color name="ValidationBG">#707070</color>
+    <color name="CoordinateDot">#177CA2</color>
+    <color name="Text">#177CA2</color>
+    <color name="TextScale">#1A1A1A</color>
+    <color name="TargetDot">#F27515</color>
+    <color name="LightGreen">#15CA57</color>
+    <color name="Red">#E13434</color>
+    <color name="Teal">#1FD5DB</color>
+    <color name="Purple">#B41CED</color>
+    <color name="ArrowOrange">#FFB400</color>
+    <color name="ArrowYellow">#DDD600</color>
+    <color name="CoordinateSystemLine">#ADADAD</color>
+    <color name="SymmetryLine">#F27515</color>
+    <color name="shapeColorAlpha50">#80F27515</color>
+    <color name="shapeColorCorrectAlpha50">#8015CA57</color>
+    <color name="shapeColorWrongAlpha50">#80E13434</color>
+</resources>

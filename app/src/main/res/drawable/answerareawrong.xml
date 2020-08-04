@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+        android:width="5dp"
+        android:color="@color/Red" />
+    <solid android:color="@color/AnswerAreaFront" />
+    <corners android:radius="20dp" />
+    <padding
+        android:bottom="8dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="8dp" />
+</shape>

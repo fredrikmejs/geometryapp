@@ -1,0 +1,429 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LLBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/LLTopBar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/NavigationTopBar"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/IVUp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:src="@drawable/keyboard_arrow_up_dark" />
+
+        <ImageView
+            android:id="@+id/IVRestart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="13dp"
+            android:src="@drawable/restart_dark" />
+
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/IVFirstStar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitEnd"
+            android:src="@drawable/star_green" />
+
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/IVSecondStar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            android:src="@drawable/star_green" />
+
+        <ImageView
+            android:id="@+id/IVBack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="13dp"
+            android:gravity="center"
+            android:src="@drawable/undo_dark" />
+
+        <ImageView
+            android:id="@+id/IVNext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="13dp"
+            android:src="@drawable/arrow_forward_dark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLCoordinateSystem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/LLCoordinate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLTopBar"
+        app:layout_constraintVertical_weight="50" />
+
+    <LinearLayout
+        android:id="@+id/LLCoordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/LLQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLCoordinateSystem"
+        app:layout_constraintVertical_weight="5">
+
+        <TextView
+            android:id="@+id/TVX"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/valuearealeft"
+            android:gravity="center"
+            android:text="4"
+            android:textColor="@color/ArrowOrange"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVY"
+            android:layout_width="80dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/valuearearight"
+            android:gravity="center"
+            android:text="4"
+            android:textColor="@color/ArrowYellow"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/LLQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLCoordinateSystem"
+        app:layout_constraintVertical_weight="5">
+
+        <TextView
+            android:id="@+id/TVValue"
+            android:layout_height="match_parent"
+            android:layout_width="120dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center"
+            android:background="@drawable/answerarea"
+            android:text="0"
+            android:textColor="@color/Teal"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/numpadkeys"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toTopOf="@+id/LLButtons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLCoordinate"
+        app:layout_constraintVertical_weight="10">
+
+        <TextView
+            android:id="@+id/TVQuestion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textColor="@color/Text"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/IBTNValidate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/validationbtn"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/anim_validate_correct" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLButtons"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLQuestion"
+        app:layout_constraintVertical_weight="25">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num1"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num2"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num3"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num4"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num5"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num6"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num7"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num8"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num9"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTNPi"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/numPi"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTNDot"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/numDot"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTN0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="2"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/num0"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:autoSizeTextType="uniform"/>
+
+            <Button
+                android:id="@+id/BTNMinus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:text="@string/numMinus"
+                android:textColor="@color/Text"
+                android:textSize="20sp"
+                android:foreground="?attr/selectableItemBackground"
+                android:autoSizeTextType="uniform"/>
+
+            <ImageButton
+                android:foreground="?attr/selectableItemBackground"
+                android:id="@+id/BTNDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/numpadkeys"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/delete"
+                android:textColor="@color/Text" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
