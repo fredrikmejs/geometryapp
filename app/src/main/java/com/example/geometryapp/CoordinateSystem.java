@@ -2,6 +2,9 @@ package com.example.geometryapp;
 
 import android.util.Pair;
 
+import com.example.geometryapp.Fragment.TestFragment;
+import com.example.geometryapp.Views.Canvas;
+
 import java.util.HashMap;
 
 public class CoordinateSystem {

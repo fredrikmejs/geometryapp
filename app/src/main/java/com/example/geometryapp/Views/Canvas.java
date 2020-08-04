@@ -41,8 +41,8 @@ public class Canvas extends View {
     private Paint paintOrangeLine;
     private Paint paintCoordinateLine;
     private Paint paintCoordinateLineThick;
-    private Paint paintSelectedCoordinateLineY;
-    private Paint paintSelectedCoordinateLineX;
+    public Paint paintSelectedCoordinateLineY;
+    public Paint paintSelectedCoordinateLineX;
     private Paint paintText;
     private Paint paintSymmetryLine;
     private Paint paintCorrectAnswer;
@@ -1676,7 +1676,9 @@ public class Canvas extends View {
                 }
             }
             invalidate();
+            setCoordinateXAndYColorWhite();
         }
+
         return super.onTouchEvent(event);
     }
 
@@ -1700,6 +1702,17 @@ public class Canvas extends View {
             paintLineFigureAnswer.setColor(getResources().getColor(R.color.Red));
         }
         invalidate();
+    }
+
+    // This method removes the red and green coordinate points when pressing a new place on the coordinate system
+    public void setCoordinateXAndYColorWhite() {
+        if (paintSelectedCoordinateLineX.getColor() !=  getResources().getColor(R.color.CoordinateSystemLine)) {
+            paintSelectedCoordinateLineX.setColor(getResources().getColor(R.color.CoordinateSystemLine));
+        }
+
+        if (paintSelectedCoordinateLineY.getColor() !=  getResources().getColor(R.color.CoordinateSystemLine)) {
+            paintSelectedCoordinateLineY.setColor(getResources().getColor(R.color.CoordinateSystemLine));
+        }
     }
 
     public void setPaintValues(android.graphics.Canvas canvas) {

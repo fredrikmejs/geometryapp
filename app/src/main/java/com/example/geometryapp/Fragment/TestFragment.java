@@ -39,6 +39,8 @@ public class TestFragment extends Fragment {
     private RadioGroup RGLevel;
     private Button BTNOpenLevel;
 
+    public Boolean wrongAnswerSelected = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -188,5 +190,9 @@ public class TestFragment extends Fragment {
             radioButton.setSelected(true);
             RGLevel.addView(radioButton);
         }
+    }
+
+    public boolean getWrongAnswer(){
+        return wrongAnswerSelected;
     }
 }
