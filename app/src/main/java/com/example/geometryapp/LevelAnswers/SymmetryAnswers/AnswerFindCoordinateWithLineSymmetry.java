@@ -58,6 +58,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
             validatedAnswer.setIsXCorrect(true);
             gameState.setAnsweredCorrectly(true);
         }
+
         for (int x = 0; x < 11; x++) {
             for (int y = 0; y < 11; y++) {
                 if (isPointCorrectAnswer(gameState, x, y)) {

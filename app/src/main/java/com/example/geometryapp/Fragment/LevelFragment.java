@@ -139,6 +139,7 @@ public class LevelFragment extends Fragment {
                     TVCoordinateSelected = TVX;
                     TVX.setAlpha(0.7f);
                     TVY.setAlpha(1f);
+
                 }
             }
         });
@@ -269,7 +270,9 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                validateAnswer();
+                int x = Integer.parseInt(TVX.getText().toString());
+                int y = Integer.parseInt(TVY.getText().toString());
+                validateAnswer(x,y);
             }
         });
         createLevel();
@@ -278,7 +281,7 @@ public class LevelFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void validateAnswer() {
+    private void validateAnswer(int x, int y) {
         ValidatedAnswer validatedAnswer = validateAnswer(gameState);
         if (validatedAnswer.getCorrectAnswer() != null) {
             gameState.setCoordinateCorrectAnswer(validatedAnswer.getCorrectAnswer());
@@ -437,8 +440,7 @@ public class LevelFragment extends Fragment {
                 || gameState.getCategory() == Categories.FINDCOORDINATEWITHPOINTSYMMETRY) {
             Pair<String, String> pair = new Pair<>(TVX.getText().toString(), TVY.getText().toString());
             gameState.setTypedCoordinateAnswer(pair);
-        }
-        if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE
+        } else if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE
                 || gameState.getCategory() == Categories.FINDAREAFROMFIGURE
                 || gameState.getCategory() == Categories.COMPLETEFIGUREFROMAREA) {
             String value = TVValue.getText().toString();

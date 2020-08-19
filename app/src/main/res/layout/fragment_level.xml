@@ -115,12 +115,12 @@
 
         <TextView
             android:id="@+id/TVY"
-            android:layout_width="80dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:background="@drawable/valuearearight"
             android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:text="4"
             android:textColor="@color/ArrowYellow"
             android:textSize="20sp" />
@@ -145,12 +145,12 @@
 
         <TextView
             android:id="@+id/TVValue"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_width="120dp"
+            android:background="@drawable/answerarea"
+            android:gravity="center"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:gravity="center"
-            android:background="@drawable/answerarea"
             android:text="0"
             android:textColor="@color/Teal"
             android:textSize="20sp" />

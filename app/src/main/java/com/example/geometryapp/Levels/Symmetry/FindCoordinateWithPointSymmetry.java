@@ -29,7 +29,7 @@ public class FindCoordinateWithPointSymmetry implements Level {
     //Creates the correct gameState
     public FindCoordinateWithPointSymmetry(int levelNum) {
         if (levelNum == 0) {
-            levelNum = randomPoint(1, 4);
+            levelNum = randomPoint(1, 5);
         }
         if (levelNum == 1) {
             level1();
