@@ -322,7 +322,7 @@ public class Canvas extends View {
         path.lineTo((float) (toX - radius * cos(lineangle + (anglerad / 2.0))),
                 (float) (toY - radius * sin(lineangle + (anglerad / 2.0))));
         path.close();
-        canvas.drawPath(path, paintOrangeArrow);
+        canvas.drawPath(path, paintOrangeArrow);canvas.drawPath(path, paintOrangeArrow);
 
         //Small line to indicate scale
         Pair<Integer, Integer> coordinate = coordinateSystem.getCanvasRealCoordinate(new Coordinate(gameState.getOrigin().getX() + 1, gameState.getOrigin().getY()));
@@ -437,6 +437,24 @@ public class Canvas extends View {
                 int yPos = (realYStart + realYEnd) / 2 - (int) ((paintWhiteText.descent() + paintWhiteText.ascent()) / 2);
                 canvas.drawCircle((realXStart + realXEnd) / 2, (realYStart + realYEnd) / 2, paintCoordinateSelectedDot.getStrokeWidth(), paintCoordinateSelectedDot);
                 canvas.drawText("" + gameState.getRectangle().getHeight(gameState.getYScale()), xPos, yPos, paintWhiteText);
+
+
+                int x = (coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).first +
+                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).first)/2;
+
+                int y = (coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).second +
+                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second)/2;
+
+
+                canvas.drawPath(RoundedRect(x - canvas.getWidth() / 8, y - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2 -8, x + canvas.getWidth() / 8
+                        , y + (paintWhiteText.descent() - paintWhiteText.ascent()) * 1.5f+3, canvas.getWidth() / 40
+                        , canvas.getWidth() / 40, false), paintCoordinateSelectedDot);
+
+
+                canvas.drawText("P = 2x( " + gameState.getRectangle().getWidth(gameState.getXScale()) + " + " + gameState.getRectangle().getHeight(gameState.getYScale())
+                        + ")",x,y,paintWhiteText);
+
+                canvas.drawText("= " + gameState.getRectangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()),x,y+50,paintWhiteText);
             }
             realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).first;
             realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second;
@@ -478,6 +496,34 @@ public class Canvas extends View {
             int realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getCenter()).second;
             canvas.drawCircle(realXStart, realYStart, (canvas.getWidth() - 50) * gameState.getCircle().getRadius() / 10, paintSymmetryPoint);
             canvas.drawCircle(realXStart, realYStart, paintSymmetryPoint.getStrokeWidth(), paintSymmetryPoint);
+
+            if(gameState.isAnsweredCorrectly() || gameState.getAttempt() == 3){
+                int xPos = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getDrawCircle()).first;
+                int yPos = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getDrawCircle()).second;
+
+                int xPos1 = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getCenter()).first;
+                int yPos1 = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getCenter()).second;
+
+                canvas.drawLine(realXStart,realYStart,xPos,realYStart, paintSymmetryLine);
+
+                canvas.drawCircle(xPos,yPos, paintCoordinateSelectedDot.getStrokeWidth(),paintCoordinateSelectedDot);
+                canvas.drawText("" + gameState.getCircle().getRadius(),xPos,yPos,paintWhiteText);
+
+
+                if(gameState.getCircle().getRadius() != 1) {
+                    canvas.drawPath(RoundedRect(xPos1 - canvas.getWidth() / 9,
+                            yPos1 - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2,
+                            xPos1 + canvas.getWidth() / 9
+                            , yPos1 + (paintWhiteText.descent() - paintWhiteText.ascent()) * 1.5f+2,
+                            canvas.getWidth() / 40
+                            , canvas.getWidth() / 40, false), paintCoordinateSelectedDot);
+
+                    canvas.drawText("P = 2 x \uD835\uDF0B x " + gameState.getCircle().getRadius(), xPos1, yPos1, paintWhiteText);
+
+                    canvas.drawText("= " + gameState.getCircle().getRadius()*2+" x \uD835\uDF0B",xPos1,yPos1+50,paintWhiteText);
+
+                }
+            }
         }
         //Draws triangle
         if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE && gameState.getTriangle() != null) {

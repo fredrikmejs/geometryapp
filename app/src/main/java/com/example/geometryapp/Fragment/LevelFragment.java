@@ -270,9 +270,19 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                int x = Integer.parseInt(TVX.getText().toString());
-                int y = Integer.parseInt(TVY.getText().toString());
-                validateAnswer(x,y);
+
+                if (TVX.getText().equals("?") || TVY.getText().equals("?")){
+                    Toast.makeText(getContext(),"Invalid answer",Toast.LENGTH_LONG).show();
+                } else {
+
+                    int attempt = gameState.getAttempt();
+                    if (attempt == 3) {
+                        createLevel();
+                    } else {
+                        validateAnswer();
+                    }
+
+                }
             }
         });
         createLevel();
@@ -281,7 +291,7 @@ public class LevelFragment extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void validateAnswer(int x, int y) {
+    private void validateAnswer() {
         ValidatedAnswer validatedAnswer = validateAnswer(gameState);
         if (validatedAnswer.getCorrectAnswer() != null) {
             gameState.setCoordinateCorrectAnswer(validatedAnswer.getCorrectAnswer());
@@ -294,6 +304,15 @@ public class LevelFragment extends Fragment {
             startRightAnswerAnimation();
             answeredCorrectly = true;
         } else {
+
+            if (!validatedAnswer.isXCorrect()){
+                TVX.setText("?");
+            }
+            if (!validatedAnswer.isYCorrect()){
+                TVY.setText("?");
+            }
+
+
             setAnswerTVBackgroundResources(validatedAnswer);
             canvas.setCoordinateXAndYColor(validatedAnswer.isXCorrect(), validatedAnswer.isYCorrect());
             startWrongAnswerAnimation();
@@ -320,6 +339,10 @@ public class LevelFragment extends Fragment {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
+                    if (gameState.getAttempt() == 3) {
+                        startRightAnswerAnimation();
+                        animationGoing = false;
+                    }else {
                     IBTNValidate.setImageResource(R.drawable.avd_anim_wrong_go_back);
                     Drawable drawable = IBTNValidate.getDrawable();
                     AnimatedVectorDrawableCompat avd;
@@ -332,7 +355,8 @@ public class LevelFragment extends Fragment {
                         avd2.start();
                     }
                     animationGoing = false;
-                }
+                 }
+              }
             }, 1500);   //This must be same as animation length!
             gameState.setAttempt(gameState.getAttempt() + 1);
             updateStars(gameState.getAttempt());
@@ -353,7 +377,6 @@ public class LevelFragment extends Fragment {
             avd2 = (AnimatedVectorDrawable) drawable;
             avd2.start();
         }
-        IVNext.setImageResource(R.drawable.arrow_forward_green);
     }
 
     private void setAnswerTVBackgroundResources(ValidatedAnswer validatedAnswer) {
@@ -420,15 +443,10 @@ public class LevelFragment extends Fragment {
             IVSecondStar.setImageResource(R.drawable.star_green_empty);
             IVFirstStar.setImageResource(R.drawable.star_green_empty);
         } else {
-            Toast.makeText(getContext(), "Restarting level...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Click next to continue", Toast.LENGTH_LONG).show();
             IVSecondStar.setImageResource(R.drawable.star_red_empty);
             IVFirstStar.setImageResource(R.drawable.star_red_empty);
-            Handler h = new Handler();
-            h.postDelayed(new Runnable() {
-                public void run() {
-                    createLevel();
-                }
-            }, 3000);
+            IVNext.setImageResource(R.drawable.arrow_forward_green);
         }
 
     }

@@ -6,6 +6,7 @@ import com.example.geometryapp.GameState;
 public class Circle {
 
     private Coordinate center;
+    private Coordinate drawCenter = new Coordinate(1,1);
     private int radius;
 
     //Circle object. Contains basic information for drawing a circle.
@@ -17,6 +18,13 @@ public class Circle {
     public Coordinate getCenter() {
         return center;
     }
+
+    public Coordinate getDrawCircle() {
+        int x = center.getX() + radius;
+        int y = center.getY();
+        drawCenter.setX(x);
+        drawCenter.setY(y);
+        return drawCenter;}
 
     public void setCenter(Coordinate center) {
         this.center = center;
