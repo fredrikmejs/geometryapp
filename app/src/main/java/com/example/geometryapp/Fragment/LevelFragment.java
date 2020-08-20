@@ -406,7 +406,7 @@ public class LevelFragment extends Fragment {
         canvas = new Canvas(getContext(), gameState);
         linearLayout.removeAllViews();
         linearLayout.addView(canvas);
-        updateViewsToGameState();
+        updateViewsToGameState(levelIndex);
     }
 
     private void updateStars(final int attempt) {
@@ -449,10 +449,11 @@ public class LevelFragment extends Fragment {
         return AnswerController.getAnswer(gameState, categoryIndex, levelIndex);
     }
 
-    private void updateViewsToGameState() {
+    private void updateViewsToGameState(int levelIndex) {
         //Updates view according to the gameState. This is called only after restarting level in createLevel() function
         //Hides views and sets question to the question area.
         gameState.setAttempt(0);
+        gameState.setLevel(levelIndex);
         answeredCorrectly = false;
         ImageView IVFirstStar = view.findViewById(R.id.IVFirstStar);
         ImageView IVSecondStar = view.findViewById(R.id.IVSecondStar);

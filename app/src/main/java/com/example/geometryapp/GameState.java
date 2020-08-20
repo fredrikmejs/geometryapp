@@ -43,6 +43,7 @@ public class GameState {
     private Circle circle;
     private Triangle triangle;
     private boolean englishNumbers = true;
+    private int level;
 
     public GameState(Coordinate origin, int xScale, int yScale, TargetDot targetDot, SelectedDot selectedDot
             , ShapeFourCorners shapeFourCorners
@@ -69,6 +70,14 @@ public class GameState {
         this.triangle = triangle;
         this.answeredCorrectly = false;
         this.targetAnswer = targetAnswer;
+    }
+
+    public void setLevel(int level){
+        this.level = level;
+    }
+
+    public int getLevel(){
+        return level;
     }
 
     public Triangle getTriangle() {
