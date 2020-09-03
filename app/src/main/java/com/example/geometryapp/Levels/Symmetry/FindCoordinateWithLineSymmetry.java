@@ -168,7 +168,7 @@ public class FindCoordinateWithLineSymmetry implements Level {
         selectedDot = new SelectedDot(new Coordinate(5,5));
         if (randomNum == 0) {
             symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
-        } else {
+        } else  {
             symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
         }
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
@@ -200,9 +200,9 @@ public class FindCoordinateWithLineSymmetry implements Level {
         Yscale = Xscale;
         selectedDot = new SelectedDot(new Coordinate(5,5));
         if (randomNum == 0) {
-            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
+            symmetryLine = new SymmetryLine(new Coordinate(0, 0), new Coordinate(10, 10));
         } else {
-            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
+            symmetryLine = new SymmetryLine(new Coordinate(0, 10), new Coordinate(10, 0));
         }
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
         while (targetDotIsOnSymmetryLine(targetDot.getCoordinate())) {

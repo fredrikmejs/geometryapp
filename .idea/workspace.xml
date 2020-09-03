@@ -7,10 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121af32f-b431-48cc-8435-b4b3b0a12482" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Circle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_level.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_level.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +143,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1386" y="446" width="1192" height="1316" key="#app" timestamp="1598021397096">
+      <screen x="134" y="55" width="3706" height="2105" />
+    </state>
+    <state x="1386" y="446" width="1192" height="1316" key="#app/134.55.3706.2105@134.55.3706.2105" timestamp="1598021397096" />
     <state width="870" height="969" key="DebuggerActiveHint" timestamp="1597952524831">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
@@ -155,55 +163,55 @@
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state x="1257" y="499" width="1450" height="1211" key="Github.UntrackedFilesDialog/134.55.3706.2105@134.55.3706.2105" timestamp="1596528158277" />
-    <state width="3618" height="449" key="GridCell.Tab.0.bottom" timestamp="1597956320730">
+    <state width="2562" height="449" key="GridCell.Tab.0.bottom" timestamp="1599141632335">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.0.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320730" />
-    <state width="3618" height="449" key="GridCell.Tab.0.center" timestamp="1597956320729">
+    <state width="2562" height="449" key="GridCell.Tab.0.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632335" />
+    <state width="2562" height="449" key="GridCell.Tab.0.center" timestamp="1599141632335">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596553512823" />
-    <state width="3618" height="449" key="GridCell.Tab.0.center/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320729" />
-    <state width="3618" height="449" key="GridCell.Tab.0.left" timestamp="1597956320729">
+    <state width="2562" height="449" key="GridCell.Tab.0.center/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632335" />
+    <state width="2562" height="449" key="GridCell.Tab.0.left" timestamp="1599141632335">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596553512823" />
-    <state width="3618" height="449" key="GridCell.Tab.0.left/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320729" />
-    <state width="3618" height="449" key="GridCell.Tab.0.right" timestamp="1597956320729">
+    <state width="2562" height="449" key="GridCell.Tab.0.left/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632335" />
+    <state width="2562" height="449" key="GridCell.Tab.0.right" timestamp="1599141632335">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.0.right/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320729" />
-    <state width="3618" height="449" key="GridCell.Tab.1.bottom" timestamp="1597956320731">
+    <state width="2562" height="449" key="GridCell.Tab.0.right/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632335" />
+    <state width="2562" height="449" key="GridCell.Tab.1.bottom" timestamp="1599141632336">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.1.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320731" />
-    <state width="3618" height="449" key="GridCell.Tab.1.center" timestamp="1597956320730">
+    <state width="2562" height="449" key="GridCell.Tab.1.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632336" />
+    <state width="2562" height="449" key="GridCell.Tab.1.center" timestamp="1599141632336">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.1.center/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320730" />
-    <state width="3618" height="449" key="GridCell.Tab.1.left" timestamp="1597956320730">
+    <state width="2562" height="449" key="GridCell.Tab.1.center/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632336" />
+    <state width="2562" height="449" key="GridCell.Tab.1.left" timestamp="1599141632336">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.1.left/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320730" />
-    <state width="3618" height="449" key="GridCell.Tab.1.right" timestamp="1597956320730">
+    <state width="2562" height="449" key="GridCell.Tab.1.left/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632336" />
+    <state width="2562" height="449" key="GridCell.Tab.1.right" timestamp="1599141632336">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
-    <state width="3618" height="449" key="GridCell.Tab.1.right/134.55.3706.2105@134.55.3706.2105" timestamp="1597956320730" />
+    <state width="2562" height="449" key="GridCell.Tab.1.right/134.55.3706.2105@134.55.3706.2105" timestamp="1599141632336" />
     <state x="352" y="117" width="914" height="707" key="SettingsEditor" timestamp="1596550972056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="352" y="117" width="914" height="707" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596550972056" />
     <state x="983" y="366" width="2008" height="1476" key="SettingsEditor/134.55.3706.2105@134.55.3706.2105" timestamp="1596528027980" />
-    <state x="1319" y="739" key="com.intellij.ide.util.TipDialog" timestamp="1597944372591">
+    <state x="1319" y="691" key="com.intellij.ide.util.TipDialog" timestamp="1599123867481">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
-    <state x="1319" y="739" key="com.intellij.ide.util.TipDialog/134.55.3706.2105@134.55.3706.2105" timestamp="1597944372591" />
+    <state x="1319" y="691" key="com.intellij.ide.util.TipDialog/134.55.3706.2105@134.55.3706.2105" timestamp="1599123867481" />
     <state x="1235" y="470" width="1494" height="1237" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1596529066929">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
@@ -217,23 +225,18 @@
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1596559276957" />
     <state x="1159" y="55" width="1344" height="2554" key="run.anything.popup/134.55.3706.2105@134.55.3706.2105" timestamp="1597949097071" />
-    <state x="1265" y="55" width="1440" height="2556" key="search.everywhere.popup" timestamp="1597839994436">
+    <state x="1265" y="55" width="1440" height="2556" key="search.everywhere.popup" timestamp="1599140779219">
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
-    <state x="1265" y="55" width="1440" height="2556" key="search.everywhere.popup/134.55.3706.2105@134.55.3706.2105" timestamp="1597839994436" />
+    <state x="1265" y="55" width="1440" height="2556" key="search.everywhere.popup/134.55.3706.2105@134.55.3706.2105" timestamp="1599140779219" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/PointFromCoordinates.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>994</line>
-          <option name="timeStamp" value="61" />
+          <line>740</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -270,18 +270,16 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-
-                if (TVX.getText().equals("?") || TVY.getText().equals("?")){
-                    Toast.makeText(getContext(),"Invalid answer",Toast.LENGTH_LONG).show();
+                if ((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
+                        categoryIndex == 10 || categoryIndex ==11)){
+                        Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
                 } else {
-
                     int attempt = gameState.getAttempt();
                     if (attempt == 3) {
                         createLevel();
                     } else {
                         validateAnswer();
                     }
-
                 }
             }
         });
@@ -304,12 +302,13 @@ public class LevelFragment extends Fragment {
             startRightAnswerAnimation();
             answeredCorrectly = true;
         } else {
-
-            if (!validatedAnswer.isXCorrect()){
-                TVX.setText("?");
-            }
-            if (!validatedAnswer.isYCorrect()){
-                TVY.setText("?");
+            if(categoryIndex != 1) {
+                if (!validatedAnswer.isXCorrect()) {
+                    TVX.setText("?");
+                }
+                if (!validatedAnswer.isYCorrect()) {
+                    TVY.setText("?");
+                }
             }
 
 

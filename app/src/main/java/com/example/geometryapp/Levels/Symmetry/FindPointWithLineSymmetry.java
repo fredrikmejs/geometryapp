@@ -63,12 +63,8 @@ public class FindPointWithLineSymmetry implements Level {
         Xscale = 1;
         Yscale = 1;
         selectedDot = new SelectedDot(new Coordinate(5, 5));
-        int randomIndex = randomPoint(0, 3);
+        int randomIndex = randomPoint(0, 1);
         if (randomIndex == 0) {
-            symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
-        } else if (randomIndex == 1) {
-            symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
-        } else if (randomIndex == 2) {
             symmetryLine = new SymmetryLine(new Coordinate(0, 0), new Coordinate(10, 10));
         } else {
             symmetryLine = new SymmetryLine(new Coordinate(0, 10), new Coordinate(10, 0));
