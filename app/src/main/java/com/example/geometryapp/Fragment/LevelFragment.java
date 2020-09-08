@@ -271,7 +271,7 @@ public class LevelFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if ((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
-                        categoryIndex == 10 || categoryIndex ==11)){
+                        categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5)){
                         Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
                 } else {
                     int attempt = gameState.getAttempt();

@@ -46,7 +46,7 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
                 validatedAnswer.setIsYCorrect(false);
             }
         } else {
-            int x = xSymmetryPoint - yTarget;
+            int x = xSymmetryPoint - xTarget;
              a = x + xSymmetryPoint;
             if (a == xSelected) {
                 validatedAnswer.setIsXCorrect(true);
@@ -54,7 +54,7 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
                 validatedAnswer.setIsXCorrect(false);
             }
 
-            int y = ySymmetryPoint - xTarget;
+            int y = ySymmetryPoint - yTarget;
             b = y + ySymmetryPoint;
 
             if (b == ySelected) {

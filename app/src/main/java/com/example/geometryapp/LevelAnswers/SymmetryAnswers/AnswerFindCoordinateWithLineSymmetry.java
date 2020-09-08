@@ -36,29 +36,30 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
         Singleton singleton = Singleton.getInstance();
         int randomNum = singleton.getRandomNum();
         int level = gameState.getLevel();
-        int xSelected = gameState.getOrigin().getX() + coordinates.first / gameState.getXScale();
-        int ySelected = gameState.getOrigin().getY() + coordinates.second / gameState.getYScale();
+        double xSelected1 = gameState.getOrigin().getX();
+        double xSelected2 = (double) coordinates.first / gameState.getXScale();
+        double xSelected = xSelected1 + xSelected2;
+        double ySelected = gameState.getOrigin().getY() + (double)coordinates.second / gameState.getYScale();
 
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
+        double xTarget = gameState.getTargetDot().getCoordinate().getX();
 
 
 
         //int xTarget = (a - b)*gameState.getXScale();// (gameState.getTargetDot().getCoordinate().getX() - gameState.getOrigin().getX()) * gameState.getXScale();
 
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
+        double yTarget = gameState.getTargetDot().getCoordinate().getY();
 
 
        // int yTarget = (gameState.getTargetDot().getCoordinate().getY() - gameState.getOrigin().getY()) * gameState.getYScale();
 
-         if (level != 7) {
+         if (!(level == 3 || level == 4 || level == 7 || level == 8)) {
              if (randomNum == 0){
-
                  if (ySelected == yTarget){
                      validatedAnswer.setIsYCorrect(true);
                  } else{
                      validatedAnswer.setIsYCorrect(false);
                  }
-                 int x;
+                 double x;
                  if (xTarget > 5){
                      x = xTarget - 5;
                      x = 5 - x;
@@ -85,7 +86,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      gameState.setAnsweredCorrectly(false);
                  }
              } else {
-                 int y;
+                 double y;
                 if (xSelected == xTarget){
                     validatedAnswer.setIsXCorrect(true);
                 } else{
