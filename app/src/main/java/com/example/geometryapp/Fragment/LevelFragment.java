@@ -1,5 +1,6 @@
 package com.example.geometryapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -104,7 +105,22 @@ public class LevelFragment extends Fragment {
         BTN0 = view.findViewById(R.id.BTN0);
         BTNPi = view.findViewById(R.id.BTNPi);
         BTNDot = view.findViewById(R.id.BTNDot);
+
+        if (categoryIndex == 10){
+            BTNDot.setText("x");
+        } else {
+            BTNDot.setText(".");
+        }
+
+
         BTNMinus = view.findViewById(R.id.BTNMinus);
+        if (categoryIndex == 10){
+            BTNMinus.setText("/");
+        } else{
+            BTNMinus.setText("-");
+        }
+
+
         if (arabicNumeralsOn) {
             //Setting arabic numerals on
             Typeface typefaceArabic = ResourcesCompat.getFont(getContext(), R.font.bzar);
@@ -226,6 +242,8 @@ public class LevelFragment extends Fragment {
         BTNDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 addTextTVCoordinate(BTNDot.getText().toString());
             }
         });
@@ -466,6 +484,7 @@ public class LevelFragment extends Fragment {
         return AnswerController.getAnswer(gameState, categoryIndex, levelIndex);
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateViewsToGameState(int levelIndex) {
         //Updates view according to the gameState. This is called only after restarting level in createLevel() function
         //Hides views and sets question to the question area.
@@ -483,7 +502,15 @@ public class LevelFragment extends Fragment {
         TVX.setBackgroundResource(R.drawable.valuearealeft);
         TVY.setBackgroundResource(R.drawable.valuearearight);
         TVValue.setBackgroundResource(R.drawable.answerarea);
-        TVQuestion.setText(gameState.getQuestion());
+
+        if (categoryIndex == 10 && (levelIndex ==2 || levelIndex == 4)){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use 'X' for this level");
+        } else if (categoryIndex == 10 && (levelIndex ==5 || levelIndex == 6)){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '\uD835\uDF0B' for this level");
+        } else {
+            TVQuestion.setText(gameState.getQuestion());
+        }
+
         //Categories where answer coordinate view is invisible
         if (gameState.getCategory() == Categories.FINDPOINTWITHLINESYMMETRY
                 || gameState.getCategory() == Categories.FINDPOINTWITHPOINTSYMMETRY

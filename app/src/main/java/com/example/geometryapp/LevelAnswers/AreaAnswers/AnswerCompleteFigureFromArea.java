@@ -32,7 +32,7 @@ public class AnswerCompleteFigureFromArea implements LevelAnswer {
             return validatedAnswer;
         }
         if (gameState.getRectangle() != null) {
-            if (roundUp(gameState.getRectangle().calculateArea(gameState.getXScale(), gameState.getYScale()), 1) == roundUp(answer, 1) ||
+                if (roundUp(gameState.getRectangle().calculateArea(gameState.getXScale(), gameState.getYScale()), 1) == roundUp(answer, 1) ||
                     roundDown(gameState.getRectangle().calculateArea(gameState.getXScale(), gameState.getYScale()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);
                 return new ValidatedAnswer(true, true, true);

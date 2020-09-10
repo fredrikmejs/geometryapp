@@ -15,28 +15,59 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
     @Override
     public ValidatedAnswer isAnswerCorrect(GameState gameState, int levelIndex) {
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
-        double answer;
+        double answer = 0;
+        double oddScaleAnswer = 0;
+        int count = 0;
         try{
+
             String answerText = gameState.getTypedValueAnswer();
-            int count = answerText.length() - answerText.replace("\uD835\uDF0B", "").length();
-            answerText = answerText.replace("\uD835\uDF0B","");
-            if(answerText.length()==0){
-                answerText = "1";
+            if (!((answerText.contains("x") || answerText.contains("/")))) {
+                count = answerText.length() - answerText.replace("\uD835\uDF0B", "").length();
+                answerText = answerText.replace("\uD835\uDF0B", "");
+                answer = Double.parseDouble(answerText);
+                if (answerText.length() == 0) {
+                    answerText = "1";
+                }
             }
-            answer = Double.parseDouble(answerText);
-            for(int i = 0; i < count; i += 2){
-                answer *= 3.14159;
+
+            if (answerText.contains("x")) {
+                    String[] parts = gameState.getTypedValueAnswer().split("x");
+                    double firstParameter = Double.parseDouble(parts[0]);
+                    double secondParamter = Double.parseDouble(parts[1]);
+                    oddScaleAnswer = firstParameter*secondParamter;
+            }
+
+            if (answerText.contains("/")) {
+                    String[] parts = gameState.getTypedValueAnswer().split("/");
+                    double firstParameter = Double.parseDouble(parts[0]);
+                    double secondParamter = Double.parseDouble(parts[1]);
+                    oddScaleAnswer = firstParameter / secondParamter;
+
+
+            } else if (levelIndex == 5 || levelIndex ==6) {
+                answer = Double.parseDouble(answerText);
+                for (int i = 0; i < count; i += 2) {
+                    answer *= 3.14159;
+                }
             }
         } catch (NumberFormatException e){
             return validatedAnswer;
         }
         if (gameState.getRectangle() != null) {
-            if (roundUp(gameState.getRectangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
-            || roundDown(gameState.getRectangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
-                gameState.setAnsweredCorrectly(true);
-                return new ValidatedAnswer(true, true, true);
+            if (levelIndex == 2 || levelIndex == 4){
+                double correctAnswer = gameState.getRectangle().calculateArea(gameState.getXScale(),gameState.getYScale());
+                if (oddScaleAnswer == correctAnswer ||answer == correctAnswer) {
+                    gameState.setAnsweredCorrectly(true);
+                    return new ValidatedAnswer(true, true, true);
+                }
+                } else if (roundUp(gameState.getRectangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
+                        || roundDown(gameState.getRectangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
+
+                    gameState.setAnsweredCorrectly(true);
+                    return new ValidatedAnswer(true, true, true);
+                }
             }
-        }
+
         if (gameState.getCircle() != null) {
             Log.i("Circle ", "isAnswerCorrect: . " + roundUp(gameState.getCircle().calculateArea(gameState.getXScale()),1));
             if (roundUp(gameState.getCircle().calculateArea(gameState.getXScale()), 1) == roundUp(answer, 1)
@@ -46,6 +77,11 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
             }
         }
         if (gameState.getTriangle() != null) {
+
+            if (true){
+
+            }
+
             if (roundUp(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
             || roundDown(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);
