@@ -3,12 +3,15 @@ package com.example.geometryapp.LevelAnswers.SymmetryAnswers;
 import android.util.Pair;
 
 import com.example.geometryapp.Coordinate;
+import com.example.geometryapp.DrawObjects.SelectedDot;
+import com.example.geometryapp.DrawObjects.TargetDot;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
 public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
+
 
     //Validates if answer was correct
     @Override
@@ -40,17 +43,13 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
         double xSelected2 = (double) coordinates.first / gameState.getXScale();
         double xSelected = xSelected1 + xSelected2;
         double ySelected = gameState.getOrigin().getY() + (double)coordinates.second / gameState.getYScale();
-
         double xTarget = gameState.getTargetDot().getCoordinate().getX();
-
-
-
-        //int xTarget = (a - b)*gameState.getXScale();// (gameState.getTargetDot().getCoordinate().getX() - gameState.getOrigin().getX()) * gameState.getXScale();
 
         double yTarget = gameState.getTargetDot().getCoordinate().getY();
 
+        double y=0,x=0;
+        double yAnswer=0, xAnswer=0;
 
-       // int yTarget = (gameState.getTargetDot().getCoordinate().getY() - gameState.getOrigin().getY()) * gameState.getYScale();
 
          if (!(level == 3 || level == 4 || level == 7 || level == 8)) {
              if (randomNum == 0){
@@ -59,7 +58,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                  } else{
                      validatedAnswer.setIsYCorrect(false);
                  }
-                 double x;
+                 yAnswer = yTarget;
                  if (xTarget > 5){
                      x = xTarget - 5;
                      x = 5 - x;
@@ -68,6 +67,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      } else{
                          validatedAnswer.setIsXCorrect(false);
                      }
+                     xAnswer = x;
                  } else{
                      x = 5 - xTarget;
                      x = 5 + x;
@@ -76,7 +76,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      } else{
                          validatedAnswer.setIsXCorrect(false);
                      }
-
+                     xAnswer = x;
                  }
                  if (x == xSelected && ySelected == yTarget){
                      validatedAnswer.setIsAnswerCorrect(true);
@@ -86,12 +86,12 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      gameState.setAnsweredCorrectly(false);
                  }
              } else {
-                 double y;
                 if (xSelected == xTarget){
                     validatedAnswer.setIsXCorrect(true);
                 } else{
                     validatedAnswer.setIsXCorrect(false);
                 }
+                xAnswer = xTarget;
                 if (yTarget > 5){
                     y = yTarget -5;
                     y = 5 - y;
@@ -101,6 +101,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                     } else {
                         validatedAnswer.setIsYCorrect(false);
                     }
+                    yAnswer = y;
                 }else {
                     y = 5 - yTarget;
                     y = 5 + y;
@@ -109,6 +110,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                     } else {
                         validatedAnswer.setIsYCorrect(false);
                     }
+                    yAnswer = y;
                 }
                 if (xSelected == xTarget && y == ySelected){
                     validatedAnswer.setIsAnswerCorrect(true);
@@ -118,6 +120,7 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                     gameState.setAnsweredCorrectly(false);
                 }
              }
+
         } else {
              if (randomNum == 0) {
                  if (xSelected == yTarget) {
@@ -125,12 +128,13 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                  } else {
                      validatedAnswer.setIsXCorrect(false);
                  }
+                 xAnswer = yTarget;
                  if (ySelected == xTarget) {
                      validatedAnswer.setIsYCorrect(true);
                  } else {
                      validatedAnswer.setIsYCorrect(false);
                  }
-
+                 yAnswer = xTarget;
                  if (xSelected == yTarget && xTarget == ySelected) {
                      validatedAnswer.setIsAnswerCorrect(true);
                      gameState.setAnsweredCorrectly(true);
@@ -140,19 +144,21 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                  }
              } else {
                  boolean xbool = false, ybool = false;
-
                  if (ySelected == (10-xTarget)){
                      ybool = true;
                      validatedAnswer.setIsYCorrect(true);
+
                  } else {
                      validatedAnswer.setIsYCorrect(false);
                  }
+                 yAnswer = 10-xTarget;
                  if (xSelected == (10-yTarget)){
                      xbool = true;
                      validatedAnswer.setIsXCorrect(true);
                  } else {
                      validatedAnswer.setIsXCorrect(false);
                  }
+                 xAnswer = 10-yTarget;
                  if (xbool && ybool) {
                      validatedAnswer.setIsAnswerCorrect(true);
                      gameState.setAnsweredCorrectly(true);
@@ -163,6 +169,11 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
              }
         }
 
+         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+            validatedAnswer.setCorrectAnswer(new Coordinate((int)xAnswer, (int)yAnswer));
+            singleton.setXCoordinate(((int) xAnswer));
+            singleton.setYCoordinate((int) yAnswer);
+         }
         return validatedAnswer;
     }
 

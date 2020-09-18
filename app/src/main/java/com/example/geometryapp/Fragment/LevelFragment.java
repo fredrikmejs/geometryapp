@@ -29,6 +29,7 @@ import com.example.geometryapp.Controllers.AnswerController;
 import com.example.geometryapp.Controllers.LevelController;
 import com.example.geometryapp.Enum.Categories;
 import com.example.geometryapp.GameState;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 import com.example.geometryapp.Views.Canvas;
 import com.example.geometryapp.R;
@@ -288,13 +289,24 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                if ((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
-                        categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5)){
+                if (((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
+                        categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5 || categoryIndex == 3)) && gameState.getAttempt() != 3){
                         Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
                 } else {
                     int attempt = gameState.getAttempt();
-                    if (attempt == 3) {
-                        createLevel();
+                    if (attempt >= 2) {
+                        validateAnswer();
+
+                        if (categoryIndex == 4 || categoryIndex == 6){
+                            Singleton singleton = Singleton.getInstance();
+                            TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() +")" );
+                            TVX.setText(""+singleton.getXCoordinate());
+                            TVY.setText(""+singleton.getYCoordinate());
+                        }
+
+                        if (attempt >= 3) {
+                            createLevel();
+                        }
                     } else {
                         validateAnswer();
                     }
@@ -328,8 +340,6 @@ public class LevelFragment extends Fragment {
                     TVY.setText("?");
                 }
             }
-
-
             setAnswerTVBackgroundResources(validatedAnswer);
             canvas.setCoordinateXAndYColor(validatedAnswer.isXCorrect(), validatedAnswer.isYCorrect());
             startWrongAnswerAnimation();
