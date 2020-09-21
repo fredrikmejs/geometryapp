@@ -302,6 +302,11 @@ public class LevelFragment extends Fragment {
                             TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() +")" );
                             TVX.setText(""+singleton.getXCoordinate());
                             TVY.setText(""+singleton.getYCoordinate());
+                        }else if (categoryIndex == 2){
+                            Singleton singleton = Singleton.getInstance();
+                            TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() +")" );
+                            TVX.setText(""+singleton.getXCoordinate());
+                            TVY.setText(""+singleton.getYCoordinate());
                         }
 
                         if (attempt >= 3) {

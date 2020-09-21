@@ -443,21 +443,24 @@ public class Canvas extends View {
 
 
                 int x = (coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).first +
-                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).first)/2;
+                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).first) / 2;
 
                 int y = (coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).second +
-                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second)/2;
+                        coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second) / 2;
 
 
-                canvas.drawPath(RoundedRect(x - canvas.getWidth() / 8, y - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2+25, x + canvas.getWidth() / 8
-                        , y + (paintWhiteText.descent() - paintWhiteText.ascent()) * 1.5f+3, canvas.getWidth() / 30
+                canvas.drawPath(RoundedRect(x - canvas.getWidth() / 8, y - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2 + 25, x + canvas.getWidth() / 8
+                        , y + (paintWhiteText.descent() - paintWhiteText.ascent()) * 1.5f + 3, canvas.getWidth() / 30
                         , canvas.getWidth() / 40, false), paintCoordinateSelectedDot);
 
 
-                canvas.drawText("P = 2x( " + gameState.getRectangle().getWidth(gameState.getXScale()) + " + " + gameState.getRectangle().getHeight(gameState.getYScale())
-                        + ")",x,y,paintWhiteText);
-
-                canvas.drawText("= " + gameState.getRectangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()),x,y+50,paintWhiteText);
+                if (!(gameState.getRectangle().getWidth(gameState.getXScale()) == gameState.getRectangle().getHeight(gameState.getYScale()))) {
+                    canvas.drawText("P = 2x( " + gameState.getRectangle().getWidth(gameState.getXScale()) + " + " + gameState.getRectangle().getHeight(gameState.getYScale())
+                            + ")", x, y, paintWhiteText);
+                } else {
+                    canvas.drawText("P = 4 x "  + gameState.getRectangle().getWidth(gameState.getXScale()) , x, y, paintWhiteText);
+                }
+                canvas.drawText("= " + gameState.getRectangle().calculatePerimeter(gameState.getXScale(), gameState.getYScale()), x, y + 50, paintWhiteText);
             }
             realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).first;
             realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second;

@@ -1,5 +1,6 @@
 package com.example.geometryapp.LevelAnswers.CoordinatesAnswers;
 
+import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.ValidatedAnswer;
@@ -27,6 +28,10 @@ public class AnswerPointFromCoordinate implements LevelAnswer {
         if((ySelected-yOrigin)*yScale==yTarget){
             validatedAnswer.setIsYCorrect(true);
         }
-        return validatedAnswer;
+
+        if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+            validatedAnswer.setCorrectAnswer(new Coordinate(xTarget, yTarget));
+        }
+            return validatedAnswer;
     }
 }

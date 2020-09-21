@@ -2,8 +2,10 @@ package com.example.geometryapp.LevelAnswers.CoordinatesAnswers;
 
 import android.util.Pair;
 
+import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
 public class AnswerCoordinateFromPoint implements LevelAnswer {
@@ -38,6 +40,13 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
         }
         if ((yTarget - yOrigin) * yScale == yTyped) {
             validatedAnswer.setIsYCorrect(true);
+        }
+
+
+        if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 3){
+            Singleton singleton = Singleton.getInstance();
+            singleton.setXCoordinate(xTarget);
+            singleton.setYCoordinate(yTarget);
         }
         return validatedAnswer;
     }
