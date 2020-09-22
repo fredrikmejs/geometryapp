@@ -107,7 +107,7 @@ public class LevelFragment extends Fragment {
         BTNPi = view.findViewById(R.id.BTNPi);
         BTNDot = view.findViewById(R.id.BTNDot);
 
-        if (categoryIndex == 10){
+        if (categoryIndex == 10 && (levelIndex == 2 || levelIndex == 4 || levelIndex == 6 )){
             BTNDot.setText("x");
         } else {
             BTNDot.setText(".");

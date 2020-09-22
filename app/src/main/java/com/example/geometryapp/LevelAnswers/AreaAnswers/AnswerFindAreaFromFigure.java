@@ -24,6 +24,9 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
             if (!((answerText.contains("x") || answerText.contains("/")))) {
                 count = answerText.length() - answerText.replace("\uD835\uDF0B", "").length();
                 answerText = answerText.replace("\uD835\uDF0B", "");
+                if (answerText.equals("")){
+                    answerText = "1";
+                }
                 answer = Double.parseDouble(answerText);
                 if (answerText.length() == 0) {
                     answerText = "1";

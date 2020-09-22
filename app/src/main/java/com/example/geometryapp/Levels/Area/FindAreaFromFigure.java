@@ -91,8 +91,18 @@ public class FindAreaFromFigure implements Level {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
-        int width = randomPoint(3, 7);
-        int height = randomPoint(3, 7);
+        int width = 0;
+        int height = 0;
+
+        boolean rect = true;
+        while (rect){
+            width = randomPoint(3, 7);
+            height = randomPoint(3, 7);
+            if (width != height){
+                rect = false;
+            }
+        }
+
         Coordinate bottomLeft = new Coordinate(randomPoint(1, 5), randomPoint(1, 5));
         while (!isCoordinatesOnGrid(width, height, bottomLeft)) {
             bottomLeft = new Coordinate(randomPoint(1, 5), randomPoint(1, 5));
@@ -107,8 +117,17 @@ public class FindAreaFromFigure implements Level {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
         yScale = randomPoint(2, 10);
-        int width = randomPoint(3, 7);
-        int height = randomPoint(3, 7);
+        int width = 0;
+        int height = 0;
+        boolean rect = true;
+        while (rect){
+            width = randomPoint(3, 7);
+            height = randomPoint(3, 7);
+            if (width != height){
+                rect = false;
+            }
+        }
+
         Coordinate bottomLeft = new Coordinate(randomPoint(1, 5), randomPoint(1, 5));
         while (!isCoordinatesOnGrid(width, height, bottomLeft)) {
             bottomLeft = new Coordinate(randomPoint(1, 5), randomPoint(1, 5));
@@ -385,7 +404,7 @@ public class FindAreaFromFigure implements Level {
                 .setSelectedDot(new SelectedDot(new Coordinate(0, 0)))
                 .setRectangle(rectangle)
                 .setCircle(circle)
-                .setTriangle(triangle)
+                    .setTriangle(triangle)
                 .setShapeFourCorners(shapeFourCorners);
         return gameStateBuilder.build();
     }
