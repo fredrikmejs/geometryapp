@@ -108,7 +108,7 @@ public class LevelFragment extends Fragment {
         BTNDot = view.findViewById(R.id.BTNDot);
 
         if (categoryIndex == 10 && (levelIndex == 2 || levelIndex == 4 || levelIndex == 6 )){
-            BTNDot.setText("x");
+            BTNDot.setText("×");
         } else {
             BTNDot.setText(".");
         }
@@ -289,33 +289,40 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                if (((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
-                        categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5 || categoryIndex == 3)) && gameState.getAttempt() != 3){
-                        Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
-                } else {
-                    int attempt = gameState.getAttempt();
-                    if (attempt >= 2) {
-                        validateAnswer();
-
-                        if (categoryIndex == 4 || categoryIndex == 6){
-                            Singleton singleton = Singleton.getInstance();
-                            TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() +")" );
-                            TVX.setText(""+singleton.getXCoordinate());
-                            TVY.setText(""+singleton.getYCoordinate());
-                        }else if (categoryIndex == 2){
-                            Singleton singleton = Singleton.getInstance();
-                            TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() +")" );
-                            TVX.setText(""+singleton.getXCoordinate());
-                            TVY.setText(""+singleton.getYCoordinate());
-                        }
-
-                        if (attempt >= 3) {
-                            createLevel();
-                        }
+                if (gameState.isAnsweredCorrectly()){
+                    moveToNextLevel();
+                    Toast.makeText(getContext(), "Category: " + categoryIndex + ", level: " + levelIndex, Toast.LENGTH_LONG).show();// TODO: 8.6.2020 Remove when done!
+                }
+               if (!gameState.isAnsweredCorrectly()){
+                   if (((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
+                            categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5 || categoryIndex == 3)) && gameState.getAttempt() != 3){
+                            Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
                     } else {
-                        validateAnswer();
+                         int attempt = gameState.getAttempt();
+                            if (attempt >= 2) {
+                                validateAnswer();
+
+                            if (categoryIndex == 4 || categoryIndex == 6) {
+                                Singleton singleton = Singleton.getInstance();
+                                TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() + ")");
+                                TVX.setText("" + singleton.getXCoordinate());
+                                TVY.setText("" + singleton.getYCoordinate());
+                            } else if (categoryIndex == 2) {
+                                Singleton singleton = Singleton.getInstance();
+                                TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() + ")");
+                                TVX.setText("" + singleton.getXCoordinate());
+                                TVY.setText("" + singleton.getYCoordinate());
+                            }
+                            if (attempt >= 3) {
+                                createLevel();
+                            }
+                            } else {
+                                validateAnswer();
+                        }
                     }
                 }
+
+
             }
         });
         createLevel();
@@ -519,11 +526,14 @@ public class LevelFragment extends Fragment {
         TVValue.setBackgroundResource(R.drawable.answerarea);
 
         if (categoryIndex == 10 && (levelIndex ==2 || levelIndex == 4)){
-            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use 'X' for this level");
-        } else if (categoryIndex == 10 && (levelIndex ==5 || levelIndex == 6)){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '×' for this level");
+        } else if ((categoryIndex == 10 && levelIndex ==5) || (categoryIndex == 8 && (levelIndex == 5 || levelIndex == 6))){
             TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '\uD835\uDF0B' for this level");
+        } else if (categoryIndex == 10 && levelIndex == 6){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '\uD835\uDF0B' for this level\n");
+            TVQuestion.setText("You are allowed to use '×' for this level");
         } else {
-            TVQuestion.setText(gameState.getQuestion());
+        TVQuestion.setText(gameState.getQuestion());
         }
 
         //Categories where answer coordinate view is invisible

@@ -8,47 +8,42 @@ import com.example.geometryapp.ValidatedAnswer;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 public class AnswerFindAreaFromFigure implements LevelAnswer {
 
+
+    double answer = 0;
+    double oddScaleAnswer = 0;
+    String answerText ="";
     //Validates if answer was correct
     @Override
     public ValidatedAnswer isAnswerCorrect(GameState gameState, int levelIndex) {
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
-        double answer = 0;
-        double oddScaleAnswer = 0;
+
         int count = 0;
         try{
 
-            String answerText = gameState.getTypedValueAnswer();
-            if (!((answerText.contains("x") || answerText.contains("/")))) {
+            answerText = gameState.getTypedValueAnswer();
+            if (answerText.contains("\uD835\uDF0B")) {
+
                 count = answerText.length() - answerText.replace("\uD835\uDF0B", "").length();
                 answerText = answerText.replace("\uD835\uDF0B", "");
                 if (answerText.equals("")){
                     answerText = "1";
                 }
-                answer = Double.parseDouble(answerText);
-                if (answerText.length() == 0) {
-                    answerText = "1";
-                }
+            }
+            if (answerText.contains("×")){
+                containsX();
+            }
+            if (answerText.contains("/")){
+                containsDivision();
             }
 
-            if (answerText.contains("x")) {
-                    String[] parts = gameState.getTypedValueAnswer().split("x");
-                    double firstParameter = Double.parseDouble(parts[0]);
-                    double secondParamter = Double.parseDouble(parts[1]);
-                    oddScaleAnswer = firstParameter*secondParamter;
-            }
-
-            if (answerText.contains("/")) {
-                    String[] parts = gameState.getTypedValueAnswer().split("/");
-                    double firstParameter = Double.parseDouble(parts[0]);
-                    double secondParamter = Double.parseDouble(parts[1]);
-                    oddScaleAnswer = firstParameter / secondParamter;
-
-
-            } else if (levelIndex == 5 || levelIndex ==6) {
+            if (answer == 0){
                 answer = Double.parseDouble(answerText);
+            }
+            if (count > 0) {
                 for (int i = 0; i < count; i += 2) {
                     answer *= 3.14159;
                 }
@@ -81,10 +76,6 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
         }
         if (gameState.getTriangle() != null) {
 
-            if (true){
-
-            }
-
             if (roundUp(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
             || roundDown(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);
@@ -113,5 +104,20 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
         BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(places, RoundingMode.DOWN);
         return bd.doubleValue();
+    }
+
+    private void containsX(){
+        String[] parts = answerText.split("×");
+        double firstParameter = Double.parseDouble(parts[0]);
+        double secondParamter = Double.parseDouble(parts[1]);
+        answer = firstParameter*secondParamter;
+    }
+
+    private void containsDivision(){
+        String[] parts = answerText.split("/");
+        double firstParameter = Double.parseDouble(parts[0]);
+        double secondParamter = Double.parseDouble(parts[1]);
+        answer = firstParameter / secondParamter;
+
     }
 }
