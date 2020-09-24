@@ -14,6 +14,7 @@ import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.DrawObjects.Circle;
 import com.example.geometryapp.DrawObjects.Line;
 import com.example.geometryapp.DrawObjects.Rectangle;
+import com.example.geometryapp.DrawObjects.SelectedDot;
 import com.example.geometryapp.DrawObjects.ShapeFourCorners;
 import com.example.geometryapp.DrawObjects.SymmetryLine;
 import com.example.geometryapp.DrawObjects.Triangle;
@@ -21,6 +22,7 @@ import com.example.geometryapp.Enum.Categories;
 import com.example.geometryapp.Enum.ShapeType;
 import com.example.geometryapp.R;
 import com.example.geometryapp.GameState;
+import com.example.geometryapp.Singleton;
 
 import static java.lang.Math.atan2;
 import static java.lang.Math.cos;
@@ -357,14 +359,33 @@ public class Canvas extends View {
         }
     }
 
-    private void onDrawCorrectAnswer(android.graphics.Canvas canvas) {
+    private void onDrawCorrectAnswer(android.graphics.Canvas canvas) throws NullPointerException {
         //Draws the correct answer. For example in category find figure of symmetry through point of symmetry, correct answer is drawn after 3 failed attemps
-        if (gameState.getCoordinateCorrectAnswer() != null && (gameState.getAttempt() == 3 || gameState.isAnsweredCorrectly())) {
-            int coordinateSystemX = gameState.getCoordinateCorrectAnswer().getX();
-            int coordinateSystemY = gameState.getCoordinateCorrectAnswer().getY();
+
+        if (gameState.getCoordinateCorrectAnswer() != null && (gameState.getAttempt() < 3 && !gameState.isAnsweredCorrectly())){
+            Singleton singleton = Singleton.getInstance();
+            int coordinateSystemX = singleton.getXCoordinate();
+            int coordinateSystemY = singleton.getYCoordinate();
             Pair<Integer, Integer> realCoordinate = coordinateSystem.getCanvasRealCoordinate(new Coordinate(coordinateSystemX, coordinateSystemY));
             int realCoordinateX = realCoordinate.first;
             int realCoordinateY = realCoordinate.second;
+            paintCorrectAnswer.setColor(getResources().getColor(R.color.Red));
+
+
+            canvas.drawCircle(realCoordinateX, realCoordinateY, paintCorrectAnswer.getStrokeWidth() / 2, paintCorrectAnswer);
+
+        }
+
+        if (gameState.getCoordinateCorrectAnswer() != null && (gameState.getAttempt() == 3 || gameState.isAnsweredCorrectly())) {
+            Singleton singleton = Singleton.getInstance();
+
+            int coordinateSystemX = singleton.getXCoordinate();
+            int coordinateSystemY = singleton.getYCoordinate();
+            Pair<Integer, Integer> realCoordinate = coordinateSystem.getCanvasRealCoordinate(new Coordinate(coordinateSystemX, coordinateSystemY));
+
+            int realCoordinateX = realCoordinate.first;
+            int realCoordinateY = realCoordinate.second;
+            paintCorrectAnswer.setColor(getResources().getColor(R.color.LightGreen));
             canvas.drawCircle(realCoordinateX, realCoordinateY, paintCorrectAnswer.getStrokeWidth() / 2, paintCorrectAnswer);
         }
         if (gameState.getCategory() == Categories.FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY && gameState.getAttempt() >= 3) {
@@ -2222,11 +2243,15 @@ public class Canvas extends View {
         if (XGreen && YGreen) {
             paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.LightGreen));
             paintLineFigureAnswer.setColor(getResources().getColor(R.color.LightGreen));
+        } if ((gameState.getCategory() == Categories.FINDCOORDINATEWITHPOINTSYMMETRY || gameState.getCategory() == Categories.FINDCOORDINATEWITHSYMMETRY)
+                && !gameState.isAnsweredCorrectly() ) {
+            paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.Purple));
         } else {
             paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.Red));
             paintLineFigureAnswer.setColor(getResources().getColor(R.color.Red));
         }
         invalidate();
+
     }
 
     // This method removes the red and green coordinate points when pressing a new place on the coordinate system

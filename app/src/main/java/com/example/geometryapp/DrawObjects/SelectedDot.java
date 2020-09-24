@@ -43,6 +43,7 @@ public class SelectedDot {
         this.previousCoordinates = previousCoordinates;
     }
 
+
     public void goPreviousCoordinate() {
         if (previousCoordinates.size() > 1) {
             previousCoordinates.remove(previousCoordinates.size()-1);

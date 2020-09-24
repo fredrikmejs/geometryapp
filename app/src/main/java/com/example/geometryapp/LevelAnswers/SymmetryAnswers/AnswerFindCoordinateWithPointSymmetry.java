@@ -29,7 +29,7 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
         double yTarget = gameState.getTargetDot().getCoordinate().getY(); //the given y
         double xSymmetryPoint = gameState.getSymmetryPoint().getX(); //x for sym
         double ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
-        double corrextY, correctX;
+        double correctY, correctX;
 
         if (xSymmetryPoint <= xTarget) {
             double x = xTarget - xSymmetryPoint;
@@ -40,9 +40,9 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
                 validatedAnswer.setIsXCorrect(false);
             }
             double y = ySymmetryPoint - yTarget;
-             corrextY = y + ySymmetryPoint;
+             correctY = y + ySymmetryPoint;
 
-            if (corrextY == ySelected) {
+            if (correctY == ySelected) {
                 validatedAnswer.setIsYCorrect(true);
             } else {
                 validatedAnswer.setIsYCorrect(false);
@@ -57,26 +57,30 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
             }
 
             double y = ySymmetryPoint - yTarget;
-            corrextY = y + ySymmetryPoint;
+            correctY = y + ySymmetryPoint;
 
-            if (corrextY == ySelected) {
+            if (correctY == ySelected) {
                 validatedAnswer.setIsYCorrect(true);
             } else {
                 validatedAnswer.setIsYCorrect(false);
             }
         }
-        if (correctX == xSelected && corrextY == ySelected){
+        if (correctX == xSelected && correctY == ySelected){
             validatedAnswer.setIsAnswerCorrect(true);
             gameState.setAnsweredCorrectly(true);
         }
 
         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >=2){
-            validatedAnswer.setCorrectAnswer(new Coordinate((int)correctX, (int)corrextY));
-            singleton.setXCoordinate((int) correctX);
-            singleton.setYCoordinate((int) corrextY);
+                validatedAnswer.setCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                singleton.setXCoordinate((int) correctX);
+                singleton.setYCoordinate((int) correctY);
+        }else if(!validatedAnswer.isAnswerCorrect()) {
+            if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
+                gameState.setCoordinateCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                singleton.setXCoordinate((int) xSelected);
+                singleton.setYCoordinate((int) ySelected);
+            }
         }
-
-
         return validatedAnswer;
     }
 }

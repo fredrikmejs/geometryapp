@@ -304,14 +304,16 @@ public class LevelFragment extends Fragment {
 
                             if (categoryIndex == 4 || categoryIndex == 6) {
                                 Singleton singleton = Singleton.getInstance();
-                                TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() + ")");
-                                TVX.setText("" + singleton.getXCoordinate());
-                                TVY.setText("" + singleton.getYCoordinate());
+                                int xValue = (singleton.getXCoordinate() - gameState.getOrigin().getX())*gameState.getXScale();
+                                int yValue = (singleton.getYCoordinate() - gameState.getOrigin().getY())*gameState.getYScale();
+                                TVQuestion.setText("The answer for this level is: (" + xValue + "," + yValue + ")");
+                                TVX.setText("" + xValue);
+                                TVY.setText("" + yValue);
                             } else if (categoryIndex == 2) {
                                 Singleton singleton = Singleton.getInstance();
-                                TVQuestion.setText("The answer for this level is: (" + singleton.getXCoordinate() + "," + singleton.getYCoordinate() + ")");
-                                TVX.setText("" + singleton.getXCoordinate());
-                                TVY.setText("" + singleton.getYCoordinate());
+                                TVQuestion.setText("The answer for this level is: (" + singleton.getL2X() + "," + singleton.getL2Y() + ")");
+                                TVX.setText("" + singleton.getL2X());
+                                TVY.setText("" + singleton.getL2Y());
                             }
                             if (attempt >= 3) {
                                 createLevel();
@@ -321,8 +323,6 @@ public class LevelFragment extends Fragment {
                         }
                     }
                 }
-
-
             }
         });
         createLevel();

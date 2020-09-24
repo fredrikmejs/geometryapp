@@ -34,6 +34,7 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false,false,false);
         if ((xTarget - xOrigin) * xScale == xTyped && (yTarget - yOrigin) * yScale == yTyped) {
             validatedAnswer.setIsAnswerCorrect(true);
+            gameState.setAnsweredCorrectly(true);
         }
         if ((xTarget - xOrigin) * xScale == xTyped) {
             validatedAnswer.setIsXCorrect(true);
@@ -42,12 +43,25 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
             validatedAnswer.setIsYCorrect(true);
         }
 
-
-        if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 3){
-            Singleton singleton = Singleton.getInstance();
+        Singleton singleton = Singleton.getInstance();
+        if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+            int xWrong = (xTyped/xScale) + xOrigin;
+            int yWrong = (yTyped/yScale) + yOrigin;
+            if (gameState.getAttempt()<3 && (xWrong <=10 && xWrong >= 0) && (yWrong <=10 && yWrong >= 0)) {
+                gameState.setCoordinateCorrectAnswer(new Coordinate(xTarget,yTarget));
+                singleton.setXCoordinate(xWrong);
+                singleton.setYCoordinate(yWrong);
+            }
+        }
+        if(validatedAnswer.isAnswerCorrect() || gameState.getAttempt() == 2){
+            gameState.setCoordinateCorrectAnswer(new Coordinate(xTarget,yTarget));
             singleton.setXCoordinate(xTarget);
             singleton.setYCoordinate(yTarget);
         }
+
+        singleton.setL2X((xTarget-xOrigin)*xScale);
+        singleton.setL2Y((yTarget-yOrigin)*yScale);
+
         return validatedAnswer;
     }
 }

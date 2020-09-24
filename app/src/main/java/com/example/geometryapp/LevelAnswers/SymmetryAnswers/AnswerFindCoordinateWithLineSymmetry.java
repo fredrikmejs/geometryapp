@@ -170,10 +170,17 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
         }
 
          if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
-            validatedAnswer.setCorrectAnswer(new Coordinate((int)xAnswer, (int)yAnswer));
-            singleton.setXCoordinate(((int) xAnswer));
-            singleton.setYCoordinate((int) yAnswer);
+             if ((xAnswer <= 10 && xAnswer >= 0) && (yAnswer <= 10 && yAnswer >=0)) {
+                   validatedAnswer.setCorrectAnswer(new Coordinate((int)xAnswer, (int)yAnswer));
+                   singleton.setXCoordinate(((int) xAnswer));
+                   singleton.setYCoordinate((int) yAnswer);
+                }
+         } else if(!validatedAnswer.isAnswerCorrect()){
+            gameState.setCoordinateCorrectAnswer(new Coordinate((int)xAnswer,(int)yAnswer));
+            singleton.setXCoordinate((int)xSelected);
+            singleton.setYCoordinate((int)ySelected);
          }
+
         return validatedAnswer;
     }
 
