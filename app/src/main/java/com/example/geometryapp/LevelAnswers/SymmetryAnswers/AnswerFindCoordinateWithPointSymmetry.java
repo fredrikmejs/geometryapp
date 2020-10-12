@@ -70,17 +70,26 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
             gameState.setAnsweredCorrectly(true);
         }
 
+        singleton.setXCoordinate(-1);
+        singleton.setYCoordinate(-1);
+
+        if (coordinates.first % gameState.getXScale() == 0 && coordinates.second % gameState.getYScale() == 0){
+            if(!validatedAnswer.isAnswerCorrect()) {
+                if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
+                    gameState.setCoordinateCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                    singleton.setXCoordinate((int) xSelected);
+                    singleton.setYCoordinate((int) ySelected);
+                }
+            }
+        }
+
         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >=2){
                 validatedAnswer.setCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
                 singleton.setXCoordinate((int) correctX);
                 singleton.setYCoordinate((int) correctY);
-        }else if(!validatedAnswer.isAnswerCorrect()) {
-            if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
-                gameState.setCoordinateCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
-                singleton.setXCoordinate((int) xSelected);
-                singleton.setYCoordinate((int) ySelected);
-            }
         }
+
+
         return validatedAnswer;
     }
 }

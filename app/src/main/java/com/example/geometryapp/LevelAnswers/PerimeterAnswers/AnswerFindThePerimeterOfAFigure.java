@@ -1,5 +1,7 @@
 package com.example.geometryapp.LevelAnswers.PerimeterAnswers;
 
+import android.util.Log;
+
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.ValidatedAnswer;
@@ -40,6 +42,7 @@ public class AnswerFindThePerimeterOfAFigure implements LevelAnswer {
             }
         }
         if (gameState.getTriangle() != null) {
+            Log.d("test",""+gameState.getTriangle().getHeight(gameState.getXScale(),gameState.getYScale()));
             if (roundUp(gameState.getTriangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
             || roundDown(gameState.getTriangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);

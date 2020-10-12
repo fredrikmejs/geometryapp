@@ -169,17 +169,25 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
              }
         }
 
+         singleton.setXCoordinate(-1);
+         singleton.setYCoordinate(-1);
+
+         if (coordinates.first % gameState.getXScale() == 0 && coordinates.second % gameState.getYScale() == 0){
+             if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >=0)) {
+                 if (!validatedAnswer.isAnswerCorrect()) {
+                     gameState.setCoordinateCorrectAnswer(new Coordinate((int) xAnswer, (int) yAnswer));
+                     singleton.setXCoordinate((int) xSelected);
+                     singleton.setYCoordinate((int) ySelected);
+                 }
+             }
+         }
+
+
          if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
-             if ((xAnswer <= 10 && xAnswer >= 0) && (yAnswer <= 10 && yAnswer >=0)) {
                    validatedAnswer.setCorrectAnswer(new Coordinate((int)xAnswer, (int)yAnswer));
                    singleton.setXCoordinate(((int) xAnswer));
                    singleton.setYCoordinate((int) yAnswer);
                 }
-         } else if(!validatedAnswer.isAnswerCorrect()){
-            gameState.setCoordinateCorrectAnswer(new Coordinate((int)xAnswer,(int)yAnswer));
-            singleton.setXCoordinate((int)xSelected);
-            singleton.setYCoordinate((int)ySelected);
-         }
 
         return validatedAnswer;
     }

@@ -67,6 +67,21 @@ public class Triangle {
         return firstSecondLength + secondThirdLength + thirdFirstLength;
     }
 
+
+    public double getHeight(int xScale, int yScale){
+        double height;
+        double distance;
+        if (calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true) == calculateDistanceTwoCoordinates(firstPoint,thirdPoint,xScale,yScale,true)){
+            distance = calculateDistanceTwoCoordinates(secondPoint,thirdPoint,xScale,yScale,true);
+        } else if (calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true) == calculateDistanceTwoCoordinates(secondPoint,thirdPoint,xScale,yScale,true)){
+            distance = calculateDistanceTwoCoordinates(firstPoint,thirdPoint,xScale,yScale,true);
+        } else distance = calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true);
+
+        height = (2*calculateArea(xScale, yScale))/distance;
+
+        return height;
+    }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         BigDecimal bd = BigDecimal.valueOf(value);

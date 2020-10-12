@@ -11,6 +11,7 @@ import com.example.geometryapp.GameState;
 import com.example.geometryapp.GameStateBuilder;
 import com.example.geometryapp.Interface.Level;
 import com.example.geometryapp.R;
+import com.example.geometryapp.Singleton;
 
 import java.util.Random;
 
@@ -26,10 +27,20 @@ public class FindPointWithLineSymmetry implements Level {
     private TargetDot targetDot;
     private SelectedDot selectedDot;
     private SymmetryLine symmetryLine;
+    private int randomNum;
+    private Singleton singleton;
 
 
     //Creates the correct gameState
     public FindPointWithLineSymmetry(int levelNum) {
+
+
+        singleton = Singleton.getInstance();
+
+        randomNum = randomPoint(0,1);
+
+        singleton.setRandomNum(randomNum);
+
         if (levelNum == 0) {
             levelNum = randomPoint(1, 2);
         }
@@ -47,7 +58,8 @@ public class FindPointWithLineSymmetry implements Level {
         Xscale = 1;
         Yscale = 1;
         selectedDot = new SelectedDot(new Coordinate(5, 5));
-        if (randomPoint(0, 1) == 0) {
+
+        if (randomNum == 0) {
             symmetryLine = new SymmetryLine(new Coordinate(5, 0), new Coordinate(5, 10));
         } else {
             symmetryLine = new SymmetryLine(new Coordinate(0, 5), new Coordinate(10, 5));
@@ -63,8 +75,8 @@ public class FindPointWithLineSymmetry implements Level {
         Xscale = 1;
         Yscale = 1;
         selectedDot = new SelectedDot(new Coordinate(5, 5));
-        int randomIndex = randomPoint(0, 1);
-        if (randomIndex == 0) {
+
+        if (randomNum == 0) {
             symmetryLine = new SymmetryLine(new Coordinate(0, 0), new Coordinate(10, 10));
         } else {
             symmetryLine = new SymmetryLine(new Coordinate(0, 10), new Coordinate(10, 0));

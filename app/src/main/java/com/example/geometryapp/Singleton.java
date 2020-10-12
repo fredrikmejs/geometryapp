@@ -8,6 +8,7 @@ public class Singleton {
     private int y;
     private int L2X;
     private int L2Y;
+    private int categoryindex;
 
 private Singleton(){
 }
@@ -43,4 +44,13 @@ public int getYCoordinate(){return y;}
     public void setL2Y(int l2Y) {
         L2Y = l2Y;
     }
+
+    public int getCategoryindex() {
+        return categoryindex;
+    }
+
+    public void setCategoryindex(int categoryindex) {
+        this.categoryindex = categoryindex;
+    }
 }
+

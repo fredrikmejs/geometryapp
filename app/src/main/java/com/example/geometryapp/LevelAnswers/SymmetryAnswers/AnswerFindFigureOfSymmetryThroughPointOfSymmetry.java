@@ -99,6 +99,7 @@ public class AnswerFindFigureOfSymmetryThroughPointOfSymmetry implements LevelAn
         //Create correct answer
         ArrayList<Coordinate> coordinate = new ArrayList<>();
         if (allPointCorrect) {
+            gameState.setAnsweredCorrectly(true);
             validatedAnswer.setIsAnswerCorrect(true);
             validatedAnswer.setIsYCorrect(true);
             validatedAnswer.setIsXCorrect(true);

@@ -22,6 +22,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.geometryapp.R;
+import com.example.geometryapp.Singleton;
 
 import java.util.Locale;
 
@@ -180,6 +181,8 @@ public class TestFragment extends Fragment {
         } else if (categoryIndex == 11) {
             addRadioButtons(11);
         }
+        Singleton singleton = Singleton.getInstance();
+        singleton.setCategoryindex(categoryIndex);
     }
 
     private void addRadioButtons(int amount){

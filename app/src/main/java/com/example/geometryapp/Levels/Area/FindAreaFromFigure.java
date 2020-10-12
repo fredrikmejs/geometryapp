@@ -14,6 +14,7 @@ import com.example.geometryapp.GameState;
 import com.example.geometryapp.GameStateBuilder;
 import com.example.geometryapp.Interface.Level;
 import com.example.geometryapp.R;
+import com.example.geometryapp.Singleton;
 
 import java.util.Random;
 
@@ -95,10 +96,10 @@ public class FindAreaFromFigure implements Level {
         int height = 0;
 
         boolean rect = true;
-        while (rect){
+        while (rect) {
             width = randomPoint(3, 7);
             height = randomPoint(3, 7);
-            if (width != height){
+            if (width != height) {
                 rect = false;
             }
         }
@@ -120,10 +121,10 @@ public class FindAreaFromFigure implements Level {
         int width = 0;
         int height = 0;
         boolean rect = true;
-        while (rect){
+        while (rect) {
             width = randomPoint(3, 7);
             height = randomPoint(3, 7);
-            if (width != height){
+            if (width != height) {
                 rect = false;
             }
         }
@@ -178,18 +179,39 @@ public class FindAreaFromFigure implements Level {
         Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
-                || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
-                || !isDistanceEqual(firstPoint, secondPoint, thirdPoint)
-                || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint, 3)
-                || !isOneLineParallel(firstPoint, secondPoint, thirdPoint)
-                || isOneCornerRightAngle(firstPoint, secondPoint, thirdPoint)) {
-            firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+        int randomNum = randomPoint(1, 2);
+        Singleton singleton = Singleton.getInstance();
+        singleton.setRandomNum(randomNum);
+        boolean going = true;
+
+
+        if (randomNum == 1) {
+            while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
+                    || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
+                    || !isDistanceEqual(firstPoint, secondPoint, thirdPoint)
+                    || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint, 3)
+                    || !isOneLineParallel(firstPoint, secondPoint, thirdPoint)
+                    || isOneCornerRightAngle(firstPoint, secondPoint, thirdPoint)) {
+                firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+                secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+                thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+            }
+        } else {
+            while (going) {
+                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
+                    going = false;
+                    break;
+                }
+                firstPoint = new Coordinate(randomPoint(0, 5), randomPoint(0, 5));
+                secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
+
+                int a = (secondPoint.getX() + firstPoint.getX()) / 2;
+                thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
+            }
         }
         triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
     }
+
 
     public void level9() {
         origin = new Coordinate(0, 0);
@@ -331,13 +353,13 @@ public class FindAreaFromFigure implements Level {
                 && firstPoint.getX() != fourthPoint.getX()
                 && firstPoint.getX() < secondPoint.getX() && fourthPoint.getX() < thirdPoint.getX()
                 && firstPoint.getX() != secondPoint.getX() && thirdPoint.getX() != fourthPoint.getX()
-                && calculateDistanceTwoCoordinates(firstPoint,secondPoint) != calculateDistanceTwoCoordinates(thirdPoint,fourthPoint)) {
+                && calculateDistanceTwoCoordinates(firstPoint, secondPoint) != calculateDistanceTwoCoordinates(thirdPoint, fourthPoint)) {
             return true;
         } else if (firstPoint.getX() == secondPoint.getX() && thirdPoint.getX() == fourthPoint.getX() && firstPoint.getX() != thirdPoint.getX()
                 && firstPoint.getY() != fourthPoint.getY()
                 && firstPoint.getY() < secondPoint.getY() && fourthPoint.getY() < thirdPoint.getY()
                 && firstPoint.getY() != secondPoint.getY() && thirdPoint.getY() != fourthPoint.getY()
-                && calculateDistanceTwoCoordinates(firstPoint,secondPoint) != calculateDistanceTwoCoordinates(thirdPoint,fourthPoint)) {
+                && calculateDistanceTwoCoordinates(firstPoint, secondPoint) != calculateDistanceTwoCoordinates(thirdPoint, fourthPoint)) {
             return true;
         }
         return false;
@@ -404,8 +426,31 @@ public class FindAreaFromFigure implements Level {
                 .setSelectedDot(new SelectedDot(new Coordinate(0, 0)))
                 .setRectangle(rectangle)
                 .setCircle(circle)
-                    .setTriangle(triangle)
+                .setTriangle(triangle)
                 .setShapeFourCorners(shapeFourCorners);
         return gameStateBuilder.build();
+    }
+
+    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
+        int a = second.getX() - first.getX();
+        if (!(a % 2 == 0)) {
+            return false;
+        }
+        if (first.getX() > 10 || first.getX() < 0) {
+            return false;
+        }
+        if (second.getX() > 10 || second.getX() < 0) {
+            return false;
+        }
+
+        if (third.getY() > 10 || third.getY() < 0) {
+            return false;
+        }
+        int b = third.getY() - first.getY();
+        int c = first.getY() - third.getY();
+        if (!(b >= 3 || c >= 3)) {
+            return false;
+        }
+        return true;
     }
 }

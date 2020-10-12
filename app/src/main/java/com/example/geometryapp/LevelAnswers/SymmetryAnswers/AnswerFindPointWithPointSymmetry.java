@@ -3,6 +3,7 @@ package com.example.geometryapp.LevelAnswers.SymmetryAnswers;
 import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
 public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
@@ -10,7 +11,10 @@ public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
     //Validates if answer was correct
     @Override
     public ValidatedAnswer isAnswerCorrect(GameState gameState, int levelIndex) {
+
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
+
+       /*
         int xSelected = gameState.getSelectedDot().getCoordinate().getX();
         int ySelected = gameState.getSelectedDot().getCoordinate().getY();
         int xTarget = gameState.getTargetDot().getCoordinate().getX();
@@ -18,43 +22,80 @@ public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
         int xSymmetryPoint = gameState.getSymmetryPoint().getX();
         int ySymmetryPoint = gameState.getSymmetryPoint().getY();
         //Creates perpendicular line
-        double distanceSymmetryPointTarget = Math.sqrt((xTarget - xSymmetryPoint) * (xTarget - xSymmetryPoint)
-                + (yTarget - ySymmetryPoint) * (yTarget - ySymmetryPoint));
-        double distanceSymmetryPointSelected = Math.sqrt((xSelected - xSymmetryPoint) * (xSelected - xSymmetryPoint)
-                + (ySelected - ySymmetryPoint) * (ySelected - ySymmetryPoint));
-        if (distanceSymmetryPointSelected == distanceSymmetryPointTarget
-                && (xSymmetryPoint == (xSelected + xTarget) / 2 && ySymmetryPoint == (ySelected + yTarget) / 2)) {
-            validatedAnswer.setIsAnswerCorrect(true);
-            validatedAnswer.setIsYCorrect(true);
-            validatedAnswer.setIsXCorrect(true);
+
+        */
+
+
+
+
+        Singleton singleton = Singleton.getInstance();
+        double xSelected = gameState.getOrigin().getX() + (double) gameState.getSelectedDot().getCoordinate().getX() / gameState.getXScale(); //selected x
+        double ySelected = gameState.getOrigin().getY() + (double) gameState.getSelectedDot().getCoordinate().getY()/ gameState.getYScale(); //selected y
+        double xTarget = gameState.getTargetDot().getCoordinate().getX(); //The given x
+        double yTarget = gameState.getTargetDot().getCoordinate().getY(); //the given y
+        double xSymmetryPoint = gameState.getSymmetryPoint().getX(); //x for sym
+        double ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
+        double correctY, correctX;
+
+        if (xSymmetryPoint <= xTarget) {
+            double x = xTarget - xSymmetryPoint;
+            correctX =  xSymmetryPoint - x;
+            if (correctX == xSelected) {
+                validatedAnswer.setIsXCorrect(true);
+            } else {
+                validatedAnswer.setIsXCorrect(false);
+            }
+            double y = ySymmetryPoint - yTarget;
+            correctY = y + ySymmetryPoint;
+
+            if (correctY == ySelected) {
+                validatedAnswer.setIsYCorrect(true);
+            } else {
+                validatedAnswer.setIsYCorrect(false);
+            }
         } else {
-            for (int x = 0; x < 11; x++) {
-                for (int y = 0; y < 11; y++) {
-                    if (isPointCorrectAnswer(gameState, x, y)) {
-                        validatedAnswer.setCorrectAnswer(new Coordinate(x, y));
-                        return validatedAnswer;
-                    }
+            double x = xSymmetryPoint - xTarget;
+            correctX = x + xSymmetryPoint;
+            if (correctX == xSelected) {
+                validatedAnswer.setIsXCorrect(true);
+            } else {
+                validatedAnswer.setIsXCorrect(false);
+            }
+
+            double y = ySymmetryPoint - yTarget;
+            correctY = y + ySymmetryPoint;
+
+            if (correctY == ySelected) {
+                validatedAnswer.setIsYCorrect(true);
+            } else {
+                validatedAnswer.setIsYCorrect(false);
+            }
+        }
+        if (correctX == xSelected && correctY == ySelected){
+            validatedAnswer.setIsAnswerCorrect(true);
+            gameState.setAnsweredCorrectly(true);
+        }
+
+        singleton.setXCoordinate(-1);
+        singleton.setYCoordinate(-1);
+
+        if (gameState.getSelectedDot().getCoordinate().getX() % gameState.getXScale() == 0 && gameState.getSelectedDot().getCoordinate().getY() % gameState.getYScale() == 0){
+            if(!validatedAnswer.isAnswerCorrect()) {
+                if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
+                    gameState.setCoordinateCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                    singleton.setXCoordinate((int) xSelected);
+                    singleton.setYCoordinate((int) ySelected);
                 }
             }
         }
-        return validatedAnswer;
-    }
 
-    public boolean isPointCorrectAnswer(GameState gameState, int x, int y) {
-        int xSelected = x;
-        int ySelected = y;
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
-        int xSymmetryPoint = gameState.getSymmetryPoint().getX();
-        int ySymmetryPoint = gameState.getSymmetryPoint().getY();
-        double distanceSymmetryPointTarget = Math.sqrt((xTarget - xSymmetryPoint) * (xTarget - xSymmetryPoint)
-                + (yTarget - ySymmetryPoint) * (yTarget - ySymmetryPoint));
-        double distanceSymmetryPointSelected = Math.sqrt((xSelected - xSymmetryPoint) * (xSelected - xSymmetryPoint)
-                + (ySelected - ySymmetryPoint) * (ySelected - ySymmetryPoint));
-        if (distanceSymmetryPointSelected == distanceSymmetryPointTarget
-                && (xSymmetryPoint == (xSelected + xTarget) / 2 && ySymmetryPoint == (ySelected + yTarget) / 2)) {
-            return true;
+        if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >=2){
+            validatedAnswer.setCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+            singleton.setXCoordinate((int) correctX);
+            singleton.setYCoordinate((int) correctY);
         }
-        return false;
+
+
+        return validatedAnswer;
     }
 }
