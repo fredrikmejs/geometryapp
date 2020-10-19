@@ -176,9 +176,9 @@ public class FindAreaFromFigure implements Level {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
-        Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+        Coordinate firstPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
+        Coordinate secondPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
+        Coordinate thirdPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
         int randomNum = randomPoint(1, 2);
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
@@ -192,9 +192,9 @@ public class FindAreaFromFigure implements Level {
                     || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint, 3)
                     || !isOneLineParallel(firstPoint, secondPoint, thirdPoint)
                     || isOneCornerRightAngle(firstPoint, secondPoint, thirdPoint)) {
-                firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-                secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-                thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+                firstPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
+                secondPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
+                thirdPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
             }
         } else {
             while (going) {
@@ -202,7 +202,7 @@ public class FindAreaFromFigure implements Level {
                     going = false;
                     break;
                 }
-                firstPoint = new Coordinate(randomPoint(0, 5), randomPoint(0, 5));
+                firstPoint = new Coordinate(randomPoint(2, 5), randomPoint(2, 5));
                 secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
 
                 int a = (secondPoint.getX() + firstPoint.getX()) / 2;
@@ -436,19 +436,25 @@ public class FindAreaFromFigure implements Level {
         if (!(a % 2 == 0)) {
             return false;
         }
+        if(first.getY() != second.getY()){
+            return false;
+        }
         if (first.getX() > 10 || first.getX() < 0) {
             return false;
         }
         if (second.getX() > 10 || second.getX() < 0) {
             return false;
         }
-
         if (third.getY() > 10 || third.getY() < 0) {
             return false;
         }
         int b = third.getY() - first.getY();
         int c = first.getY() - third.getY();
         if (!(b >= 3 || c >= 3)) {
+            return false;
+        }
+        int d =  ( second.getX() + first.getX()) /2;
+        if (third.getX() != d ) {
             return false;
         }
         return true;
