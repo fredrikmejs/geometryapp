@@ -434,6 +434,14 @@ public class Canvas extends View {
 
     private void onDrawOwnSymmetryFigures(android.graphics.Canvas canvas) {
         //Draws the users own drawn symmetry figure
+        if (gameState.isAnsweredCorrectly()){
+            paintLine.setColor(getResources().getColor(R.color.LightGreen));
+        } else if (!gameState.isAnsweredCorrectly()){
+            paintLine.setColor(getResources().getColor(R.color.Red));
+        } else {
+            paintLine.setColor(paintLineFigureAnswer.getColor());
+        }
+        paintLine.setStrokeWidth(10);
         if (gameState.getCategory() == Categories.FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY) {
             if (gameState.getSelectedDot().getPreviousCoordinates().size() > 1) {
                 int coordinateSystemX = gameState.getSelectedDot().getCoordinate().getX();
@@ -441,7 +449,7 @@ public class Canvas extends View {
                 Pair<Integer, Integer> realCoordinate = coordinateSystem.getCanvasRealCoordinate(new Coordinate(coordinateSystemX, coordinateSystemY));
                 int realX = realCoordinate.first;
                 int realY = realCoordinate.second;
-                canvas.drawCircle(realX, realY, paintCoordinateSelectedDot.getStrokeWidth() / 2, paintCoordinateSelectedDot);
+                canvas.drawCircle(realX, realY, paintCoordinateSelectedDot.getStrokeWidth() / 2, paintLine);
             }
             for (int i = gameState.getSelectedDot().getPreviousCoordinates().size() - 1; i > 1; i--) {
                 Line line = new Line(gameState.getSelectedDot().getPreviousCoordinates().get(i)
@@ -450,7 +458,8 @@ public class Canvas extends View {
                 int realYStart = coordinateSystem.getCanvasRealCoordinate(line.getStartCoordinate()).second;
                 int realXEnd = coordinateSystem.getCanvasRealCoordinate(line.getEndCoordinate()).first;
                 int realYEnd = coordinateSystem.getCanvasRealCoordinate(line.getEndCoordinate()).second;
-                canvas.drawLine(realXStart, realYStart, realXEnd, realYEnd, paintLineFigureAnswer);
+
+                canvas.drawLine(realXStart, realYStart, realXEnd, realYEnd, paintLine);
             }
         }
     }
