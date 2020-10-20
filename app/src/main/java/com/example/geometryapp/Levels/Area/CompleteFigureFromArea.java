@@ -14,6 +14,7 @@ import com.example.geometryapp.GameState;
 import com.example.geometryapp.GameStateBuilder;
 import com.example.geometryapp.Interface.Level;
 import com.example.geometryapp.R;
+import com.example.geometryapp.Singleton;
 
 import java.util.Random;
 
@@ -165,21 +166,46 @@ public class CompleteFigureFromArea implements Level {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
+        boolean going = true;
         Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
-                || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
-                || !isDistanceEqual(firstPoint, secondPoint, thirdPoint)
-                || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint,3)
-                || !isOneLineParallel(firstPoint,secondPoint,thirdPoint)
-                || isOneCornerRightAngle(firstPoint,secondPoint,thirdPoint)) {
-            firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+
+        int randomNum = randomPoint(1,2);
+        Singleton singleton = Singleton.getInstance();
+        singleton.setRandomNum(randomNum);
+
+        if (randomNum == 1) {
+            while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
+                    || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
+                    || !isDistanceEqual(firstPoint, secondPoint, thirdPoint)
+                    || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint, 3)
+                    || !isOneLineParallel(firstPoint, secondPoint, thirdPoint)
+                    || isOneCornerRightAngle(firstPoint, secondPoint, thirdPoint)) {
+                firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+                secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+                thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+            }
+            triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
+            targetAnswer = "" + triangle.calculateArea(xScale, yScale);
+        } else {
+            int a;
+            while (going) {
+
+                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
+                    going = false;
+                    break;
+                }
+                firstPoint = new Coordinate(randomPoint(2, 6), randomPoint(1, 5));
+                secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
+                a = (secondPoint.getX() + firstPoint.getX()) / 2;
+                thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
+
+            }
+            triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
+            targetAnswer = "" + triangle.calculateArea(xScale,yScale);
+
         }
-        triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
-        targetAnswer = "" + triangle.calculateArea(xScale, yScale);
     }
 
     public void level9() {
@@ -394,4 +420,35 @@ public class CompleteFigureFromArea implements Level {
                 .setTargetAnswer(targetAnswer);
         return gameStateBuilder.build();
     }
+
+
+    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
+        int a = second.getX() - first.getX();
+        if (!(a % 2 == 0)) {
+            return false;
+        }
+        if(first.getY() != second.getY()){
+            return false;
+        }
+        if (first.getX() > 10 || first.getX() < 0) {
+            return false;
+        }
+        if (second.getX() > 10 || second.getX() < 0) {
+            return false;
+        }
+        if (third.getY() > 10 || third.getY() < 0) {
+            return false;
+        }
+        int b = third.getY() - first.getY();
+        int c = first.getY() - third.getY();
+        if (!(b >= 3 || c >= 3)) {
+            return false;
+        }
+        int d =  ( second.getX() + first.getX()) /2;
+        if (third.getX() != d ) {
+            return false;
+        }
+        return true;
+    }
+
 }

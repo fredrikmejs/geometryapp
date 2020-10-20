@@ -252,6 +252,11 @@ public class Canvas extends View {
         Pair<Integer, Integer> realCoordinate = coordinateSystem.getCanvasRealCoordinate(new Coordinate(coordinateSystemX, coordinateSystemY));
         int realCoordinateX = realCoordinate.first;
         int realCoordinateY = realCoordinate.second;
+
+        if(gameState.isAnsweredCorrectly()){
+            paintCoordinateTargetDot.setColor(getResources().getColor(R.color.LightGreen));
+        }
+
         canvas.drawCircle(realCoordinateX, realCoordinateY, paintCoordinateTargetDot.getStrokeWidth() / 2, paintCoordinateTargetDot);
     }
 
@@ -363,7 +368,7 @@ public class Canvas extends View {
     private void onDrawCorrectAnswer(android.graphics.Canvas canvas) throws NullPointerException {
         //Draws the correct answer. For example in category find figure of symmetry through point of symmetry, correct answer is drawn after 3 failed attemps
 
-        if (gameState.getCoordinateCorrectAnswer() != null && (gameState.getAttempt() < 3 && !gameState.isAnsweredCorrectly())){
+        if (gameState.getCoordinateCorrectAnswer() != null && (gameState.getAttempt() < 3 && !gameState.isAnsweredCorrectly()) && gameState.getCategory() != Categories.POINTFROMCOORDINATES){
             Singleton singleton = Singleton.getInstance();
             int coordinateSystemX = singleton.getXCoordinate();
             int coordinateSystemY = singleton.getYCoordinate();
@@ -378,7 +383,7 @@ public class Canvas extends View {
                     canvas.drawCircle(realCoordinateX, realCoordinateY, paintCorrectAnswer.getStrokeWidth() / 2, paintCorrectAnswer);
                 }
             } else {
-                canvas.drawCircle(realCoordinateX, realCoordinateY, paintCorrectAnswer.getStrokeWidth() / 2, paintCorrectAnswer);
+             canvas.drawCircle(realCoordinateX, realCoordinateY, paintCorrectAnswer.getStrokeWidth() / 2, paintCorrectAnswer);
             }
         }
 
@@ -606,54 +611,21 @@ public class Canvas extends View {
             int yPos = (realYStart + realYEnd) / 2 - (int) ((paintWhiteText.descent() + paintWhiteText.ascent()) / 2);
 
 
-                Coordinate dist1 = gameState.getTriangle().getFirstPoint();
-                Coordinate dist2 = gameState.getTriangle().getSecondPoint();
-                Coordinate dist3 = gameState.getTriangle().getThirdPoint();
+            if (gameState.getLevel() == 8 && singleton.getRandomNum() == 2){
+                realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
+                realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
+                realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).first;
+                realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).second;
 
+                canvas.drawCircle((realXStart + realXEnd) / 2, (realYStart + realYEnd) / 2, paintCoordinateSelectedDot.getStrokeWidth(), paintCoordinateSelectedDot);
+                /*
+                canvas.drawText(("" + gameState.getTriangle().calculateDistanceTwoCoordinates(
+                        gameState.getTriangle().getThirdPoint(), gameState.getTriangle().getFirstPoint()
+                        , gameState.getXScale(), gameState.getYScale(), true)).replace(".0",""), xPos, yPos, paintWhiteText);
 
+                 */
 
-               /*
-                double distance1_2 = gameState.getTriangle().calculateDistanceTwoCoordinates(
-                        dist1, dist2, gameState.getXScale(), gameState.getYScale(), true);
-
-                double distance1_3 = gameState.getTriangle().calculateDistanceTwoCoordinates(
-                        dist1, dist3, gameState.getXScale(), gameState.getYScale(), true);
-
-                double distance_2_3 = gameState.getTriangle().calculateDistanceTwoCoordinates(
-                        dist2, dist3, gameState.getXScale(), gameState.getYScale(), true);
-
-                if (distance1_2 == distance1_3){
-                    realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
-                    realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
-                    realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).first;
-                    realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).second;
-
-                    xPos = (realXStart + realXEnd) / 2;
-                    yPos = (realYStart + realYEnd) / 2 - (int) ((paintWhiteText.descent() + paintWhiteText.ascent()) / 2);
-                } else if(distance1_2 == distance_2_3){
-
-                    realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
-                    realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
-                    realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).first;
-                    realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).second;
-
-                    xPos = (realXStart + realXEnd) / 2;
-                    yPos = (realYStart + realYEnd) / 2 - (int) ((paintWhiteText.descent() + paintWhiteText.ascent()) / 2);
-                } else if(distance1_3 == distance_2_3){
-
-                    realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
-                    realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
-                    realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).first;
-                    realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).second;
-
-                    xPos = (realXStart + realXEnd) / 2;
-                    yPos = (realYStart + realYEnd) / 2 - (int) ((paintWhiteText.descent() + paintWhiteText.ascent()) / 2);
-
-                }
-
-                */
-
-
+            }
 
             if(gameState.isAnsweredCorrectly() || gameState.getAttempt() == 3){
                 canvas.drawCircle((realXStart + realXEnd) / 2, (realYStart + realYEnd) / 2, paintCoordinateSelectedDot.getStrokeWidth(), paintCoordinateSelectedDot);
@@ -2060,7 +2032,7 @@ public class Canvas extends View {
         }
         //Draws triangle
         if (gameState.getCategory() == Categories.COMPLETEFIGUREFROMAREA && gameState.getTriangle() != null) {
-            gameState.getTriangle().setSecondPoint(gameState.getSelectedDot().getCoordinate());
+             gameState.getTriangle().setSecondPoint(gameState.getSelectedDot().getCoordinate());
             Path path = new Path();
             int realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
             int realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
@@ -2116,26 +2088,12 @@ public class Canvas extends View {
                     ,true),xPos,yPos,paintWhiteText);
 
 
-            if (gameState.isAnsweredCorrectly()) {
-                int realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).first;
-                int realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).second;
-                realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).first;
-                realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).second;
-                canvas.drawLine(realXStart, realYStart, realXEnd, realYEnd, paintSymmetryLine);
-                canvas.drawCircle((realXStart + realXEnd) / 2, (realYStart + realYEnd) / 2, paintCoordinateSelectedDot.getStrokeWidth(), paintCoordinateSelectedDot);
-                canvas.drawText(("" + Math.abs(gameState.getTriangle().getFirstPoint().getX() - gameState.getTriangle().getThirdPoint().getX())).replace(".0", ""), (realXStart + realXEnd) / 2
-                        , (realYStart + realYEnd) / 2 - (int) (paintWhiteText.descent() + paintWhiteText.ascent()) / 2, paintWhiteText);
-                realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
-                realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
-                realXEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
-                realYEnd = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).second;
-                canvas.drawLine(realXStart, realYStart, realXEnd, realYEnd, paintSymmetryLine);
-                canvas.drawCircle((realXStart + realXEnd) / 2, (realYStart + realYEnd) / 2, paintCoordinateSelectedDot.getStrokeWidth(), paintCoordinateSelectedDot);
-                canvas.drawText(("" + Math.abs(gameState.getTriangle().getFirstPoint().getY() - gameState.getTriangle().getSecondPoint().getY())).replace(".0", ""), (realXStart + realXEnd) / 2,
-                        (realYStart + realYEnd) / 2 - (paintWhiteText.descent() + paintWhiteText.ascent()) / 2, paintWhiteText);
-                //Draw math
-                xPos = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getThirdPoint()).first;
-                yPos = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getSecondPoint()).second;
+
+            if(gameState.isAnsweredCorrectly()){
+
+                xPos = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
+                yPos = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).second;
+
                 canvas.drawPath(RoundedRect(xPos - canvas.getWidth() / 10, yPos - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2.5F, xPos + canvas.getWidth() / 10
                         , yPos + (paintWhiteText.descent() - paintWhiteText.ascent()), canvas.getWidth() / 40
                         , canvas.getWidth() / 40, false), paintCoordinateSelectedDot);
@@ -2144,8 +2102,12 @@ public class Canvas extends View {
                         , xPos, yPos + (paintWhiteText.descent() - paintWhiteText.ascent()) * -1f, paintWhiteText);
                 canvas.drawText("  = " + gameState.getTriangle().calculateArea(gameState.getXScale(), gameState.getYScale()),
                         xPos, yPos, paintWhiteText);
+
+
             }
         }
+
+
         //Draws any four point shape
         if (gameState.getCategory() == Categories.COMPLETEFIGUREFROMAREA && gameState.getShapeFourCorners() != null) {
             Path path = new Path();
@@ -2566,12 +2528,13 @@ public class Canvas extends View {
         if (XGreen && YGreen) {
             paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.LightGreen));
             paintLineFigureAnswer.setColor(getResources().getColor(R.color.LightGreen));
-        } if ((gameState.getCategory() == Categories.FINDCOORDINATEWITHPOINTSYMMETRY || gameState.getCategory() == Categories.FINDCOORDINATEWITHSYMMETRY)
-                && !gameState.isAnsweredCorrectly() ) {
-            paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.Purple));
         } else {
             paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.Red));
             paintLineFigureAnswer.setColor(getResources().getColor(R.color.Red));
+        }
+        if ((gameState.getCategory() == Categories.FINDCOORDINATEWITHPOINTSYMMETRY || gameState.getCategory() == Categories.FINDCOORDINATEWITHSYMMETRY)
+                && !gameState.isAnsweredCorrectly() ) {
+            paintCoordinateSelectedDot.setColor(getResources().getColor(R.color.Purple));
         }
         invalidate();
 

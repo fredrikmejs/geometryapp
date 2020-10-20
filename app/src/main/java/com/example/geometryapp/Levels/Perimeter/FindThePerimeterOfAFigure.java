@@ -150,74 +150,72 @@ public class FindThePerimeterOfAFigure implements Level {
 
     public void level7() {
 
-        int randomNum = randomPoint(1,2);
+        int randomNum = randomPoint(1, 2);
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
-        int count = 0;
-        int width = randomPoint(4, 5)*2;
+        int width = randomPoint(4, 5) * 2;
         int height = randomPoint(5, 9);
         boolean going = true;
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
         Coordinate firstPoint = new Coordinate(randomPoint(0, 9), randomPoint(0, 9));
-        Coordinate secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3,6),firstPoint.getY());
-        Coordinate thirdPoint = new Coordinate(((secondPoint.getX() + firstPoint.getX())/2), firstPoint.getX() + randomPoint(3,7));
-        if (randomNum == 1){
+        Coordinate secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
+        Coordinate thirdPoint = new Coordinate(((secondPoint.getX() + firstPoint.getX()) / 2), firstPoint.getX() + randomPoint(3, 7));
 
-            while (!isCoordinatesOnGrid(width, width, firstPoint)
-
-                    || !isDistanceMoreThanInput(firstPoint
-                    , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
-                    , new Coordinate(firstPoint.getX() + width, firstPoint.getY()),5)
-                    || isCoordinateBetweenCoordinates(firstPoint, new Coordinate(firstPoint.getX(),
-                    firstPoint.getY() + height), new Coordinate(firstPoint.getX() + width, firstPoint.getY()))) {
-
-                width = randomPoint(1, 4)*2;
-                count++;
-                firstPoint = new Coordinate(randomPoint(2, 8), randomPoint(2, 8));
+        if (randomNum == 1) {
+            while (width == 0 || height == 0 || !isCoordinatesOnGrid(width, 0, firstPoint) || !isCoordinatesOnGrid(0, 0, firstPoint)
+                    || !isCoordinatesOnGrid(0, height, firstPoint)
+                    || isCoordinateBetweenCoordinates(firstPoint, new Coordinate(firstPoint.getX(), firstPoint.getY() + height), new Coordinate(firstPoint.getX() + width, firstPoint.getY()))) {
+                width = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+                height = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+                firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
             }
-            System.out.println(count);
             triangle = new Triangle(firstPoint
-                    , new Coordinate(firstPoint.getX(), firstPoint.getY() + width)
+                    , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
                     , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
-         } else {
-                while (going){
 
-                    if (checkGrid(firstPoint,secondPoint,thirdPoint)){
-                        going = false;
-                        break;
-                    }
-                    firstPoint = new Coordinate(randomPoint(0, 5), randomPoint(0, 5));
-                    secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3,6),firstPoint.getY());
-                    count++;
-                    int a = (secondPoint.getX() + firstPoint.getX())/2;
-                    thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3,7));
+        } else {
 
+            while (going) {
+                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
+                    going = false;
+                    break;
                 }
-            System.out.println(count);
-            triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
+                firstPoint = new Coordinate(randomPoint(2, 5), randomPoint(2, 5));
+                secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
+
+                int a = (secondPoint.getX() + firstPoint.getX()) / 2;
+                thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
             }
+            triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
         }
+    }
 
-    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third){
-        int a = second.getX()- first.getX();
-        if (!( a %2 == 0)){
+    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
+        int a = second.getX() - first.getX();
+        if (!(a % 2 == 0)) {
             return false;
         }
-        if (first.getX() > 10 || first.getX() < 0){
+        if(first.getY() != second.getY()){
             return false;
         }
-        if (second.getX() > 10 || second.getX() < 0){
+        if (first.getX() > 10 || first.getX() < 0) {
             return false;
         }
-
-        if (third.getY() > 10 || third.getY() < 0){
+        if (second.getX() > 10 || second.getX() < 0) {
+            return false;
+        }
+        if (third.getY() > 10 || third.getY() < 0) {
             return false;
         }
         int b = third.getY() - first.getY();
         int c = first.getY() - third.getY();
-        if ( !(b >= 3 || c >= 3)){
+        if (!(b >= 3 || c >= 3)) {
+            return false;
+        }
+        int d =  ( second.getX() + first.getX()) /2;
+        if (third.getX() != d ) {
             return false;
         }
         return true;
@@ -227,44 +225,48 @@ public class FindThePerimeterOfAFigure implements Level {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
+        boolean going = true;
         Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
 
-        int a = randomPoint(0,1);
-        if (a == 0){
-            secondPoint.setX(firstPoint.getX() + randomPoint(-4,4   ));
-            secondPoint.setY(firstPoint.getY());
-            thirdPoint.setX((firstPoint.getX()+ secondPoint.getX())/2);
-            thirdPoint.setY(firstPoint.getY() + randomPoint(-4,4));
+        int randomNum = randomPoint(1,2);
+        Singleton singleton = Singleton.getInstance();
+        singleton.setRandomNum(randomNum);
+
+        if (randomNum == 1){
+            int width = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+            int height = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+            while (width == 0 || height == 0 || !isCoordinatesOnGrid(width, 0, firstPoint) || !isCoordinatesOnGrid(0, 0, firstPoint)
+                    || !isCoordinatesOnGrid(0, height, firstPoint)
+                    || isCoordinateBetweenCoordinates(firstPoint, new Coordinate(firstPoint.getX(), firstPoint.getY() + height), new Coordinate(firstPoint.getX() + width, firstPoint.getY()))) {
+                width = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+                height = randomPoint(3, 7) * randomChangeNegativeOrPositive();
+                firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
+            }
+            triangle = new Triangle(firstPoint
+                    , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
+                    , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
         }else {
-            secondPoint.setX(firstPoint.getX());
-            secondPoint.setY(firstPoint.getY() + randomPoint(-4,-4));
-            thirdPoint.setY((firstPoint.getY() + secondPoint.getY())/2);
-            thirdPoint.setX(firstPoint.getX() + randomPoint(-4,4));
+        int a;
+            while (going) {
+
+                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
+                    going = false;
+                    break;
+                }
+                firstPoint = new Coordinate(randomPoint(0, 5), randomPoint(0, 5));
+                secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
+                a = (secondPoint.getX() + firstPoint.getX()) / 2;
+                thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
+
+            }
+            triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
+
         }
 
-        int i = 0;
-        while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
-                || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
-                || !isDistanceEqual(firstPoint, secondPoint, thirdPoint)
-                || !isDistanceMoreThanInput(firstPoint, secondPoint, thirdPoint,3)
-                || !isOneLineParallel(firstPoint,secondPoint,thirdPoint)
-                || isOneCornerRightAngle(firstPoint,secondPoint,thirdPoint)
-
-        ) {
-
-            firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-            i++;
-        }
-
-        System.out.println(i);
-
-
-        triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
     }
+
 
     public void level9() {
         origin = new Coordinate(0, 0);
