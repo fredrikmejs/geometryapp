@@ -7,12 +7,14 @@ import android.view.View;
 import com.example.geometryapp.CoordinateSystem;
 import com.example.geometryapp.DrawObjects.Circle;
 import com.example.geometryapp.DrawObjects.Rectangle;
+import com.example.geometryapp.DrawObjects.ShapeFourCorners;
 import com.example.geometryapp.DrawObjects.Triangle;
 import com.example.geometryapp.GameState;
+import com.example.geometryapp.Interface.CanvasDraw;
 
 import static com.example.geometryapp.Views.Canvas.RoundedRect;
 
-public class DrawCorrectEmptyShape extends View {
+public class DrawCorrectEmptyShape extends View implements CanvasDraw {
 
     private CoordinateSystem coordinateSystem;// Contains coordinate system coordinates and their real coordinates on the screen.
     private Paint paintSymmetryPoint;
@@ -42,7 +44,8 @@ public class DrawCorrectEmptyShape extends View {
      * Draws rectangle for DrawCorrectEmptyShape()
      * @param rectangle
      */
-    public void drawRecangle(Rectangle rectangle){
+    @Override
+    public void drawRectangle(Rectangle rectangle){
         int realXStart = coordinateSystem.getCanvasRealCoordinate(rectangle.getBottomLeft()).first;
         int realYStart = coordinateSystem.getCanvasRealCoordinate(rectangle.getBottomLeft()).second;
         int realXEnd = coordinateSystem.getCanvasRealCoordinate(rectangle.getTopLeft()).first;
@@ -90,10 +93,26 @@ public class DrawCorrectEmptyShape extends View {
         }
     }
 
+    @Override
+    public void drawRectangle() {
+
+    }
+
+    @Override
+    public void drawCircle() {
+
+    }
+
+    @Override
+    public void drawTriangle() {
+
+    }
+
     /**
      * Draws circle for DrawCorrectEmptyShape()
      * @param circle
      */
+    @Override
     public void drawCircle(Circle circle){
         int realXStart = coordinateSystem.getCanvasRealCoordinate(circle.getCenter()).first;
         int realYStart = coordinateSystem.getCanvasRealCoordinate(circle.getCenter()).second;
@@ -106,6 +125,7 @@ public class DrawCorrectEmptyShape extends View {
      * Draws triangle for DrawCorrectEmptyShape()
      * @param triangle
      */
+    @Override
     public void drawTriangle(Triangle triangle){
         int realXStart = coordinateSystem.getCanvasRealCoordinate(triangle.getFirstPoint()).first;
         int realYStart = coordinateSystem.getCanvasRealCoordinate(triangle.getFirstPoint()).second;
@@ -203,6 +223,16 @@ public class DrawCorrectEmptyShape extends View {
                         , gameState.getXScale(), gameState.getYScale(), true), xPos, yPos, paintWhiteText);
             }
         }
+    }
+
+    @Override
+    public void drawPointShape() {
+
+    }
+
+    @Override
+    public void drawPointShape(ShapeFourCorners shapeFourCorners) {
+
     }
 }
 

@@ -6,14 +6,19 @@ import android.view.View;
 
 import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.CoordinateSystem;
+import com.example.geometryapp.DrawObjects.Circle;
+import com.example.geometryapp.DrawObjects.Rectangle;
+import com.example.geometryapp.DrawObjects.ShapeFourCorners;
+import com.example.geometryapp.DrawObjects.Triangle;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Enum.Categories;
+import com.example.geometryapp.Interface.CanvasDraw;
 import com.example.geometryapp.Singleton;
 
 import static com.example.geometryapp.Views.Canvas.RoundedRect;
 
 
-public class DrawEmtpyShape extends View {
+public class DrawEmtpyShape extends View implements CanvasDraw {
 
     private CoordinateSystem coordinateSystem;// Contains coordinate system coordinates and their real coordinates on the screen.
     private Paint paintSymmetryPoint;
@@ -41,7 +46,8 @@ public class DrawEmtpyShape extends View {
      * Draws rectangle for DrawEmptyShape()
      *
      */
-    public void drawRectange() {
+    @Override
+    public void drawRectangle() {
         if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE && gameState.getRectangle() != null) {
             int realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).first;
             int realYStart = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).second;
@@ -122,6 +128,7 @@ public class DrawEmtpyShape extends View {
     /**
      * Draws circle for DrawEmptyShape()
      */
+    @Override
     public void drawCircle() {
         if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE && gameState.getCircle() != null) {
             int realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getCircle().getCenter()).first;
@@ -164,6 +171,7 @@ public class DrawEmtpyShape extends View {
      * This class is complex and is build around figuring out which side it should draw the length on.
      * Draws triangle for DrawEmptyShape()
      */
+    @Override
     public void drawTriangle(){
         if (gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE && gameState.getTriangle() != null) {
             int realXStart = coordinateSystem.getCanvasRealCoordinate(gameState.getTriangle().getFirstPoint()).first;
@@ -331,6 +339,31 @@ public class DrawEmtpyShape extends View {
 
             }
         }
+    }
+
+    @Override
+    public void drawRectangle(Rectangle rectangle) {
+
+    }
+
+    @Override
+    public void drawCircle(Circle circle) {
+
+    }
+
+    @Override
+    public void drawTriangle(Triangle triangle) {
+
+    }
+
+    @Override
+    public void drawPointShape() {
+
+    }
+
+    @Override
+    public void drawPointShape(ShapeFourCorners shapeFourCorners) {
+
     }
 
 }

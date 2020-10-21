@@ -22,39 +22,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121af32f-b431-48cc-8435-b4b3b0a12482" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawCorrectEmptyShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawEmtpyShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Interface/CanvasDraw.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/OnDrawCompleteShapes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/OnDrawCorrectShapes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/OnDrawShapes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Coordinate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/TestFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/TestFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameStateBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameStateBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerCompleteFigureFromArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerCompleteFigureFromArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerFindAreaFromFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerFindAreaFromFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/CoordinatesAnswers/AnswerCoordinateFromPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/CoordinatesAnswers/AnswerCoordinateFromPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerCompleteFigureFromPerimeter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerCompleteFigureFromPerimeter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerFindThePerimeterOfAFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerFindThePerimeterOfAFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithLineSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindFigureOfSymmetryThroughPointOfSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindFigureOfSymmetryThroughPointOfSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithLineSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithPointSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/CompleteFigureFromArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/CompleteFigureFromArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/FindAreaFromFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/FindAreaFromFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/CoordinatesFromPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/CoordinatesFromPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/PointFromCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/PointFromCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/CompleteFigureFromPerimeter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/CompleteFigureFromPerimeter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/FindThePerimeterOfAFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/FindThePerimeterOfAFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithPointSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindFigureOfSymmetryThroughPointOfSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindFigureOfSymmetryThroughPointOfSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithPointSymmetry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/ValidatedAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/ValidatedAnswer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawCorrectEmptyShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawCorrectEmptyShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawEmtpyShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawEmtpyShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/OnDrawCompleteEmptyShapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/OnDrawCompleteEmptyShapes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +54,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -200,10 +177,14 @@
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state x="1386" y="446" width="1192" height="1316" key="#app/134.55.3706.2105@134.55.3706.2105" timestamp="1598021397096" />
-    <state x="1613" y="545" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser" timestamp="1603314522035">
+    <state x="1463" y="623" width="1048" height="992" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1603316839884">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
-    <state x="1613" y="545" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser/144.54.3696.2106@144.54.3696.2106" timestamp="1603314522035" />
+    <state x="1463" y="623" width="1048" height="992" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/144.54.3696.2106@144.54.3696.2106" timestamp="1603316839884" />
+    <state x="1613" y="485" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser" timestamp="1603318233455">
+      <screen x="144" y="54" width="3696" height="2106" />
+    </state>
+    <state x="1613" y="485" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser/144.54.3696.2106@144.54.3696.2106" timestamp="1603318233455" />
     <state x="5364" y="711" width="753" height="692" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600959339266">
       <screen x="3840" y="0" width="3840" height="2160" />
     </state>
@@ -342,16 +323,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>552</line>
-          <option name="timeStamp" value="221" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>1289</line>
-          <option name="timeStamp" value="278" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java</url>
           <line>58</line>
