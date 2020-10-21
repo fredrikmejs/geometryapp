@@ -57,13 +57,9 @@ public class LevelController {
         } else if (categoryIndex == 10) {
             return (new FindAreaFromFigure(levelIndex).getDefaultLevelState(context));
         } else if (categoryIndex == 11) {
-            return (new CompleteFigureFromArea(levelIndex, gameState).getDefaultLevelState(context));
+            return (new CompleteFigureFromArea(levelIndex).getDefaultLevelState(context));
         }
         throw new IllegalArgumentException("Category or level not found. Category was " + categoryIndex + ", level was " + levelIndex);
-    }
-
-    public int getCategoryIndex() {
-        return categoryIndex;
     }
 
     public int getLevelIndex() {
