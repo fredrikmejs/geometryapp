@@ -33,7 +33,7 @@ public class LevelController {
     // 11 - Draw figure from area
 
     //Returns the correct gameState object according to the category index and level index.
-    public GameState getLevel(int categoryIndex, int levelIndex, Context context, GameState gameState) {
+    public GameState getLevel(int categoryIndex, int levelIndex, Context context) {
         this.categoryIndex = categoryIndex;
         this.levelIndex = levelIndex;
         if (categoryIndex == 1) {
