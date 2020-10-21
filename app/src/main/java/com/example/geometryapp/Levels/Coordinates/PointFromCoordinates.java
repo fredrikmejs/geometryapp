@@ -10,17 +10,19 @@ import com.example.geometryapp.Interface.Level;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.R;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.POINTFROMCOORDINATES;
 
+/**
+ * This class creates the levels for point from coordinate category
+ */
 public class PointFromCoordinates implements Level {
 
     private static Random random = new Random();
     private Coordinate origin;
-    private int Xscale;
-    private int Yscale;
+    private int xScale;
+    private int yScale;
     private Coordinate targetPoint;
     private Categories category = POINTFROMCOORDINATES;
 
@@ -48,67 +50,91 @@ public class PointFromCoordinates implements Level {
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
-        Xscale = 1;
-        Yscale = 1;
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = 1;
+        yScale = 1;
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
-        Xscale = 2;
-        Yscale = 2;
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = 2;
+        yScale = 2;
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(5, 5);
-        Xscale = 1;
-        Yscale = 1;
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY() * Yscale, (10 - origin.getY())) * Yscale);
+        xScale = 1;
+        yScale = 1;
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY() * yScale, (10 - origin.getY())) * yScale);
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(5, 5);
-        Xscale = 10;
-        Yscale = 10;
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = 10;
+        yScale = 10;
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
-        Xscale = 1;
-        Yscale = 1;
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = 1;
+        yScale = 1;
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
-    // Easy numbers: 2,3,4,5,10
+    /**
+     * Creates level 6
+     */
     public void level6() {
         int[] easyNumbers = {2,3,4,5,10};
         origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Xscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
-        Yscale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        yScale = easyNumbers[(int) (Math.random()*easyNumbers.length)];
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
-    // Advanced numbers: 6,7,8,9
+    /**
+     * Creates level 7
+     */
     public void level7() {
         int[] advancedNumbers = {6,7,8,9};
         origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Xscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
-        Yscale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
-        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * Xscale
-                , randomPoint(-origin.getY(), (10 - origin.getY())) * Yscale);
+        xScale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        yScale = advancedNumbers[(int) (Math.random()*advancedNumbers.length)];
+        targetPoint = new Coordinate(randomPoint(-origin.getX(), (10 - origin.getX())) * xScale
+                , randomPoint(-origin.getY(), (10 - origin.getY())) * yScale);
     }
 
-
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     public int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
@@ -118,8 +144,8 @@ public class PointFromCoordinates implements Level {
         GameStateBuilder gameStateBuilder = new GameStateBuilder();
         gameStateBuilder.setOrigin(origin)
                 .setSelectedDot(new SelectedDot(new Coordinate(0,0)))
-                .setXScale(Xscale)
-                .setYScale(Yscale)
+                .setXScale(xScale)
+                .setYScale(yScale)
                 .setCategory(category)
                 .setSelectedDot(new SelectedDot(new Coordinate(5,5)))
                 .setQuestion(context.getResources()

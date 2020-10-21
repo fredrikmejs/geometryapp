@@ -2,6 +2,9 @@ package com.example.geometryapp;
 
 import java.util.Objects;
 
+/**
+ * This class explains the coordinate object
+ */
 public class Coordinate {
     private int x;
     private int y;

@@ -6,6 +6,9 @@ import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate and validates the answer of find point with point symmetry category
+ */
 public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
 
     //Validates if answer was correct
@@ -13,20 +16,6 @@ public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
     public ValidatedAnswer isAnswerCorrect(GameState gameState, int levelIndex) {
 
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
-
-       /*
-        int xSelected = gameState.getSelectedDot().getCoordinate().getX();
-        int ySelected = gameState.getSelectedDot().getCoordinate().getY();
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
-        int xSymmetryPoint = gameState.getSymmetryPoint().getX();
-        int ySymmetryPoint = gameState.getSymmetryPoint().getY();
-        //Creates perpendicular line
-
-        */
-
-
-
 
         Singleton singleton = Singleton.getInstance();
         double xSelected = gameState.getOrigin().getX() + (double) gameState.getSelectedDot().getCoordinate().getX() / gameState.getXScale(); //selected x
@@ -37,6 +26,7 @@ public class AnswerFindPointWithPointSymmetry implements LevelAnswer {
         double ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
         double correctY, correctX;
 
+        //Validates the answer
         if (xSymmetryPoint <= xTarget) {
             double x = xTarget - xSymmetryPoint;
             correctX =  xSymmetryPoint - x;

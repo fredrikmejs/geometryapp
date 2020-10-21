@@ -6,24 +6,14 @@ import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate and validates the answer of find point with line symmetry category
+ */
 public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
 
     //Validates if answer was correct
     @Override
     public ValidatedAnswer isAnswerCorrect(GameState gameState, int levelIndex) {
-
-        /*
-        ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
-        int xSelected = gameState.getSelectedDot().getCoordinate().getX();
-        int ySelected = gameState.getSelectedDot().getCoordinate().getY();
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
-        Coordinate symmetryLineStart = gameState.getSymmetryLine().getStartCoordinate();
-        Coordinate symmetryLineEnd = gameState.getSymmetryLine().getEndCoordinate();
-        //Creates perpendicular line
-
-         */
-
 
         Singleton singleton = Singleton.getInstance();
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false, false, false);
@@ -32,13 +22,10 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
         double xSelected = gameState.getOrigin().getX() + (double) gameState.getSelectedDot().getCoordinate().getX() / gameState.getXScale();
         double ySelected = gameState.getOrigin().getY() + (double) gameState.getSelectedDot().getCoordinate().getY() / gameState.getYScale();
         double xTarget = gameState.getTargetDot().getCoordinate().getX();
-
         double yTarget = gameState.getTargetDot().getCoordinate().getY();
+        double y, x, yAnswer, xAnswer;
 
-        double y = 0, x = 0;
-        double yAnswer = 0, xAnswer = 0;
-
-
+        //Checks if level is 1 and finds the answer of that type for symmetry
         if (level == 1) {
             if (randomNum == 0) {
                 if (ySelected == yTarget) {
@@ -47,25 +34,21 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
                     validatedAnswer.setIsYCorrect(false);
                 }
                 yAnswer = yTarget;
+
+                //Calculates and checks the x coordinate
                 if (xTarget > 5) {
                     x = xTarget - 5;
                     x = 5 - x;
-                    if (x == xSelected) {
-                        validatedAnswer.setIsXCorrect(true);
-                    } else {
-                        validatedAnswer.setIsXCorrect(false);
-                    }
-                    xAnswer = x;
                 } else {
                     x = 5 - xTarget;
                     x = 5 + x;
-                    if (x == xSelected) {
-                        validatedAnswer.setIsXCorrect(true);
-                    } else {
-                        validatedAnswer.setIsXCorrect(false);
-                    }
-                    xAnswer = x;
                 }
+                if (x == xSelected) {
+                    validatedAnswer.setIsXCorrect(true);
+                } else {
+                    validatedAnswer.setIsXCorrect(false);
+                }
+                xAnswer = x;
                 if (x == xSelected && ySelected == yTarget) {
                     validatedAnswer.setIsAnswerCorrect(true);
                     gameState.setAnsweredCorrectly(true);
@@ -80,26 +63,20 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
                     validatedAnswer.setIsXCorrect(false);
                 }
                 xAnswer = xTarget;
+                //Calculate and checks the y coordinate
                 if (yTarget > 5) {
                     y = yTarget - 5;
                     y = 5 - y;
-
-                    if (y == ySelected) {
-                        validatedAnswer.setIsYCorrect(true);
-                    } else {
-                        validatedAnswer.setIsYCorrect(false);
-                    }
-                    yAnswer = y;
                 } else {
                     y = 5 - yTarget;
                     y = 5 + y;
-                    if (y == ySelected) {
-                        validatedAnswer.setIsYCorrect(true);
-                    } else {
-                        validatedAnswer.setIsYCorrect(false);
-                    }
-                    yAnswer = y;
                 }
+                if (y == ySelected) {
+                    validatedAnswer.setIsYCorrect(true);
+                } else {
+                    validatedAnswer.setIsYCorrect(false);
+                }
+                yAnswer = y;
                 if (xSelected == xTarget && y == ySelected) {
                     validatedAnswer.setIsAnswerCorrect(true);
                     gameState.setAnsweredCorrectly(true);
@@ -110,6 +87,7 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
             }
 
         } else {
+            //Calculate answer for 45 degree symmetry
             if (randomNum == 0) {
                 if (xSelected == yTarget) {
                     validatedAnswer.setIsXCorrect(true);
@@ -131,9 +109,9 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
                     gameState.setAnsweredCorrectly(false);
                 }
             } else {
-                boolean xbool = false, ybool = false;
+                boolean xBool = false, yBool = false;
                 if (ySelected == (10 - xTarget)) {
-                    ybool = true;
+                    yBool = true;
                     validatedAnswer.setIsYCorrect(true);
 
                 } else {
@@ -141,13 +119,13 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
                 }
                 yAnswer = 10 - xTarget;
                 if (xSelected == (10 - yTarget)) {
-                    xbool = true;
+                    xBool = true;
                     validatedAnswer.setIsXCorrect(true);
                 } else {
                     validatedAnswer.setIsXCorrect(false);
                 }
                 xAnswer = 10 - yTarget;
-                if (xbool && ybool) {
+                if (xBool && yBool) {
                     validatedAnswer.setIsAnswerCorrect(true);
                     gameState.setAnsweredCorrectly(true);
                 } else {
@@ -160,6 +138,7 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
         singleton.setXCoordinate(-1);
         singleton.setYCoordinate(-1);
 
+        //Checks if the answer is precise
         if (gameState.getSelectedDot().getCoordinate().getX() % gameState.getXScale() == 0 && gameState.getSelectedDot().getCoordinate().getY() % gameState.getYScale() == 0) {
             if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
                 if (!validatedAnswer.isAnswerCorrect()) {
@@ -170,7 +149,7 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
             }
         }
 
-
+        //Sets the correct answer dot
         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2) {
             validatedAnswer.setCorrectAnswer(new Coordinate((int) xAnswer, (int) yAnswer));
             singleton.setXCoordinate(((int) xAnswer));
@@ -181,60 +160,4 @@ public class AnswerFindPointWithLineSymmetry implements LevelAnswer {
 
 
     }
-
-/*
-
-
-
-        double distanceSelectedToSymmetryLineStart = Math.sqrt((xSelected - symmetryLineStart.getX()) * (xSelected - symmetryLineStart.getX())
-                + (ySelected - symmetryLineStart.getY()) * (ySelected - symmetryLineStart.getY()));
-        double distanceSelectedToSymmetryLineEnd = Math.sqrt((xSelected - symmetryLineEnd.getX()) * (xSelected - symmetryLineEnd.getX())
-                + (ySelected - symmetryLineEnd.getY()) * (ySelected - symmetryLineEnd.getY()));
-        double distanceTargetToSymmetryLineStart = Math.sqrt((xTarget - symmetryLineStart.getX()) * (xTarget - symmetryLineStart.getX())
-                + (yTarget - symmetryLineStart.getY()) * (yTarget - symmetryLineStart.getY()));
-        double distanceTargetToSymmetryLineEnd = Math.sqrt((xTarget - symmetryLineEnd.getX()) * (xTarget - symmetryLineEnd.getX())
-                + (yTarget - symmetryLineEnd.getY()) * (yTarget - symmetryLineEnd.getY()));
-        if (distanceSelectedToSymmetryLineStart == distanceTargetToSymmetryLineStart && distanceSelectedToSymmetryLineEnd == distanceTargetToSymmetryLineEnd
-                && (xSelected != xTarget || ySelected != yTarget)) {
-            validatedAnswer.setIsAnswerCorrect(true);
-            validatedAnswer.setIsYCorrect(true);
-            validatedAnswer.setIsXCorrect(true);
-            gameState.setAnsweredCorrectly(true);
-        } else {
-            for (int x = 0; x < 11; x++) {
-                for (int y = 0; y < 11; y++) {
-                    if (isPointCorrectAnswer(gameState,x,y)){
-                        validatedAnswer.setCorrectAnswer(new Coordinate(x, y));
-                        return validatedAnswer;
-                    }
-                }
-            }
-        }
-        return validatedAnswer;
-    }
-
-    public boolean isPointCorrectAnswer(GameState gameState, int x, int y) {
-        int xSelected = x;
-        int ySelected = y;
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
-        Coordinate symmetryLineStart = gameState.getSymmetryLine().getStartCoordinate();
-        Coordinate symmetryLineEnd = gameState.getSymmetryLine().getEndCoordinate();
-        double distanceSelectedToSymmetryLineStart = Math.sqrt((xSelected - symmetryLineStart.getX()) * (xSelected - symmetryLineStart.getX())
-                + (ySelected - symmetryLineStart.getY()) * (ySelected - symmetryLineStart.getY()));
-        double distanceSelectedToSymmetryLineEnd = Math.sqrt((xSelected - symmetryLineEnd.getX()) * (xSelected - symmetryLineEnd.getX())
-                + (ySelected - symmetryLineEnd.getY()) * (ySelected - symmetryLineEnd.getY()));
-        double distanceTargetToSymmetryLineStart = Math.sqrt((xxTarget - symmetryLineStart.getX()) * (xTarget - symmetryLineStart.getX())
-                + (yTarget - symmetryLineStart.getY()) * (yTarget - symmetryLineStart.getY()));
-        double distanceTargetToSymmetryLineEnd = Math.sqrt((xTarget - symmetryLineEnd.getX()) * (xTarget - symmetryLineEnd.getX())
-                + (yTarget - symmetryLineEnd.getY()) * (yTarget - symmetryLineEnd.getY()));
-        if (distanceSelectedToSymmetryLineStart == distanceTargetToSymmetryLineStart && distanceSelectedToSymmetryLineEnd == distanceTargetToSymmetryLineEnd
-                && (xSelected != xTarget || ySelected != yTarget)) {
-            return true;
-        }
-        return false;
-    }
-
- */
-
 }

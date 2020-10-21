@@ -20,6 +20,9 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.COMPLETEFIGUREFROMAREA;
 
+/**
+ * This class creates the levels for find area from figure category
+ */
 public class CompleteFigureFromArea implements Level {
 
     private static Random random = new Random();
@@ -67,6 +70,10 @@ public class CompleteFigureFromArea implements Level {
         }
     }
 
+    /**
+     * Creates level 1
+     */
+
     public void level1() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -79,6 +86,10 @@ public class CompleteFigureFromArea implements Level {
                 , bottomLeft);
         targetAnswer = "" + rectangle.calculateArea(xScale, yScale);
     }
+
+    /**
+     * Creates level 2
+     */
 
     public void level2() {
         origin = new Coordinate(0, 0);
@@ -93,6 +104,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + rectangle.calculateArea(xScale, yScale);
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -110,6 +124,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + rectangle.calculateArea(xScale, yScale);
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -127,6 +144,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + rectangle.calculateArea(xScale, yScale);
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -135,6 +155,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + circle.getRadius()*circle.getRadius()* xScale * xScale + "\uD835\uDF0B";
     }
 
+    /**
+     * Creates level 6
+     */
     public void level6() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -143,6 +166,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + circle.getRadius()*circle.getRadius()* xScale * xScale + "\uD835\uDF0B";
     }
 
+    /**
+     * Creates level 7
+     */
     public void level7() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -164,6 +190,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + triangle.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
+    /**
+     * Creates level 8
+     */
     public void level8() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -176,7 +205,7 @@ public class CompleteFigureFromArea implements Level {
         int randomNum = randomPoint(1,2);
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
-
+        //Creates special type of triangles
         if (randomNum == 1) {
             while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
                     || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
@@ -188,9 +217,8 @@ public class CompleteFigureFromArea implements Level {
                 secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
                 thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
             }
-            triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
-            targetAnswer = "" + triangle.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
-        } else {
+        } //Creates isolate triangles
+        else {
             int a;
             while (going) {
 
@@ -204,12 +232,15 @@ public class CompleteFigureFromArea implements Level {
                 thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
 
             }
-            triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
-            targetAnswer = "" + triangle.calculateArea(xScale,yScale,gameState.getLevel(),gameState.getCategory());
 
         }
+        triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
+        targetAnswer = "" + triangle.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
     }
 
+    /**
+     * Creates level 9
+     */
     public void level9() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -228,6 +259,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
     }
 
+    /**
+     * Creates level 10
+     */
     public void level10() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -246,6 +280,9 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
+    /**
+     * Creates level 11
+     */
     public void level11() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -264,6 +301,7 @@ public class CompleteFigureFromArea implements Level {
         targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
+    //Checks if the coordinate is on the grid
     private boolean isCoordinatesOnGrid(int width, int height, Coordinate bottomLeft) {
         if (bottomLeft.getY() + height >= 10) {
             return false;
@@ -423,7 +461,13 @@ public class CompleteFigureFromArea implements Level {
         return gameStateBuilder.build();
     }
 
-
+    /**
+     * Made for isolate trianglees to check if they are acceptable
+     * @param first coordinate for the first point
+     * @param second coordinate for the second point
+     * @param third coordinate for the third point
+     * @return true/false depending on if the triangle is okay or not
+     */
     private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
         int a = second.getX() - first.getX();
         if (!(a % 2 == 0)) {
@@ -447,10 +491,7 @@ public class CompleteFigureFromArea implements Level {
             return false;
         }
         int d =  ( second.getX() + first.getX()) /2;
-        if (third.getX() != d ) {
-            return false;
-        }
-        return true;
+        return third.getX() == d;
     }
 
 }

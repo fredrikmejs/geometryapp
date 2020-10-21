@@ -20,6 +20,9 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.FINDAREAFROMFIGURE;
 
+/**
+ * This class creates the levels for find area from figure category
+ */
 public class FindAreaFromFigure implements Level {
 
     private static Random random = new Random();
@@ -64,6 +67,9 @@ public class FindAreaFromFigure implements Level {
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -76,6 +82,9 @@ public class FindAreaFromFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -88,6 +97,9 @@ public class FindAreaFromFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -114,6 +126,9 @@ public class FindAreaFromFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -139,6 +154,9 @@ public class FindAreaFromFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -146,6 +164,9 @@ public class FindAreaFromFigure implements Level {
         circle = new Circle(new Coordinate(randomPoint(4, 6), randomPoint(4, 6)), randomPoint(1, 4));
     }
 
+    /**
+     * Creates level 6
+     */
     public void level6() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -153,6 +174,9 @@ public class FindAreaFromFigure implements Level {
         circle = new Circle(new Coordinate(randomPoint(4, 6), randomPoint(4, 6)), randomPoint(1, 4));
     }
 
+    /**
+     * Creates level 7
+     */
     public void level7() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -172,6 +196,9 @@ public class FindAreaFromFigure implements Level {
                 , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
     }
 
+    /**
+     * Creates level 8
+     */
     public void level8() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -182,9 +209,7 @@ public class FindAreaFromFigure implements Level {
         int randomNum = randomPoint(1, 2);
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
-        boolean going = true;
-
-
+        //Creates special types of triangles
         if (randomNum == 1) {
             while (isCoordinateBetweenCoordinates(firstPoint, secondPoint, thirdPoint)
                     || firstPoint.equals(secondPoint) || firstPoint.equals(thirdPoint) || secondPoint.equals(thirdPoint)
@@ -196,12 +221,9 @@ public class FindAreaFromFigure implements Level {
                 secondPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
                 thirdPoint = new Coordinate(randomPoint(3, 9), randomPoint(2, 9));
             }
-        } else {
-            while (going) {
-                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
-                    going = false;
-                    break;
-                }
+        } //Creates isolate triangles
+        else {
+            while (!checkGrid(firstPoint, secondPoint, thirdPoint)) {
                 firstPoint = new Coordinate(randomPoint(2, 5), randomPoint(2, 5));
                 secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
 
@@ -213,6 +235,9 @@ public class FindAreaFromFigure implements Level {
     }
 
 
+    /**
+     * Creates level 9
+     */
     public void level9() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -230,6 +255,9 @@ public class FindAreaFromFigure implements Level {
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.KITE);
     }
 
+    /**
+     * Creates level 10
+     */
     public void level10() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -247,6 +275,9 @@ public class FindAreaFromFigure implements Level {
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.PARALLELOGRAM);
     }
 
+    /**
+     * Creates level 11
+     */
     public void level11() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -365,14 +396,6 @@ public class FindAreaFromFigure implements Level {
         return false;
     }
 
-    private boolean isPointsMoreThanOneSquaresAway(Coordinate firstPoint, Coordinate secondPoint, Coordinate thirdPoint) {
-        if ((Math.abs(firstPoint.getX() - secondPoint.getX()) > 1 || Math.abs(firstPoint.getY() - secondPoint.getY()) > 1) && (Math.abs(secondPoint.getX() - thirdPoint.getX()) > 1 ||
-                Math.abs(secondPoint.getY() - thirdPoint.getY()) > 1) && (Math.abs(thirdPoint.getX() - firstPoint.getX()) > 1 || Math.abs(thirdPoint.getY() - firstPoint.getY()) > 1)) {
-            return true;
-        }
-        return false;
-    }
-
     private boolean isDistanceEqual(Coordinate startCoordinate, Coordinate firstCoordinate, Coordinate secondCoordinate) {
         if (Math.sqrt((startCoordinate.getX() - firstCoordinate.getX()) * (startCoordinate.getX() - firstCoordinate.getX())
                 + (startCoordinate.getY() - firstCoordinate.getY()) * (startCoordinate.getY() - firstCoordinate.getY()))
@@ -431,6 +454,13 @@ public class FindAreaFromFigure implements Level {
         return gameStateBuilder.build();
     }
 
+    /**
+     * Made for isolate trianglees to check if they are acceptable
+     * @param first coordinate for the first point
+     * @param second coordinate for the second point
+     * @param third coordinate for the third point
+     * @return true/false depending on if the triangle is okay or not
+     */
     private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
         int a = second.getX() - first.getX();
         if (!(a % 2 == 0)) {

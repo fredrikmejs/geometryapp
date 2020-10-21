@@ -36,6 +36,9 @@ import com.example.geometryapp.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * This level displays the different levels.
+ */
 public class LevelFragment extends Fragment {
 
     //THIS IS A FRAGMENT THAT DISPLAYS LEVELS.
@@ -107,12 +110,13 @@ public class LevelFragment extends Fragment {
         BTNPi = view.findViewById(R.id.BTNPi);
         BTNDot = view.findViewById(R.id.BTNDot);
 
+
+        //Changes the keyboard layout for the given category and indexes.
         if (categoryIndex == 10 && (levelIndex == 2 || levelIndex == 4 || levelIndex == 6 )){
             BTNDot.setText("×");
         } else {
             BTNDot.setText(".");
         }
-
 
         BTNMinus = view.findViewById(R.id.BTNMinus);
         if (categoryIndex == 10){
@@ -121,9 +125,8 @@ public class LevelFragment extends Fragment {
             BTNMinus.setText("-");
         }
 
-
+        //Setting arabic numerals on
         if (arabicNumeralsOn) {
-            //Setting arabic numerals on
             Typeface typefaceArabic = ResourcesCompat.getFont(getContext(), R.font.bzar);
             BTN1.setTypeface(typefaceArabic);
             BTN2.setTypeface(typefaceArabic);
@@ -243,8 +246,6 @@ public class LevelFragment extends Fragment {
         BTNDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 addTextTVCoordinate(BTNDot.getText().toString());
             }
         });
@@ -289,11 +290,14 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
+                //If correct move to next level
                 if (gameState.isAnsweredCorrectly()){
                     moveToNextLevel();
                     Toast.makeText(getContext(), "Category: " + categoryIndex + ", level: " + levelIndex, Toast.LENGTH_LONG).show();// TODO: 8.6.2020 Remove when done!
                 }
+                //if answer is wrong
                if (!gameState.isAnsweredCorrectly()){
+                   //Checks if the player has entered any input
                    if (((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
                             categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5 || categoryIndex == 3)) && gameState.getAttempt() != 3){
                             Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
@@ -301,7 +305,7 @@ public class LevelFragment extends Fragment {
                          int attempt = gameState.getAttempt();
                             if (attempt >= 2) {
                                 validateAnswer();
-
+                            //sets the correct answer in the two boxes
                             if (categoryIndex == 4 || categoryIndex == 6) {
                                 Singleton singleton = Singleton.getInstance();
                                 int xValue = (singleton.getXCoordinate() - gameState.getOrigin().getX())*gameState.getXScale();
@@ -315,6 +319,7 @@ public class LevelFragment extends Fragment {
                                 TVX.setText("" + singleton.getL2X());
                                 TVY.setText("" + singleton.getL2Y());
                             }
+                            //creates the level again, if the player used all 3 attempts
                             if (attempt >= 3) {
                                 createLevel();
                             }
@@ -336,6 +341,7 @@ public class LevelFragment extends Fragment {
         if (validatedAnswer.getCorrectAnswer() != null) {
             gameState.setCoordinateCorrectAnswer(validatedAnswer.getCorrectAnswer());
         }
+        //moves to next level if answered correctly
         if (answeredCorrectly) {
             moveToNextLevel();
         } else if (validatedAnswer.isAnswerCorrect()) {
@@ -344,6 +350,7 @@ public class LevelFragment extends Fragment {
             startRightAnswerAnimation();
             answeredCorrectly = true;
         } else {
+            //sets the asnwer to "?" if the guess is wrong and starts wrong animation
             if(categoryIndex != 1) {
                 if (!validatedAnswer.isXCorrect()) {
                     TVX.setText("?");

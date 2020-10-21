@@ -8,6 +8,9 @@ import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate and validates the answer of find coordinate with point symmetry category
+ */
 public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
 
     //Validates if answer was correct
@@ -31,6 +34,8 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
         double ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
         double correctY, correctX;
 
+        //Calculate the correct answer and validates it afterward for different cases depending
+        //on where the target dot is located
         if (xSymmetryPoint <= xTarget) {
             double x = xTarget - xSymmetryPoint;
              correctX =  xSymmetryPoint - x;
@@ -73,6 +78,7 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
         singleton.setXCoordinate(-1);
         singleton.setYCoordinate(-1);
 
+        //Checks if the answer is precise or not
         if (coordinates.first % gameState.getXScale() == 0 && coordinates.second % gameState.getYScale() == 0){
             if(!validatedAnswer.isAnswerCorrect()) {
                 if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
@@ -82,7 +88,7 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
                 }
             }
         }
-
+        //Sets correct answer for correct answer in canvas
         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >=2){
                 validatedAnswer.setCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
                 singleton.setXCoordinate((int) correctX);

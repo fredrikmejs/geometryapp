@@ -8,6 +8,9 @@ import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate the answer for the coordinate from point category and validates it
+ */
 public class AnswerCoordinateFromPoint implements LevelAnswer {
 
     //Validates if answer was correct
@@ -43,6 +46,7 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
             validatedAnswer.setIsYCorrect(true);
         }
 
+        //Sued to set the text of the two answer boxes and correct answer dot
         Singleton singleton = Singleton.getInstance();
         if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
             int xWrong = (xTyped/xScale) + xOrigin;
@@ -53,6 +57,7 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
                 singleton.setYCoordinate(yWrong);
             }
         }
+        //Used to set the text of the answer box and correct answer dot
         if(validatedAnswer.isAnswerCorrect() || gameState.getAttempt() == 2){
             gameState.setCoordinateCorrectAnswer(new Coordinate(xTarget,yTarget));
             singleton.setXCoordinate(xTarget);

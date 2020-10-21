@@ -1,5 +1,8 @@
 package com.example.geometryapp;
 
+/**
+ * Class to keep and get values from a singleton pattern
+ */
 public class Singleton {
 
     private static final Singleton ourInstance = new Singleton();
@@ -8,7 +11,7 @@ public class Singleton {
     private int y;
     private int L2X;
     private int L2Y;
-    private int categoryindex;
+    private int categoryIndex;
 
 private Singleton(){
 }
@@ -34,7 +37,7 @@ public int getYCoordinate(){return y;}
     }
 
     public void setL2X(int l2X) {
-        L2X = l2X;
+        this.L2X = l2X;
     }
 
     public int getL2Y() {
@@ -45,12 +48,12 @@ public int getYCoordinate(){return y;}
         L2Y = l2Y;
     }
 
-    public int getCategoryindex() {
-        return categoryindex;
+    public int getCategoryIndex() {
+        return categoryIndex;
     }
 
-    public void setCategoryindex(int categoryindex) {
-        this.categoryindex = categoryindex;
+    public void setCategoryIndex(int categoryIndex) {
+        this.categoryIndex = categoryIndex;
     }
 }
 

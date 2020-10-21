@@ -15,12 +15,15 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.COORDINATESFROMPOINT;
 
+/**
+ * This class creates the levels for coordinate from point
+ */
 public class CoordinatesFromPoint implements Level {
 
     private static Random random = new Random();
     private Coordinate origin;
-    private int Xscale;
-    private int Yscale;
+    private int xScale;
+    private int yScale;
     private Categories category = COORDINATESFROMPOINT;
     private TargetDot targetDot;
 
@@ -46,48 +49,72 @@ public class CoordinatesFromPoint implements Level {
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
-        Xscale = 2;
-        Yscale = 2;
+        xScale = 2;
+        yScale = 2;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(5, 5);
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(5, 5);
-        Xscale = 10;
-        Yscale = 10;
+        xScale = 10;
+        yScale = 10;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(randomPoint(1,9), randomPoint(1,9));
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Creates level 6
+     */
     public void level6() {
         origin = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-        Xscale = randomPoint(1, 10);
-        Yscale = randomPoint(1, 10);
+        xScale = randomPoint(1, 10);
+        yScale = randomPoint(1, 10);
         targetDot = new TargetDot(new Coordinate(randomPoint(0, 10), randomPoint(0, 10)));
     }
 
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     public int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
@@ -97,8 +124,8 @@ public class CoordinatesFromPoint implements Level {
         GameStateBuilder gameStateBuilder = new GameStateBuilder();
         gameStateBuilder.setOrigin(origin)
                 .setSelectedDot(new SelectedDot(new Coordinate(0,0)))
-                .setXScale(Xscale)
-                .setYScale(Yscale)
+                .setXScale(xScale)
+                .setYScale(yScale)
                 .setTargetDot(targetDot)
                 .setCategory(category)
                 .setQuestion(context.getResources()

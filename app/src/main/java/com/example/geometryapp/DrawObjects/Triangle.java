@@ -44,6 +44,15 @@ public class Triangle {
         this.thirdPoint = thirdPoint;
     }
 
+
+    /**
+     * Calculates the area of the triangle
+     * @param xScale
+     * @param yScale
+     * @param lvl the level is used to because in level 8 there are two different cases.
+     * @param categories just to check category.
+     * @return
+     */
     public double calculateArea(int xScale, int yScale, int lvl, Categories categories ) {
 
         double area;

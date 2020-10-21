@@ -21,6 +21,9 @@ import java.util.Random;
 import static com.example.geometryapp.Enum.Categories.FINDTHEPERIMETEROFAFIGURE;
 import static com.example.geometryapp.Levels.Perimeter.CompleteFigureFromPerimeter.round;
 
+/**
+ * This class create the levels for Find the perimeter of a figure category
+ */
 public class FindThePerimeterOfAFigure implements Level {
 
     private static Random random = new Random();
@@ -60,6 +63,9 @@ public class FindThePerimeterOfAFigure implements Level {
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -72,6 +78,9 @@ public class FindThePerimeterOfAFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -84,6 +93,9 @@ public class FindThePerimeterOfAFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -109,6 +121,9 @@ public class FindThePerimeterOfAFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -123,7 +138,6 @@ public class FindThePerimeterOfAFigure implements Level {
                 rect = false;
             }
         }
-
         Coordinate bottomLeft = new Coordinate(randomPoint(1, 4), randomPoint(1, 4));
         while (!isCoordinatesOnGrid(width, height, bottomLeft)) {
             bottomLeft = new Coordinate(randomPoint(1, 4), randomPoint(1, 4));
@@ -134,6 +148,9 @@ public class FindThePerimeterOfAFigure implements Level {
                 , bottomLeft);
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -141,6 +158,9 @@ public class FindThePerimeterOfAFigure implements Level {
         circle = new Circle(new Coordinate(randomPoint(4, 6), randomPoint(4, 6)), randomPoint(1, 4));
     }
 
+    /**
+     * Creates level 6
+     */
     public void level6() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -148,21 +168,23 @@ public class FindThePerimeterOfAFigure implements Level {
         circle = new Circle(new Coordinate(randomPoint(4, 6), randomPoint(4, 6)), randomPoint(1, 4));
     }
 
+    /**
+     * Creates level 7
+     */
     public void level7() {
-
         int randomNum = randomPoint(1, 2);
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
         int width = randomPoint(4, 5) * 2;
         int height = randomPoint(5, 9);
-        boolean going = true;
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
         Coordinate firstPoint = new Coordinate(randomPoint(0, 9), randomPoint(0, 9));
         Coordinate secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
         Coordinate thirdPoint = new Coordinate(((secondPoint.getX() + firstPoint.getX()) / 2), firstPoint.getX() + randomPoint(3, 7));
 
+        //Creates different type of triangles
         if (randomNum == 1) {
             while (width == 0 || height == 0 || !isCoordinatesOnGrid(width, 0, firstPoint) || !isCoordinatesOnGrid(0, 0, firstPoint)
                     || !isCoordinatesOnGrid(0, height, firstPoint)
@@ -174,14 +196,9 @@ public class FindThePerimeterOfAFigure implements Level {
             triangle = new Triangle(firstPoint
                     , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
                     , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
-
-        } else {
-
-            while (going) {
-                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
-                    going = false;
-                    break;
-                }
+        }//Creates isolated triangles
+        else {
+            while (!checkGrid(firstPoint, secondPoint, thirdPoint)) {
                 firstPoint = new Coordinate(randomPoint(2, 5), randomPoint(2, 5));
                 secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
 
@@ -192,48 +209,21 @@ public class FindThePerimeterOfAFigure implements Level {
         }
     }
 
-    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
-        int a = second.getX() - first.getX();
-        if (!(a % 2 == 0)) {
-            return false;
-        }
-        if(first.getY() != second.getY()){
-            return false;
-        }
-        if (first.getX() > 10 || first.getX() < 0) {
-            return false;
-        }
-        if (second.getX() > 10 || second.getX() < 0) {
-            return false;
-        }
-        if (third.getY() > 10 || third.getY() < 0) {
-            return false;
-        }
-        int b = third.getY() - first.getY();
-        int c = first.getY() - third.getY();
-        if (!(b >= 3 || c >= 3)) {
-            return false;
-        }
-        int d =  ( second.getX() + first.getX()) /2;
-        if (third.getX() != d ) {
-            return false;
-        }
-        return true;
-    }
-
+    /**
+     * Creates level 8
+     */
     public void level8() {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
-        boolean going = true;
         Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
-
         int randomNum = randomPoint(1,2);
         Singleton singleton = Singleton.getInstance();
         singleton.setRandomNum(randomNum);
 
+        //creates different types of triangles
         if (randomNum == 1){
             int width = randomPoint(3, 7) * randomChangeNegativeOrPositive();
             int height = randomPoint(3, 7) * randomChangeNegativeOrPositive();
@@ -247,14 +237,10 @@ public class FindThePerimeterOfAFigure implements Level {
             triangle = new Triangle(firstPoint
                     , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
                     , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
-        }else {
+        } //Creates isolated triangles
+        else {
         int a;
-            while (going) {
-
-                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
-                    going = false;
-                    break;
-                }
+            while (!checkGrid(firstPoint, secondPoint, thirdPoint)) {
                 firstPoint = new Coordinate(randomPoint(0, 5), randomPoint(0, 5));
                 secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
                 a = (secondPoint.getX() + firstPoint.getX()) / 2;
@@ -262,12 +248,12 @@ public class FindThePerimeterOfAFigure implements Level {
 
             }
             triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
-
         }
-
     }
 
-
+    /**
+     * Creates level 9
+     */
     public void level9() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -297,10 +283,7 @@ public class FindThePerimeterOfAFigure implements Level {
         if (bottomLeft.getY() + height < 0) {
             return false;
         }
-        if (bottomLeft.getX() + width < 0) {
-            return false;
-        }
-        return true;
+        return bottomLeft.getX() + width >= 0;
     }
 
     private boolean isOneCornerRightAngle(Coordinate first, Coordinate second, Coordinate third){
@@ -310,10 +293,7 @@ public class FindThePerimeterOfAFigure implements Level {
         if((third.getX() == second.getX() || third.getY() == second.getY()) && (third.getX() == second.getX() || third.getY() == second.getY())){
             return true;
         }
-        if((first.getX() == third.getX() || first.getY() == third.getY()) && (first.getX() == third.getX() || first.getY() == third.getY())){
-            return true;
-        }
-        return false;
+        return (first.getX() == third.getX() || first.getY() == third.getY()) && (first.getX() == third.getX() || first.getY() == third.getY());
     }
 
     private boolean isOneLineParallel(Coordinate first, Coordinate second, Coordinate third){
@@ -323,20 +303,7 @@ public class FindThePerimeterOfAFigure implements Level {
         if(second.getX() == third.getX() || second.getY() == third.getY()){
             return true;
         }
-        if(first.getX() == third.getX() || first.getY() == third.getY()){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isDistanceEqual(Coordinate startCoordinate, Coordinate firstCoordinate, Coordinate secondCoordinate) {
-        if (Math.sqrt((startCoordinate.getX() - firstCoordinate.getX()) * (startCoordinate.getX() - firstCoordinate.getX())
-                + (startCoordinate.getY() - firstCoordinate.getY()) * (startCoordinate.getY() - firstCoordinate.getY()))
-                == Math.sqrt((startCoordinate.getX() - secondCoordinate.getX()) * (startCoordinate.getX() - secondCoordinate.getX())
-                + (startCoordinate.getY() - secondCoordinate.getY()) * (startCoordinate.getY() - secondCoordinate.getY()))) {
-            return true;
-        }
-        return false;
+        return first.getX() == third.getX() || first.getY() == third.getY();
     }
 
     private boolean isCoordinateBetweenCoordinates(Coordinate startCoordinate, Coordinate endCoordinate, Coordinate betweenCoordinate) {
@@ -377,6 +344,12 @@ public class FindThePerimeterOfAFigure implements Level {
                 + (start.getY() - end.getY()) * (start.getY() - end.getY()) * yScale);
     }
 
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     private int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
@@ -404,29 +377,40 @@ public class FindThePerimeterOfAFigure implements Level {
         return gameStateBuilder.build();
     }
 
-    private void addCoordinates(ArrayList<Coordinate> first, ArrayList<Coordinate> second, ArrayList<Coordinate> third ) {
-
-        first.add(new Coordinate(2, 2));
-        second.add(new Coordinate(6, 2));
-        third.add(new Coordinate(4, 5));
-
-        first.add(new Coordinate(3, 6));
-        second.add(new Coordinate(3, 2));
-        third.add(new Coordinate(6, 4));
-
-        first.add(new Coordinate(2, 5));
-        second.add(new Coordinate(2, 10));
-        third.add(new Coordinate(7, 5));
-
-        first.add(new Coordinate(4, 3));
-        second.add(new Coordinate(4, 7));
-        third.add(new Coordinate(8, 3));
-
-        first.add(new Coordinate(2,5));
-        second.add(new Coordinate(2,10));
-        third.add(new Coordinate(7,5));
-
-
-
+    /**
+     * Made for isolate trianglees to check if they are acceptable
+     * @param first coordinate for the first point
+     * @param second coordinate for the second point
+     * @param third coordinate for the third point
+     * @return true/false depending on if the triangle is okay or not
+     */
+    private boolean checkGrid(Coordinate first, Coordinate second, Coordinate third) {
+        int a = second.getX() - first.getX();
+        if (!(a % 2 == 0)) {
+            return false;
+        }
+        if(first.getY() != second.getY()){
+            return false;
+        }
+        if (first.getX() > 10 || first.getX() < 0) {
+            return false;
+        }
+        if (second.getX() > 10 || second.getX() < 0) {
+            return false;
+        }
+        if (third.getY() > 10 || third.getY() < 0) {
+            return false;
+        }
+        int b = third.getY() - first.getY();
+        int c = first.getY() - third.getY();
+        if (!(b >= 3 || c >= 3)) {
+            return false;
+        }
+        int d =  ( second.getX() + first.getX()) /2;
+        if (third.getX() != d ) {
+            return false;
+        }
+        return true;
     }
+
 }

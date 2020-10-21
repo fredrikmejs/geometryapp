@@ -1,16 +1,11 @@
 package com.example.geometryapp.Fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +19,11 @@ import android.widget.Toast;
 import com.example.geometryapp.R;
 import com.example.geometryapp.Singleton;
 
-import java.util.Locale;
-
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * The Fragment that shows the different levels when you start the app
+ */
 public class TestFragment extends Fragment {
 
     //THIS IS THE FRAGMENT FOR TESTING
@@ -182,7 +178,7 @@ public class TestFragment extends Fragment {
             addRadioButtons(11);
         }
         Singleton singleton = Singleton.getInstance();
-        singleton.setCategoryindex(categoryIndex);
+        singleton.setCategoryIndex(categoryIndex);
     }
 
     private void addRadioButtons(int amount){

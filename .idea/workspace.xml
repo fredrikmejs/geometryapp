@@ -22,17 +22,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121af32f-b431-48cc-8435-b4b3b0a12482" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawCorrectEmptyShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/DrawEmtpyShape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Controllers/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Controllers/AnswerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Controllers/LevelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Controllers/LevelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/ShapeFourCorners.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/ShapeFourCorners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Coordinate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/LevelFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/TestFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Fragment/TestFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameStateBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/GameStateBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerCompleteFigureFromArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerCompleteFigureFromArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerFindAreaFromFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerFindAreaFromFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/CoordinatesAnswers/AnswerCoordinateFromPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/CoordinatesAnswers/AnswerCoordinateFromPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerCompleteFigureFromPerimeter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerCompleteFigureFromPerimeter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerFindThePerimeterOfAFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/PerimeterAnswers/AnswerFindThePerimeterOfAFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithLineSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindFigureOfSymmetryThroughPointOfSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindFigureOfSymmetryThroughPointOfSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithLineSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindPointWithPointSymmetry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/CompleteFigureFromArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/CompleteFigureFromArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/FindAreaFromFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Area/FindAreaFromFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/CoordinatesFromPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/CoordinatesFromPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/PointFromCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Coordinates/PointFromCoordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/CompleteFigureFromPerimeter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/CompleteFigureFromPerimeter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/FindThePerimeterOfAFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Perimeter/FindThePerimeterOfAFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithLineSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindCoordinateWithPointSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindFigureOfSymmetryThroughPointOfSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindFigureOfSymmetryThroughPointOfSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithLineSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithPointSymmetry.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Levels/Symmetry/FindPointWithPointSymmetry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Singleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/ValidatedAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/ValidatedAnswer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,6 +181,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
@@ -168,6 +200,10 @@
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state x="1386" y="446" width="1192" height="1316" key="#app/134.55.3706.2105@134.55.3706.2105" timestamp="1598021397096" />
+    <state x="1613" y="545" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser" timestamp="1603314522035">
+      <screen x="144" y="54" width="3696" height="2106" />
+    </state>
+    <state x="1613" y="545" width="748" height="1148" key="#com.intellij.ide.util.MemberChooser/144.54.3696.2106@144.54.3696.2106" timestamp="1603314522035" />
     <state x="5364" y="711" width="753" height="692" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600959339266">
       <screen x="3840" y="0" width="3840" height="2160" />
     </state>
@@ -193,7 +229,7 @@
       <screen x="134" y="55" width="3706" height="2105" />
     </state>
     <state x="1257" y="499" width="1450" height="1211" key="Github.UntrackedFilesDialog/134.55.3706.2105@134.55.3706.2105" timestamp="1596528158277" />
-    <state width="3608" height="293" key="GridCell.Tab.0.bottom" timestamp="1603277029277">
+    <state width="3608" height="293" key="GridCell.Tab.0.bottom" timestamp="1603314493695">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -201,8 +237,8 @@
     <state width="3752" height="707" key="GridCell.Tab.0.bottom/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.0.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909562" />
     <state width="3752" height="707" key="GridCell.Tab.0.bottom/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867979" />
-    <state width="3608" height="293" key="GridCell.Tab.0.bottom/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029277" />
-    <state width="3608" height="293" key="GridCell.Tab.0.center" timestamp="1603277029276">
+    <state width="3608" height="293" key="GridCell.Tab.0.bottom/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493695" />
+    <state width="3608" height="293" key="GridCell.Tab.0.center" timestamp="1603314493693">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596553512823" />
@@ -210,8 +246,8 @@
     <state width="3752" height="707" key="GridCell.Tab.0.center/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.0.center/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909561" />
     <state width="3752" height="707" key="GridCell.Tab.0.center/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867979" />
-    <state width="3608" height="293" key="GridCell.Tab.0.center/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029276" />
-    <state width="3608" height="293" key="GridCell.Tab.0.left" timestamp="1603277029276">
+    <state width="3608" height="293" key="GridCell.Tab.0.center/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493693" />
+    <state width="3608" height="293" key="GridCell.Tab.0.left" timestamp="1603314493692">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596553512823" />
@@ -219,8 +255,8 @@
     <state width="3752" height="707" key="GridCell.Tab.0.left/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.0.left/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909561" />
     <state width="3752" height="707" key="GridCell.Tab.0.left/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867979" />
-    <state width="3608" height="293" key="GridCell.Tab.0.left/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029276" />
-    <state width="3608" height="293" key="GridCell.Tab.0.right" timestamp="1603277029277">
+    <state width="3608" height="293" key="GridCell.Tab.0.left/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493692" />
+    <state width="3608" height="293" key="GridCell.Tab.0.right" timestamp="1603314493693">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -228,8 +264,8 @@
     <state width="3752" height="707" key="GridCell.Tab.0.right/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.0.right/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909562" />
     <state width="3752" height="707" key="GridCell.Tab.0.right/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867979" />
-    <state width="3608" height="293" key="GridCell.Tab.0.right/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029277" />
-    <state width="3608" height="293" key="GridCell.Tab.1.bottom" timestamp="1603277029276">
+    <state width="3608" height="293" key="GridCell.Tab.0.right/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493693" />
+    <state width="3608" height="293" key="GridCell.Tab.1.bottom" timestamp="1603314493691">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -237,8 +273,8 @@
     <state width="3752" height="707" key="GridCell.Tab.1.bottom/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505484" />
     <state width="3618" height="526" key="GridCell.Tab.1.bottom/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909563" />
     <state width="3752" height="707" key="GridCell.Tab.1.bottom/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867980" />
-    <state width="3608" height="293" key="GridCell.Tab.1.bottom/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029276" />
-    <state width="3608" height="293" key="GridCell.Tab.1.center" timestamp="1603277029276">
+    <state width="3608" height="293" key="GridCell.Tab.1.bottom/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493691" />
+    <state width="3608" height="293" key="GridCell.Tab.1.center" timestamp="1603314493689">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -246,8 +282,8 @@
     <state width="3752" height="707" key="GridCell.Tab.1.center/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.1.center/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909562" />
     <state width="3752" height="707" key="GridCell.Tab.1.center/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867980" />
-    <state width="3608" height="293" key="GridCell.Tab.1.center/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029276" />
-    <state width="3608" height="293" key="GridCell.Tab.1.left" timestamp="1603277029275">
+    <state width="3608" height="293" key="GridCell.Tab.1.center/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493689" />
+    <state width="3608" height="293" key="GridCell.Tab.1.left" timestamp="1603314493687">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -255,8 +291,8 @@
     <state width="3752" height="707" key="GridCell.Tab.1.left/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.1.left/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909562" />
     <state width="3752" height="707" key="GridCell.Tab.1.left/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867979" />
-    <state width="3608" height="293" key="GridCell.Tab.1.left/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029275" />
-    <state width="3608" height="293" key="GridCell.Tab.1.right" timestamp="1603277029276">
+    <state width="3608" height="293" key="GridCell.Tab.1.left/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493687" />
+    <state width="3608" height="293" key="GridCell.Tab.1.right" timestamp="1603314493690">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state width="1491" height="142" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1596553512824" />
@@ -264,7 +300,7 @@
     <state width="3752" height="707" key="GridCell.Tab.1.right/0.54.3840.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1600984505483" />
     <state width="3618" height="526" key="GridCell.Tab.1.right/134.55.3706.2105@134.55.3706.2105" timestamp="1600797909562" />
     <state width="3752" height="707" key="GridCell.Tab.1.right/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601218867980" />
-    <state width="3608" height="293" key="GridCell.Tab.1.right/144.54.3696.2106@144.54.3696.2106" timestamp="1603277029276" />
+    <state width="3608" height="293" key="GridCell.Tab.1.right/144.54.3696.2106@144.54.3696.2106" timestamp="1603314493690" />
     <state x="352" y="117" width="914" height="707" key="SettingsEditor" timestamp="1596550972056">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -289,70 +325,36 @@
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state x="1508" y="813" width="957" height="612" key="edit.logcat.filter.dialog.dimensions/144.54.3696.2106@144.54.3696.2106" timestamp="1602517707260" />
-    <state x="4902" y="0" width="1393" height="2622" key="run.anything.popup" timestamp="1601217822985">
-      <screen x="3840" y="0" width="3840" height="2160" />
+    <state x="1166" y="54" width="1344" height="2557" key="run.anything.popup" timestamp="1603308517586">
+      <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1596559276957" />
     <state x="1062" y="54" width="1393" height="2556" key="run.anything.popup/0.54.3840.2106/3840.0.3840.2160@0.54.3840.2106" timestamp="1600966763317" />
     <state x="1159" y="55" width="1344" height="2554" key="run.anything.popup/134.55.3706.2105@134.55.3706.2105" timestamp="1600777353790" />
     <state x="4902" y="0" width="1393" height="2622" key="run.anything.popup/144.54.3696.2106/3840.0.3840.2160@3840.0.3840.2160" timestamp="1601217822985" />
-    <state x="1272" y="54" width="1440" height="2102" key="search.everywhere.popup" timestamp="1603146895359">
+    <state x="1166" y="54" width="1344" height="2557" key="run.anything.popup/144.54.3696.2106@144.54.3696.2106" timestamp="1603308517586" />
+    <state x="1272" y="54" width="1440" height="2102" key="search.everywhere.popup" timestamp="1603313568465">
       <screen x="144" y="54" width="3696" height="2106" />
     </state>
     <state x="1265" y="55" width="1440" height="2101" key="search.everywhere.popup/134.55.3706.2105@134.55.3706.2105" timestamp="1600796831001" />
-    <state x="1272" y="54" width="1440" height="2102" key="search.everywhere.popup/144.54.3696.2106@144.54.3696.2106" timestamp="1603146895359" />
+    <state x="1272" y="54" width="1440" height="2102" key="search.everywhere.popup/144.54.3696.2106@144.54.3696.2106" timestamp="1603313568465" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/SymmetryAnswers/AnswerFindCoordinateWithPointSymmetry.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="185" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>805</line>
+          <line>552</line>
           <option name="timeStamp" value="221" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>853</line>
-          <option name="timeStamp" value="222" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>861</line>
-          <option name="timeStamp" value="223" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="260" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>235</line>
-          <option name="timeStamp" value="262" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/Views/Canvas.java</url>
-          <line>1586</line>
+          <line>1289</line>
           <option name="timeStamp" value="278" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/LevelAnswers/AreaAnswers/AnswerFindAreaFromFigure.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="282" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/geometryapp/DrawObjects/Triangle.java</url>
-          <line>49</line>
+          <line>58</line>
           <option name="timeStamp" value="286" />
         </line-breakpoint>
       </breakpoints>

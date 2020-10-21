@@ -3,6 +3,9 @@ package com.example.geometryapp;
 import com.example.geometryapp.DrawObjects.LineFigure;
 import com.example.geometryapp.DrawObjects.SymmetryLine;
 
+/**
+ * Object class for validate answer
+ */
 public class ValidatedAnswer {
     private boolean answerIsCorrect;//Was the users answer correct?
     private boolean yIsCorrect;//Was the y coordinate correct?
