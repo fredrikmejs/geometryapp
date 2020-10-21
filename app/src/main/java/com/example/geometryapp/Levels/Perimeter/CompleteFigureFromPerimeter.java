@@ -19,6 +19,9 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.COMPLETEFIGUREFROMPERIMETER;
 
+/**
+ * This class creates levels for complete figures from perimeter
+ */
 public class CompleteFigureFromPerimeter implements Level {
 
     private static Random random = new Random();
@@ -60,7 +63,9 @@ public class CompleteFigureFromPerimeter implements Level {
         }
     }
 
-
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -75,6 +80,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(rectangle.calculatePerimeter(xScale, yScale), 2);
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -89,6 +97,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(rectangle.calculatePerimeter(xScale, yScale), 2);
     }
 
+    /**
+     * Creates level 3
+     */
     public void level3() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -107,6 +118,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(rectangle.calculatePerimeter(xScale, yScale), 2);
     }
 
+    /**
+     * Creates level 4
+     */
     public void level4() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -125,6 +139,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(rectangle.calculatePerimeter(xScale, yScale), 2);
     }
 
+    /**
+     * Creates level 5
+     */
     public void level5() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -134,6 +151,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + yScale * xScale * 2 * circle.getRadius() + "\uD835\uDF0B";
     }
 
+    /**
+     * Creates level 6
+     */
     public void level6() {
         origin = new Coordinate(0, 0);
         xScale = randomPoint(2, 10);
@@ -143,6 +163,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + yScale * 2 * circle.getRadius() + "\uD835\uDF0B";
     }
 
+    /**
+     * Creates level 7
+     */
     public void level7() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -168,6 +191,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(triangle.calculatePerimeter(xScale, yScale), 1);
     }
 
+    /**
+     * Creates level 8
+     */
     public void level8() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -190,6 +216,9 @@ public class CompleteFigureFromPerimeter implements Level {
         targetAnswer = "" + round(triangle.calculatePerimeter(xScale, yScale), 1);
     }
 
+    /**
+     * Creates level 9
+     */
     public void level9() {
         origin = new Coordinate(0, 0);
         xScale = 1;
@@ -218,10 +247,7 @@ public class CompleteFigureFromPerimeter implements Level {
         if((third.getX() == second.getX() || third.getY() == second.getY()) && (third.getX() == second.getX() || third.getY() == second.getY())){
             return true;
         }
-        if((first.getX() == third.getX() || first.getY() == third.getY()) && (first.getX() == third.getX() || first.getY() == third.getY())){
-            return true;
-        }
-        return false;
+        return (first.getX() == third.getX() || first.getY() == third.getY()) && (first.getX() == third.getX() || first.getY() == third.getY());
     }
 
     private boolean isOneLineParallel(Coordinate first, Coordinate second, Coordinate third){
@@ -231,10 +257,7 @@ public class CompleteFigureFromPerimeter implements Level {
         if(second.getX() == third.getX() || second.getY() == third.getY()){
             return true;
         }
-        if(first.getX() == third.getX() || first.getY() == third.getY()){
-            return true;
-        }
-        return false;
+        return first.getX() == third.getX() || first.getY() == third.getY();
     }
 
     public double calculateDistanceTwoCoordinates(Coordinate start, Coordinate end) {
@@ -249,10 +272,7 @@ public class CompleteFigureFromPerimeter implements Level {
         if (calculateDistanceTwoCoordinates(firstCoordinate, thirdCoordinate) < distance) {
             return false;
         }
-        if (calculateDistanceTwoCoordinates(secondCoordinate, thirdCoordinate) < distance) {
-            return false;
-        }
-        return true;
+        return !(calculateDistanceTwoCoordinates(secondCoordinate, thirdCoordinate) < distance);
     }
 
     private boolean isCoordinatesOnGrid(int width, int height, Coordinate bottomLeft) {
@@ -265,28 +285,14 @@ public class CompleteFigureFromPerimeter implements Level {
         if (bottomLeft.getY() + height < 0) {
             return false;
         }
-        if (bottomLeft.getX() + width < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isPointsMoreThanOneSquaresAway(Coordinate firstPoint, Coordinate secondPoint, Coordinate thirdPoint) {
-        if ((Math.abs(firstPoint.getX() - secondPoint.getX()) > 1 || Math.abs(firstPoint.getY() - secondPoint.getY()) > 1) && (Math.abs(secondPoint.getX() - thirdPoint.getX()) > 1 ||
-                Math.abs(secondPoint.getY() - thirdPoint.getY()) > 1) && (Math.abs(thirdPoint.getX() - firstPoint.getX()) > 1 || Math.abs(thirdPoint.getY() - firstPoint.getY()) > 1)) {
-            return true;
-        }
-        return false;
+        return bottomLeft.getX() + width >= 0;
     }
 
     private boolean isDistanceEqual(Coordinate startCoordinate, Coordinate firstCoordinate, Coordinate secondCoordinate) {
-        if (Math.sqrt((startCoordinate.getX() - firstCoordinate.getX()) * (startCoordinate.getX() - firstCoordinate.getX())
+        return Math.sqrt((startCoordinate.getX() - firstCoordinate.getX()) * (startCoordinate.getX() - firstCoordinate.getX())
                 + (startCoordinate.getY() - firstCoordinate.getY()) * (startCoordinate.getY() - firstCoordinate.getY()))
                 == Math.sqrt((startCoordinate.getX() - secondCoordinate.getX()) * (startCoordinate.getX() - secondCoordinate.getX())
-                + (startCoordinate.getY() - secondCoordinate.getY()) * (startCoordinate.getY() - secondCoordinate.getY()))) {
-            return true;
-        }
-        return false;
+                + (startCoordinate.getY() - secondCoordinate.getY()) * (startCoordinate.getY() - secondCoordinate.getY()));
     }
 
     private boolean isCoordinateBetweenCoordinates(Coordinate startCoordinate, Coordinate endCoordinate, Coordinate betweenCoordinate) {
@@ -303,18 +309,21 @@ public class CompleteFigureFromPerimeter implements Level {
         if (slopeStartEnd == slopeEndBetween) {
             return true;
         }
-        if (slopeStartEnd == -1 * slopeEndBetween) {
-            return true;
-        }
-        return false;
+        return slopeStartEnd == -1 * slopeEndBetween;
     }
 
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     private int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
 
     private int randomChangeNegativeOrPositive() {
-        if (random.nextInt(1 - 0 + 1) == 0) {
+        if (random.nextInt(1 + 1) == 0) {
             return -1;
         } else {
             return 1;

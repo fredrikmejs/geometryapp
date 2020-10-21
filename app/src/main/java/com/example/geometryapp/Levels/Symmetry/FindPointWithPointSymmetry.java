@@ -15,12 +15,15 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.FINDPOINTWITHPOINTSYMMETRY;
 
+/**
+ * This class creates levels for find points with point symmetry category
+ */
 public class FindPointWithPointSymmetry implements Level {
 
     private static Random random = new Random();
     private Coordinate origin;
-    private int Xscale;
-    private int Yscale;
+    private int xScale;
+    private int yScale;
     private Categories category = FINDPOINTWITHPOINTSYMMETRY;
     private TargetDot targetDot;
     private SelectedDot selectedDot;
@@ -29,22 +32,25 @@ public class FindPointWithPointSymmetry implements Level {
 
     //Creates the correct gameState
     public FindPointWithPointSymmetry(int levelNum) {
-        if (levelNum == 0) {
-            levelNum = randomPoint(1, 4);
-        }
-        if (levelNum == 1) {
-            level1();
-        } else if (levelNum == 2) {
-            level2();
-        } else {
-            throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
+        switch (levelNum){
+            case 1:
+                level1();
+                break;
+            case 2:
+                level2();
+                break;
+            default:
+                throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         selectedDot = new SelectedDot(new Coordinate(5, 5));
         symmetryPoint = new Coordinate(5, 5);
         Coordinate targetCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));
@@ -54,10 +60,13 @@ public class FindPointWithPointSymmetry implements Level {
         targetDot = new TargetDot(targetCoordinate);
     }
 
+    /**
+     * Creates level 2
+     */
     public void level2() {
         origin = new Coordinate(0, 0);
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         selectedDot = new SelectedDot(new Coordinate(5, 5));
         symmetryPoint = new Coordinate(randomPoint(3, 7), randomPoint(3, 7));
         Coordinate targetCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));
@@ -67,27 +76,36 @@ public class FindPointWithPointSymmetry implements Level {
         targetDot = new TargetDot(targetCoordinate);
     }
 
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     private int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
 
+    /**
+     * Checks if answer is on grid
+     * @param targetDot the answer
+     * @param symmetryPoint
+     * @return boolean
+     */
     private boolean isCorrectAnswerOnGrid(Coordinate targetDot, Coordinate symmetryPoint) {
-        if ((symmetryPoint.getX() + Math.abs(symmetryPoint.getX() - targetDot.getX()) <= 10
-                && symmetryPoint.getX() - Math.abs((symmetryPoint.getX() - targetDot.getX())) >= 0)
-                && (symmetryPoint.getY() + Math.abs((symmetryPoint.getY() - targetDot.getY())) <= 10
-                && symmetryPoint.getY() - Math.abs((symmetryPoint.getY() - targetDot.getY())) >= 0)
-                && (symmetryPoint.getX() != targetDot.getX() || targetDot.getY() != symmetryPoint.getY())) {
-            return false;
-        }
-        return true;
+        return (symmetryPoint.getX() + Math.abs(symmetryPoint.getX() - targetDot.getX()) > 10
+                || symmetryPoint.getX() - Math.abs((symmetryPoint.getX() - targetDot.getX())) < 0)
+                || (symmetryPoint.getY() + Math.abs((symmetryPoint.getY() - targetDot.getY())) > 10
+                || symmetryPoint.getY() - Math.abs((symmetryPoint.getY() - targetDot.getY())) < 0)
+                || (symmetryPoint.getX() == targetDot.getX() && targetDot.getY() == symmetryPoint.getY());
     }
 
     @Override
     public GameState getDefaultLevelState(Context context) {
         GameStateBuilder gameStateBuilder = new GameStateBuilder();
         gameStateBuilder.setOrigin(origin)
-                .setXScale(Xscale)
-                .setYScale(Yscale)
+                .setXScale(xScale)
+                .setYScale(yScale)
                 .setCategory(category)
                 .setSymmetryPoint(symmetryPoint)
                 .setQuestion(context.getResources().getString(R.string.FindPointWithLinePoint))

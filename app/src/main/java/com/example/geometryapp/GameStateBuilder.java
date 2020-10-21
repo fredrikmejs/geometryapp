@@ -13,6 +13,9 @@ import com.example.geometryapp.Enum.Categories;
 
 import java.util.ArrayList;
 
+/**
+ * This contains what a gamestate consist off
+ */
 public class GameStateBuilder {
 
     //Builder design pattern. Makes creating gameStates easier.

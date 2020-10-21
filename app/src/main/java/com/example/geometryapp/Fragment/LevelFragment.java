@@ -1,5 +1,6 @@
 package com.example.geometryapp.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
@@ -28,12 +29,16 @@ import com.example.geometryapp.Controllers.AnswerController;
 import com.example.geometryapp.Controllers.LevelController;
 import com.example.geometryapp.Enum.Categories;
 import com.example.geometryapp.GameState;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 import com.example.geometryapp.Views.Canvas;
 import com.example.geometryapp.R;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * This level displays the different levels.
+ */
 public class LevelFragment extends Fragment {
 
     //THIS IS A FRAGMENT THAT DISPLAYS LEVELS.
@@ -104,9 +109,24 @@ public class LevelFragment extends Fragment {
         BTN0 = view.findViewById(R.id.BTN0);
         BTNPi = view.findViewById(R.id.BTNPi);
         BTNDot = view.findViewById(R.id.BTNDot);
+
+
+        //Changes the keyboard layout for the given category and indexes.
+        if (categoryIndex == 10 && (levelIndex == 2 || levelIndex == 4 || levelIndex == 6 )){
+            BTNDot.setText("×");
+        } else {
+            BTNDot.setText(".");
+        }
+
         BTNMinus = view.findViewById(R.id.BTNMinus);
+        if (categoryIndex == 10){
+            BTNMinus.setText("/");
+        } else{
+            BTNMinus.setText("-");
+        }
+
+        //Setting arabic numerals on
         if (arabicNumeralsOn) {
-            //Setting arabic numerals on
             Typeface typefaceArabic = ResourcesCompat.getFont(getContext(), R.font.bzar);
             BTN1.setTypeface(typefaceArabic);
             BTN2.setTypeface(typefaceArabic);
@@ -270,15 +290,42 @@ public class LevelFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                if ((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
-                        categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5)){
-                        Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
-                } else {
-                    int attempt = gameState.getAttempt();
-                    if (attempt == 3) {
-                        createLevel();
+                //If correct move to next level
+                if (gameState.isAnsweredCorrectly()){
+                    moveToNextLevel();
+                    Toast.makeText(getContext(), "Category: " + categoryIndex + ", level: " + levelIndex, Toast.LENGTH_LONG).show();// TODO: 8.6.2020 Remove when done!
+                }
+                //if answer is wrong
+               if (!gameState.isAnsweredCorrectly()){
+                   //Checks if the player has entered any input
+                   if (((TVX.getText().equals("?") || TVY.getText().equals("?")) && !(categoryIndex == 7 || categoryIndex == 8 || categoryIndex == 9 ||
+                            categoryIndex == 10 || categoryIndex ==11 || categoryIndex ==5 || categoryIndex == 3)) && gameState.getAttempt() != 3){
+                            Toast.makeText(getContext(), "Invalid answer", Toast.LENGTH_LONG).show();
                     } else {
-                        validateAnswer();
+                         int attempt = gameState.getAttempt();
+                            if (attempt >= 2) {
+                                validateAnswer();
+                            //sets the correct answer in the two boxes
+                            if (categoryIndex == 4 || categoryIndex == 6) {
+                                Singleton singleton = Singleton.getInstance();
+                                int xValue = (singleton.getXCoordinate() - gameState.getOrigin().getX())*gameState.getXScale();
+                                int yValue = (singleton.getYCoordinate() - gameState.getOrigin().getY())*gameState.getYScale();
+                                TVQuestion.setText("The answer for this level is: (" + xValue + "," + yValue + ")");
+                                TVX.setText("" + xValue);
+                                TVY.setText("" + yValue);
+                            } else if (categoryIndex == 2) {
+                                Singleton singleton = Singleton.getInstance();
+                                TVQuestion.setText("The answer for this level is: (" + singleton.getL2X() + "," + singleton.getL2Y() + ")");
+                                TVX.setText("" + singleton.getL2X());
+                                TVY.setText("" + singleton.getL2Y());
+                            }
+                            //creates the level again, if the player used all 3 attempts
+                            if (attempt >= 3) {
+                                createLevel();
+                            }
+                            } else {
+                                validateAnswer();
+                        }
                     }
                 }
             }
@@ -294,6 +341,7 @@ public class LevelFragment extends Fragment {
         if (validatedAnswer.getCorrectAnswer() != null) {
             gameState.setCoordinateCorrectAnswer(validatedAnswer.getCorrectAnswer());
         }
+        //moves to next level if answered correctly
         if (answeredCorrectly) {
             moveToNextLevel();
         } else if (validatedAnswer.isAnswerCorrect()) {
@@ -302,6 +350,7 @@ public class LevelFragment extends Fragment {
             startRightAnswerAnimation();
             answeredCorrectly = true;
         } else {
+            //sets the asnwer to "?" if the guess is wrong and starts wrong animation
             if(categoryIndex != 1) {
                 if (!validatedAnswer.isXCorrect()) {
                     TVX.setText("?");
@@ -310,8 +359,6 @@ public class LevelFragment extends Fragment {
                     TVY.setText("?");
                 }
             }
-
-
             setAnswerTVBackgroundResources(validatedAnswer);
             canvas.setCoordinateXAndYColor(validatedAnswer.isXCorrect(), validatedAnswer.isYCorrect());
             startWrongAnswerAnimation();
@@ -422,7 +469,7 @@ public class LevelFragment extends Fragment {
 
     private void createLevel() {
         //Creates a level. Updates views according to the gameState.
-        gameState = levelController.getLevel(categoryIndex, levelIndex, getContext());
+        gameState = levelController.getLevel(categoryIndex, levelIndex, getContext(), gameState);
         gameState.getSelectedDot().setPurpleColorOn(!prefs.getBoolean("purpleColorOn", false));
         gameState.setEnglishNumbers(arabicNumeralsOn);
         canvas = new Canvas(getContext(), gameState);
@@ -466,6 +513,7 @@ public class LevelFragment extends Fragment {
         return AnswerController.getAnswer(gameState, categoryIndex, levelIndex);
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateViewsToGameState(int levelIndex) {
         //Updates view according to the gameState. This is called only after restarting level in createLevel() function
         //Hides views and sets question to the question area.
@@ -483,7 +531,18 @@ public class LevelFragment extends Fragment {
         TVX.setBackgroundResource(R.drawable.valuearealeft);
         TVY.setBackgroundResource(R.drawable.valuearearight);
         TVValue.setBackgroundResource(R.drawable.answerarea);
+
+        if (categoryIndex == 10 && (levelIndex ==2 || levelIndex == 4)){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '×' for this level");
+        } else if ((categoryIndex == 10 && levelIndex ==5) || (categoryIndex == 8 && (levelIndex == 5 || levelIndex == 6))){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '\uD835\uDF0B' for this level");
+        } else if (categoryIndex == 10 && levelIndex == 6){
+            TVQuestion.setText(gameState.getQuestion() + "\n You are allowed to use '\uD835\uDF0B' for this level\n");
+            TVQuestion.setText("You are allowed to use '×' for this level");
+        } else {
         TVQuestion.setText(gameState.getQuestion());
+        }
+
         //Categories where answer coordinate view is invisible
         if (gameState.getCategory() == Categories.FINDPOINTWITHLINESYMMETRY
                 || gameState.getCategory() == Categories.FINDPOINTWITHPOINTSYMMETRY
@@ -526,7 +585,7 @@ public class LevelFragment extends Fragment {
 
     private void moveToNextLevel() {
         try {
-            levelController.getLevel(categoryIndex, levelIndex + 1, getContext());
+            levelController.getLevel(categoryIndex, levelIndex + 1, getContext(),gameState);
             Bundle bundle = new Bundle();
             bundle.putInt("categoryIndex", categoryIndex);
             bundle.putInt("levelIndex", levelIndex + 1);

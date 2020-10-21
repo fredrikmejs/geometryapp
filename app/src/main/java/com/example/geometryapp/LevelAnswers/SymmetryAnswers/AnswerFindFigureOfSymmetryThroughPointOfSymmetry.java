@@ -9,6 +9,9 @@ import com.example.geometryapp.ValidatedAnswer;
 
 import java.util.ArrayList;
 
+/**
+ * This class calculate and validates the answer of find figure of symmetry through symmetry category
+ */
 public class AnswerFindFigureOfSymmetryThroughPointOfSymmetry implements LevelAnswer {
 
     //Validates if answer was correct
@@ -99,6 +102,7 @@ public class AnswerFindFigureOfSymmetryThroughPointOfSymmetry implements LevelAn
         //Create correct answer
         ArrayList<Coordinate> coordinate = new ArrayList<>();
         if (allPointCorrect) {
+            gameState.setAnsweredCorrectly(true);
             validatedAnswer.setIsAnswerCorrect(true);
             validatedAnswer.setIsYCorrect(true);
             validatedAnswer.setIsXCorrect(true);

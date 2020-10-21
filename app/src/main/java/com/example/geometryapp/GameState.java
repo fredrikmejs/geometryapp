@@ -15,6 +15,9 @@ import com.example.geometryapp.Enum.Categories;
 
 import java.util.ArrayList;
 
+/**
+ * Explains what a gamestate is and about the current game.
+ */
 public class GameState {
 
     //This class contains all of the information that level has.
@@ -124,10 +127,6 @@ public class GameState {
         return targetDot;
     }
 
-    public void setTargetDot(TargetDot targetDot) {
-        this.targetDot = targetDot;
-    }
-
     public ShapeFourCorners getShapeFourCorners() {
         return shapeFourCorners;
     }
@@ -168,9 +167,6 @@ public class GameState {
         return targetPoint;
     }
 
-    public void setTargetPoint(Coordinate targetPoint) {
-        this.targetPoint = targetPoint;
-    }
 
     public Pair<String, String> getTypedCoordinateAnswer() {
         return typedCoordinateAnswer;
@@ -182,10 +178,6 @@ public class GameState {
 
     public SymmetryLine getSymmetryLine() {
         return symmetryLine;
-    }
-
-    public void setSymmetryLine(SymmetryLine symmetryLine) {
-        this.symmetryLine = symmetryLine;
     }
 
     public Coordinate getCoordinateCorrectAnswer() {
@@ -208,24 +200,8 @@ public class GameState {
         return symmetryPoint;
     }
 
-    public void setSymmetryPoint(Coordinate symmetryPoint) {
-        this.symmetryPoint = symmetryPoint;
-    }
-
     public LineFigure getSymmetryFigure() {
         return symmetryFigure;
-    }
-
-    public void setSymmetryFigure(LineFigure symmetryFigure) {
-        this.symmetryFigure = symmetryFigure;
-    }
-
-    public LineFigure getDrawnSymmetryFigure() {
-        return drawnSymmetryFigure;
-    }
-
-    public void setDrawnSymmetryFigure(LineFigure drawnSymmetryFigure) {
-        this.drawnSymmetryFigure = drawnSymmetryFigure;
     }
 
     public LineFigure getLineFigureCorrectAnswer() {
@@ -254,10 +230,6 @@ public class GameState {
 
     public String getTargetAnswer() {
         return targetAnswer;
-    }
-
-    public void setTargetAnswer(String targetAnswer) {
-        this.targetAnswer = targetAnswer;
     }
 
     public void setAnsweredCorrectly(boolean isCorrect){

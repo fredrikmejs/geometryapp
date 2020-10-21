@@ -4,6 +4,9 @@ import com.example.geometryapp.Coordinate;
 
 import java.util.ArrayList;
 
+/**
+ * Used to give information about the selected dot and where it is placed
+ */
 public class SelectedDot {
 
     private boolean purpleOn;
@@ -42,6 +45,7 @@ public class SelectedDot {
     public void setPreviousCoordinates(ArrayList<Coordinate> previousCoordinates) {
         this.previousCoordinates = previousCoordinates;
     }
+
 
     public void goPreviousCoordinate() {
         if (previousCoordinates.size() > 1) {

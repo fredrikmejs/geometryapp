@@ -2,6 +2,9 @@ package com.example.geometryapp.DrawObjects;
 
 import com.example.geometryapp.Coordinate;
 
+/**
+ * Used to give information about the line
+ */
 public class Line {
     private Coordinate startCoordinate;
     private Coordinate endCoordinate;

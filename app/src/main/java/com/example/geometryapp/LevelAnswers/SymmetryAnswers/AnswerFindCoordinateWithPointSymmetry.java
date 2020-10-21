@@ -5,8 +5,12 @@ import android.util.Pair;
 import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate and validates the answer of find coordinate with point symmetry category
+ */
 public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
 
     //Validates if answer was correct
@@ -21,96 +25,77 @@ public class AnswerFindCoordinateWithPointSymmetry implements LevelAnswer {
             return new ValidatedAnswer(false, false, false);
         }
 
-        int xSelected = gameState.getOrigin().getX() + coordinates.first / gameState.getXScale(); //selected x
-        int ySelected = gameState.getOrigin().getY() + coordinates.second / gameState.getYScale(); //selected y
-        int xTarget = gameState.getTargetDot().getCoordinate().getX(); //The given x
-        int yTarget = gameState.getTargetDot().getCoordinate().getY(); //the given y
-        int xSymmetryPoint = gameState.getSymmetryPoint().getX(); //x for sym
-        int ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
-        int b, a;
+        Singleton singleton = Singleton.getInstance();
+        double xSelected = gameState.getOrigin().getX() + (double) coordinates.first / gameState.getXScale(); //selected x
+        double ySelected = gameState.getOrigin().getY() + (double) coordinates.second / gameState.getYScale(); //selected y
+        double xTarget = gameState.getTargetDot().getCoordinate().getX(); //The given x
+        double yTarget = gameState.getTargetDot().getCoordinate().getY(); //the given y
+        double xSymmetryPoint = gameState.getSymmetryPoint().getX(); //x for sym
+        double ySymmetryPoint = gameState.getSymmetryPoint().getY(); //y for sym
+        double correctY, correctX;
 
+        //Calculate the correct answer and validates it afterward for different cases depending
+        //on where the target dot is located
         if (xSymmetryPoint <= xTarget) {
-            int x = xTarget - xSymmetryPoint;
-             a =  xSymmetryPoint - x;
-            if (a == xSelected) {
+            double x = xTarget - xSymmetryPoint;
+             correctX =  xSymmetryPoint - x;
+            if (correctX == xSelected) {
                 validatedAnswer.setIsXCorrect(true);
             } else {
                 validatedAnswer.setIsXCorrect(false);
             }
-            int y = ySymmetryPoint - yTarget;
-             b = y + ySymmetryPoint;
+            double y = ySymmetryPoint - yTarget;
+             correctY = y + ySymmetryPoint;
 
-            if (b == ySelected) {
+            if (correctY == ySelected) {
                 validatedAnswer.setIsYCorrect(true);
             } else {
                 validatedAnswer.setIsYCorrect(false);
             }
         } else {
-            int x = xSymmetryPoint - xTarget;
-             a = x + xSymmetryPoint;
-            if (a == xSelected) {
+            double x = xSymmetryPoint - xTarget;
+             correctX = x + xSymmetryPoint;
+            if (correctX == xSelected) {
                 validatedAnswer.setIsXCorrect(true);
             } else {
                 validatedAnswer.setIsXCorrect(false);
             }
 
-            int y = ySymmetryPoint - yTarget;
-            b = y + ySymmetryPoint;
+            double y = ySymmetryPoint - yTarget;
+            correctY = y + ySymmetryPoint;
 
-            if (b == ySelected) {
+            if (correctY == ySelected) {
                 validatedAnswer.setIsYCorrect(true);
             } else {
                 validatedAnswer.setIsYCorrect(false);
             }
         }
-        if (a == xSelected && b == ySelected){
+        if (correctX == xSelected && correctY == ySelected){
             validatedAnswer.setIsAnswerCorrect(true);
             gameState.setAnsweredCorrectly(true);
         }
 
+        singleton.setXCoordinate(-1);
+        singleton.setYCoordinate(-1);
 
-
-        /**  double distanceSymmetryPointTarget = Math.sqrt((xTarget - xSymmetryPoint) * (xTarget - xSymmetryPoint)
-                + (yTarget - ySymmetryPoint) * (yTarget - ySymmetryPoint));
-        double distanceSymmetryPointSelected = Math.sqrt((xSelected - xSymmetryPoint) * (xSelected - xSymmetryPoint)
-                + (ySelected - ySymmetryPoint) * (ySelected - ySymmetryPoint));
-        if (distanceSymmetryPointSelected == distanceSymmetryPointTarget
-                && (xSymmetryPoint == (xSelected + xTarget) / 2 && ySymmetryPoint == (ySelected + yTarget) / 2)) {
-
-
-            validatedAnswer.setIsAnswerCorrect(true);
-            validatedAnswer.setIsYCorrect(true);
-            validatedAnswer.setIsXCorrect(true);
-            gameState.setAnsweredCorrectly(true);
-        }
-
-
-        for (int x = 0; x < 11; x++) {
-            for (int y = 0; y < 11; y++) {
-                if (isPointCorrectAnswer(gameState, x, y)) {
-                    validatedAnswer.setCorrectAnswer(new Coordinate(x, y));
-                    return validatedAnswer;
+        //Checks if the answer is precise or not
+        if (coordinates.first % gameState.getXScale() == 0 && coordinates.second % gameState.getYScale() == 0){
+            if(!validatedAnswer.isAnswerCorrect()) {
+                if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >= 0)) {
+                    gameState.setCoordinateCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                    singleton.setXCoordinate((int) xSelected);
+                    singleton.setYCoordinate((int) ySelected);
                 }
             }
-        } */
-        return validatedAnswer;
-    }
-
-    public boolean isPointCorrectAnswer(GameState gameState, int x, int y) {
-        int xSelected = x;
-        int ySelected = y;
-        int xTarget = gameState.getTargetDot().getCoordinate().getX();
-        int yTarget = gameState.getTargetDot().getCoordinate().getY();
-        int xSymmetryPoint = gameState.getSymmetryPoint().getX();
-        int ySymmetryPoint = gameState.getSymmetryPoint().getY();
-        double distanceSymmetryPointTarget = Math.sqrt((xTarget - xSymmetryPoint) * (xTarget - xSymmetryPoint)
-                + (yTarget - ySymmetryPoint) * (yTarget - ySymmetryPoint));
-        double distanceSymmetryPointSelected = Math.sqrt((xSelected - xSymmetryPoint) * (xSelected - xSymmetryPoint)
-                + (ySelected - ySymmetryPoint) * (ySelected - ySymmetryPoint));
-        if (distanceSymmetryPointSelected == distanceSymmetryPointTarget
-                && (xSymmetryPoint == (xSelected + xTarget) / 2 && ySymmetryPoint == (ySelected + yTarget) / 2)) {
-            return true;
         }
-        return false;
+        //Sets correct answer for correct answer in canvas
+        if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >=2){
+                validatedAnswer.setCorrectAnswer(new Coordinate((int) correctX, (int) correctY));
+                singleton.setXCoordinate((int) correctX);
+                singleton.setYCoordinate((int) correctY);
+        }
+
+
+        return validatedAnswer;
     }
 }

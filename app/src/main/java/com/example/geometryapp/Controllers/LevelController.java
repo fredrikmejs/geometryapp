@@ -33,7 +33,7 @@ public class LevelController {
     // 11 - Draw figure from area
 
     //Returns the correct gameState object according to the category index and level index.
-    public GameState getLevel(int categoryIndex, int levelIndex, Context context) {
+    public GameState getLevel(int categoryIndex, int levelIndex, Context context, GameState gameState) {
         this.categoryIndex = categoryIndex;
         this.levelIndex = levelIndex;
         if (categoryIndex == 1) {
@@ -57,7 +57,7 @@ public class LevelController {
         } else if (categoryIndex == 10) {
             return (new FindAreaFromFigure(levelIndex).getDefaultLevelState(context));
         } else if (categoryIndex == 11) {
-            return (new CompleteFigureFromArea(levelIndex).getDefaultLevelState(context));
+            return (new CompleteFigureFromArea(levelIndex, gameState).getDefaultLevelState(context));
         }
         throw new IllegalArgumentException("Category or level not found. Category was " + categoryIndex + ", level was " + levelIndex);
     }

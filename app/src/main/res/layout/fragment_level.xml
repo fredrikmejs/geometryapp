@@ -379,7 +379,7 @@
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/numpadkeys"
-                android:text="@string/numDot"
+
                 android:textColor="@color/Text"
                 android:textSize="20sp"
                 android:autoSizeTextType="uniform"/>
@@ -404,7 +404,6 @@
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/numpadkeys"
-                android:text="@string/numMinus"
                 android:textColor="@color/Text"
                 android:textSize="20sp"
                 android:foreground="?attr/selectableItemBackground"

@@ -16,12 +16,15 @@ import java.util.Random;
 
 import static com.example.geometryapp.Enum.Categories.FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY;
 
+/**
+ * This class creates the levels for find figure of symmetry through point of symmetry category
+ */
 public class FindFigureOfSymmetryThroughPointOfSymmetry implements Level {
 
     private static Random random = new Random();
     private Coordinate origin;
-    private int Xscale;
-    private int Yscale;
+    private int xScale;
+    private int yScale;
     private Categories category = FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY;
     private SelectedDot selectedDot;
     private Coordinate symmetryPoint;
@@ -29,20 +32,22 @@ public class FindFigureOfSymmetryThroughPointOfSymmetry implements Level {
 
     //Creates the correct gameState
     public FindFigureOfSymmetryThroughPointOfSymmetry(int levelNum) {
-        if (levelNum == 0) {
-            levelNum = randomPoint(1, 1);
-        }
-        if (levelNum == 1) {
-            level1();
-        } else {
-            throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
+        switch (levelNum){
+            case 1:
+                level1();
+                break;
+            default:
+                throw new IllegalArgumentException("Level does not exist! Level index was " + levelNum);
         }
     }
 
+    /**
+     * Creates level 1
+     */
     public void level1() {
         origin = new Coordinate(0, 0);
-        Xscale = 1;
-        Yscale = 1;
+        xScale = 1;
+        yScale = 1;
         selectedDot = new SelectedDot(new Coordinate(1, 1));
         symmetryPoint = new Coordinate(randomPoint(4, 6), randomPoint(4, 6));
         Coordinate startCoordinate = new Coordinate(randomPoint(0, 10), randomPoint(0, 10));
@@ -65,6 +70,12 @@ public class FindFigureOfSymmetryThroughPointOfSymmetry implements Level {
         symmetryLineFigure.addLine(new Line(startCoordinate, endCoordinate));
     }
 
+    /**
+     * Createa a random point
+     * @param min lowest possible value
+     * @param max highest possible value
+     * @return the random point between min and max
+     */
     private int randomPoint(int min, int max) {
         return random.nextInt(max - min + 1) + min;
     }
@@ -80,29 +91,23 @@ public class FindFigureOfSymmetryThroughPointOfSymmetry implements Level {
             slopeEndBetween = (betweenCoordinate.getX() - endCoordinate.getX()) / (betweenCoordinate.getY() - endCoordinate.getY());
         } catch (ArithmeticException ignored) {
         }
-        if (slopeStartEnd == slopeEndBetween) {
-            return true;
-        }
-        return false;
+        return slopeStartEnd == slopeEndBetween;
     }
 
     private boolean isCorrectAnswerNotOnGrid(Coordinate targetDot, Coordinate symmetryPoint) {
-        if ((symmetryPoint.getX() + Math.abs(symmetryPoint.getX() - targetDot.getX()) <= 10
-                && symmetryPoint.getX() - Math.abs((symmetryPoint.getX() - targetDot.getX())) >= 0)
-                && (symmetryPoint.getY() + Math.abs((symmetryPoint.getY() - targetDot.getY())) <= 10
-                && symmetryPoint.getY() - Math.abs((symmetryPoint.getY() - targetDot.getY())) >= 0)
-                && (symmetryPoint.getX() != targetDot.getX() || targetDot.getY() != symmetryPoint.getY())) {
-            return false;
-        }
-        return true;
+        return (symmetryPoint.getX() + Math.abs(symmetryPoint.getX() - targetDot.getX()) > 10
+                || symmetryPoint.getX() - Math.abs((symmetryPoint.getX() - targetDot.getX())) < 0)
+                || (symmetryPoint.getY() + Math.abs((symmetryPoint.getY() - targetDot.getY())) > 10
+                || symmetryPoint.getY() - Math.abs((symmetryPoint.getY() - targetDot.getY())) < 0)
+                || (symmetryPoint.getX() == targetDot.getX() && targetDot.getY() == symmetryPoint.getY());
     }
 
     @Override
     public GameState getDefaultLevelState(Context context) {
         GameStateBuilder gameStateBuilder = new GameStateBuilder();
         gameStateBuilder.setOrigin(origin)
-                .setXScale(Xscale)
-                .setYScale(Yscale)
+                .setXScale(xScale)
+                .setYScale(yScale)
                 .setCategory(category)
                 .setSymmetryPoint(symmetryPoint)
                 .setQuestion(context.getResources().getString(R.string.FindSymmetryFigure))

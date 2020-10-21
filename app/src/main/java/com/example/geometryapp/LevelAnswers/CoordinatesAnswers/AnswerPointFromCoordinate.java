@@ -1,7 +1,9 @@
 package com.example.geometryapp.LevelAnswers.CoordinatesAnswers;
 
+import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
 public class AnswerPointFromCoordinate implements LevelAnswer {
@@ -27,6 +29,13 @@ public class AnswerPointFromCoordinate implements LevelAnswer {
         if((ySelected-yOrigin)*yScale==yTarget){
             validatedAnswer.setIsYCorrect(true);
         }
-        return validatedAnswer;
+
+        if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+            Singleton singleton = Singleton.getInstance();
+            validatedAnswer.setCorrectAnswer(new Coordinate(xTarget, yTarget));
+            singleton.setXCoordinate((xTarget/xScale)+xOrigin);
+            singleton.setYCoordinate((yTarget/yScale)+yOrigin);
+        }
+            return validatedAnswer;
     }
 }

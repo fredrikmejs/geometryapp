@@ -2,10 +2,15 @@ package com.example.geometryapp.LevelAnswers.CoordinatesAnswers;
 
 import android.util.Pair;
 
+import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
+import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate the answer for the coordinate from point category and validates it
+ */
 public class AnswerCoordinateFromPoint implements LevelAnswer {
 
     //Validates if answer was correct
@@ -32,6 +37,7 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
         ValidatedAnswer validatedAnswer = new ValidatedAnswer(false,false,false);
         if ((xTarget - xOrigin) * xScale == xTyped && (yTarget - yOrigin) * yScale == yTyped) {
             validatedAnswer.setIsAnswerCorrect(true);
+            gameState.setAnsweredCorrectly(true);
         }
         if ((xTarget - xOrigin) * xScale == xTyped) {
             validatedAnswer.setIsXCorrect(true);
@@ -39,6 +45,28 @@ public class AnswerCoordinateFromPoint implements LevelAnswer {
         if ((yTarget - yOrigin) * yScale == yTyped) {
             validatedAnswer.setIsYCorrect(true);
         }
+
+        //Sued to set the text of the two answer boxes and correct answer dot
+        Singleton singleton = Singleton.getInstance();
+        if (!validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+            int xWrong = (xTyped/xScale) + xOrigin;
+            int yWrong = (yTyped/yScale) + yOrigin;
+            if (gameState.getAttempt()<3 && (xWrong <=10 && xWrong >= 0) && (yWrong <=10 && yWrong >= 0)) {
+                gameState.setCoordinateCorrectAnswer(new Coordinate(xTarget,yTarget));
+                singleton.setXCoordinate(xWrong);
+                singleton.setYCoordinate(yWrong);
+            }
+        }
+        //Used to set the text of the answer box and correct answer dot
+        if(validatedAnswer.isAnswerCorrect() || gameState.getAttempt() == 2){
+            gameState.setCoordinateCorrectAnswer(new Coordinate(xTarget,yTarget));
+            singleton.setXCoordinate(xTarget);
+            singleton.setYCoordinate(yTarget);
+        }
+
+        singleton.setL2X((xTarget-xOrigin)*xScale);
+        singleton.setL2Y((yTarget-yOrigin)*yScale);
+
         return validatedAnswer;
     }
 }

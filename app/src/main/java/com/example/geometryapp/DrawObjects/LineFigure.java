@@ -4,6 +4,9 @@ import com.example.geometryapp.Coordinate;
 
 import java.util.ArrayList;
 
+/**
+ * Used to give information about the linefigure
+ */
 public class LineFigure {
     private ArrayList<Line> lines;
     private int maxAmountOfLines;//Max limit of lines. For example this set to 2 in line figure exercise

@@ -3,12 +3,18 @@ package com.example.geometryapp.LevelAnswers.SymmetryAnswers;
 import android.util.Pair;
 
 import com.example.geometryapp.Coordinate;
+import com.example.geometryapp.DrawObjects.SelectedDot;
+import com.example.geometryapp.DrawObjects.TargetDot;
 import com.example.geometryapp.GameState;
 import com.example.geometryapp.Interface.LevelAnswer;
 import com.example.geometryapp.Singleton;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class calculate and validates the answer of find coordinate with line symmetry
+ */
 public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
+
 
     //Validates if answer was correct
     @Override
@@ -40,44 +46,38 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
         double xSelected2 = (double) coordinates.first / gameState.getXScale();
         double xSelected = xSelected1 + xSelected2;
         double ySelected = gameState.getOrigin().getY() + (double)coordinates.second / gameState.getYScale();
-
         double xTarget = gameState.getTargetDot().getCoordinate().getX();
-
-
-
-        //int xTarget = (a - b)*gameState.getXScale();// (gameState.getTargetDot().getCoordinate().getX() - gameState.getOrigin().getX()) * gameState.getXScale();
 
         double yTarget = gameState.getTargetDot().getCoordinate().getY();
 
+        double y,x;
+        double yAnswer, xAnswer;
 
-       // int yTarget = (gameState.getTargetDot().getCoordinate().getY() - gameState.getOrigin().getY()) * gameState.getYScale();
-
+        //Checks if the levels ain't 3,4,7 or 8
          if (!(level == 3 || level == 4 || level == 7 || level == 8)) {
+             //Checks what type of symmetry it is
              if (randomNum == 0){
                  if (ySelected == yTarget){
                      validatedAnswer.setIsYCorrect(true);
                  } else{
                      validatedAnswer.setIsYCorrect(false);
                  }
-                 double x;
+                 yAnswer = yTarget;
+
+                 //Checks if the x coordinate is correct
                  if (xTarget > 5){
                      x = xTarget - 5;
                      x = 5 - x;
-                     if (x == xSelected){
-                         validatedAnswer.setIsXCorrect(true);
-                     } else{
-                         validatedAnswer.setIsXCorrect(false);
-                     }
                  } else{
                      x = 5 - xTarget;
                      x = 5 + x;
-                     if (x == xSelected){
-                         validatedAnswer.setIsXCorrect(true);
-                     } else{
-                         validatedAnswer.setIsXCorrect(false);
-                     }
-
                  }
+                 if (x == xSelected){
+                     validatedAnswer.setIsXCorrect(true);
+                 } else{
+                     validatedAnswer.setIsXCorrect(false);
+                 }
+                 xAnswer = x;
                  if (x == xSelected && ySelected == yTarget){
                      validatedAnswer.setIsAnswerCorrect(true);
                      gameState.setAnsweredCorrectly(true);
@@ -86,31 +86,30 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      gameState.setAnsweredCorrectly(false);
                  }
              } else {
-                 double y;
                 if (xSelected == xTarget){
                     validatedAnswer.setIsXCorrect(true);
                 } else{
                     validatedAnswer.setIsXCorrect(false);
                 }
+                xAnswer = xTarget;
+
+                //Checks if the y coordinate is correct
                 if (yTarget > 5){
                     y = yTarget -5;
                     y = 5 - y;
 
-                    if (y == ySelected){
-                        validatedAnswer.setIsYCorrect(true);
-                    } else {
-                        validatedAnswer.setIsYCorrect(false);
-                    }
                 }else {
                     y = 5 - yTarget;
                     y = 5 + y;
-                    if (y == ySelected){
-                        validatedAnswer.setIsYCorrect(true);
-                    } else {
-                        validatedAnswer.setIsYCorrect(false);
-                    }
                 }
-                if (xSelected == xTarget && y == ySelected){
+                 if (y == ySelected){
+                     validatedAnswer.setIsYCorrect(true);
+                 } else {
+                     validatedAnswer.setIsYCorrect(false);
+                 }
+                 yAnswer = y;
+                 //Checks if both coordinates is correct
+                 if (xSelected == xTarget && y == ySelected){
                     validatedAnswer.setIsAnswerCorrect(true);
                     gameState.setAnsweredCorrectly(true);
                 } else {
@@ -118,19 +117,23 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                     gameState.setAnsweredCorrectly(false);
                 }
              }
-        } else {
+
+        } //Checks the other form for symmetry
+        else {
              if (randomNum == 0) {
                  if (xSelected == yTarget) {
                      validatedAnswer.setIsXCorrect(true);
                  } else {
                      validatedAnswer.setIsXCorrect(false);
                  }
+                 //Because the answer is opposite if the correct answers coordinates x = y and y = x
+                 xAnswer = yTarget;
                  if (ySelected == xTarget) {
                      validatedAnswer.setIsYCorrect(true);
                  } else {
                      validatedAnswer.setIsYCorrect(false);
                  }
-
+                 yAnswer = xTarget;
                  if (xSelected == yTarget && xTarget == ySelected) {
                      validatedAnswer.setIsAnswerCorrect(true);
                      gameState.setAnsweredCorrectly(true);
@@ -139,21 +142,25 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                      gameState.setAnsweredCorrectly(false);
                  }
              } else {
-                 boolean xbool = false, ybool = false;
-
+                 //local variables to check if the answer is correct
+                 //10-xTarget because of placement under this form for symmetry
+                 boolean xBool = false, yBool = false;
                  if (ySelected == (10-xTarget)){
-                     ybool = true;
+                     yBool = true;
                      validatedAnswer.setIsYCorrect(true);
+
                  } else {
                      validatedAnswer.setIsYCorrect(false);
                  }
+                 yAnswer = 10-xTarget;
                  if (xSelected == (10-yTarget)){
-                     xbool = true;
+                     xBool = true;
                      validatedAnswer.setIsXCorrect(true);
                  } else {
                      validatedAnswer.setIsXCorrect(false);
                  }
-                 if (xbool && ybool) {
+                 xAnswer = 10-yTarget;
+                 if (xBool && yBool) {
                      validatedAnswer.setIsAnswerCorrect(true);
                      gameState.setAnsweredCorrectly(true);
                  } else {
@@ -162,6 +169,26 @@ public class AnswerFindCoordinateWithLineSymmetry implements LevelAnswer {
                  }
              }
         }
+
+         singleton.setXCoordinate(-1);
+         singleton.setYCoordinate(-1);
+
+         //Checks if answer is correct and not "close to"
+         if (coordinates.first % gameState.getXScale() == 0 && coordinates.second % gameState.getYScale() == 0){
+             if ((xSelected <= 10 && xSelected >= 0) && (ySelected <= 10 && ySelected >=0)) {
+                 if (!validatedAnswer.isAnswerCorrect()) {
+                     gameState.setCoordinateCorrectAnswer(new Coordinate((int) xAnswer, (int) yAnswer));
+                     singleton.setXCoordinate((int) xSelected);
+                     singleton.setYCoordinate((int) ySelected);
+                 }
+             }
+         }
+         //Sets coordinate for correctanswer dot in canvas
+         if (validatedAnswer.isAnswerCorrect() || gameState.getAttempt() >= 2){
+                   validatedAnswer.setCorrectAnswer(new Coordinate((int)xAnswer, (int)yAnswer));
+                   singleton.setXCoordinate(((int) xAnswer));
+                   singleton.setYCoordinate((int) yAnswer);
+                }
 
         return validatedAnswer;
     }
