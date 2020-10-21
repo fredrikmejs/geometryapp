@@ -462,7 +462,7 @@ public class LevelFragment extends Fragment {
 
     private void createLevel() {
         //Creates a level. Updates views according to the gameState.
-        gameState = levelController.getLevel(categoryIndex, levelIndex, getContext());
+        gameState = levelController.getLevel(categoryIndex, levelIndex, getContext(), gameState);
         gameState.getSelectedDot().setPurpleColorOn(!prefs.getBoolean("purpleColorOn", false));
         gameState.setEnglishNumbers(arabicNumeralsOn);
         canvas = new Canvas(getContext(), gameState);
@@ -578,7 +578,7 @@ public class LevelFragment extends Fragment {
 
     private void moveToNextLevel() {
         try {
-            levelController.getLevel(categoryIndex, levelIndex + 1, getContext());
+            levelController.getLevel(categoryIndex, levelIndex + 1, getContext(),gameState);
             Bundle bundle = new Bundle();
             bundle.putInt("categoryIndex", categoryIndex);
             bundle.putInt("levelIndex", levelIndex + 1);

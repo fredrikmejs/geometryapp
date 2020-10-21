@@ -76,15 +76,15 @@ public class AnswerFindAreaFromFigure implements LevelAnswer {
         }
         if (gameState.getTriangle() != null) {
 
-            if (roundUp(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
-            || roundDown(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
+            if (roundUp(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale(),gameState.getLevel(),gameState.getCategory()), 1) == roundUp(answer, 1)
+            || roundDown(gameState.getTriangle().calculateArea(gameState.getXScale(),gameState.getYScale(), gameState.getLevel(),gameState.getCategory()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);
                 return new ValidatedAnswer(true, true, true);
             }
         }
         if (gameState.getShapeFourCorners() != null) {
-            if (roundUp(gameState.getShapeFourCorners().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
-            || roundDown(gameState.getShapeFourCorners().calculateArea(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
+            if (roundUp(gameState.getShapeFourCorners().calculateArea(gameState.getXScale(),gameState.getYScale(),gameState.getLevel(),gameState.getCategory()), 1) == roundUp(answer, 1)
+            || roundDown(gameState.getShapeFourCorners().calculateArea(gameState.getXScale(),gameState.getYScale(),gameState.getLevel(),gameState.getCategory()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);
                 return new ValidatedAnswer(true, true, true);
             }

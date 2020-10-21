@@ -1,7 +1,9 @@
 package com.example.geometryapp.DrawObjects;
 
 import com.example.geometryapp.Coordinate;
+import com.example.geometryapp.Enum.Categories;
 import com.example.geometryapp.GameState;
+import com.example.geometryapp.Singleton;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -42,10 +44,27 @@ public class Triangle {
         this.thirdPoint = thirdPoint;
     }
 
-    public double calculateArea(int xScale, int yScale) {
-        return  Math.abs((double) (firstPoint.getX() * (secondPoint.getY() * yScale - thirdPoint.getY() * yScale) * xScale
-                + secondPoint.getX() * (thirdPoint.getY() * yScale - firstPoint.getY() * yScale) * xScale
-                + thirdPoint.getX() * (firstPoint.getY() * yScale - secondPoint.getY() * yScale) * xScale) / 2);
+    public double calculateArea(int xScale, int yScale, int lvl, Categories categories ) {
+
+        double area;
+        if (lvl == 8 && categories == Categories.FINDAREAFROMFIGURE){
+            Singleton singleton = Singleton.getInstance();
+                if (singleton.getRandomNum() == 1){
+                    double base = calculateDistanceTwoCoordinates(secondPoint,thirdPoint,xScale,yScale,true);
+                    double height = calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true);
+                    area = (base*height)/2;
+                }else {
+                    double height = Math.abs(firstPoint.getY()-thirdPoint.getY());
+                    double base = calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true);
+                    area = (base*height)/2;
+                }
+        } else {
+            area = Math.abs((double) (firstPoint.getX() * (secondPoint.getY() * yScale - thirdPoint.getY() * yScale) * xScale
+                    + secondPoint.getX() * (thirdPoint.getY() * yScale - firstPoint.getY() * yScale) * xScale
+                    + thirdPoint.getX() * (firstPoint.getY() * yScale - secondPoint.getY() * yScale) * xScale) / 2);
+        }
+
+        return  area;
     }
 
     public double calculateDistanceTwoCoordinates(Coordinate start, Coordinate end, int xScale, int yScale, boolean roundOneDecimal){
@@ -68,7 +87,7 @@ public class Triangle {
     }
 
 
-    public double getHeight(int xScale, int yScale){
+    public double getHeight(int xScale, int yScale, int lvl, Categories categories){
         double height;
         double distance;
         if (calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true) == calculateDistanceTwoCoordinates(firstPoint,thirdPoint,xScale,yScale,true)){
@@ -77,7 +96,7 @@ public class Triangle {
             distance = calculateDistanceTwoCoordinates(firstPoint,thirdPoint,xScale,yScale,true);
         } else distance = calculateDistanceTwoCoordinates(firstPoint,secondPoint,xScale,yScale,true);
 
-        height = (2*calculateArea(xScale, yScale))/distance;
+        height = (2*calculateArea(xScale, yScale, lvl, categories ))/distance;
 
         return height;
     }

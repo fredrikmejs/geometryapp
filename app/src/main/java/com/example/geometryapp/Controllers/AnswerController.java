@@ -15,6 +15,9 @@ import com.example.geometryapp.LevelAnswers.SymmetryAnswers.AnswerFindPointWithL
 import com.example.geometryapp.LevelAnswers.SymmetryAnswers.AnswerFindPointWithPointSymmetry;
 import com.example.geometryapp.ValidatedAnswer;
 
+/**
+ * This class checks where to find the answer for the given problem
+ */
 public class AnswerController {
 
     //Returns validatedAnswer from the correct category.

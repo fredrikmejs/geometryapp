@@ -1,7 +1,9 @@
 package com.example.geometryapp.DrawObjects;
 
 import com.example.geometryapp.Coordinate;
+import com.example.geometryapp.Enum.Categories;
 import com.example.geometryapp.Enum.ShapeType;
+import com.example.geometryapp.GameState;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -60,10 +62,10 @@ public class ShapeFourCorners {
         this.bottomLeft = bottomLeft;
     }
 
-    public double calculateArea(int xScale, int yScale){
+    public double calculateArea(int xScale, int yScale, int lvl, Categories categories){
         //This functions does not work if the lines intersect or one corner is pointing center of the shape
-        double firstTriangle = (new Triangle(topLeft,topRight,bottomRight)).calculateArea(xScale,yScale);
-        double secondTriangle = (new Triangle(topLeft,bottomRight,bottomLeft)).calculateArea(xScale,yScale);
+        double firstTriangle = (new Triangle(topLeft,topRight,bottomRight)).calculateArea(xScale,yScale, lvl, categories );
+        double secondTriangle = (new Triangle(topLeft,bottomRight,bottomLeft)).calculateArea(xScale,yScale, lvl, categories);
         return firstTriangle + secondTriangle;
     }
 

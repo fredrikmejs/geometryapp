@@ -4,6 +4,9 @@ import com.example.geometryapp.Coordinate;
 
 import java.util.ArrayList;
 
+/**
+ * Used to give information about the selected dot and where it is placed
+ */
 public class SelectedDot {
 
     private boolean purpleOn;

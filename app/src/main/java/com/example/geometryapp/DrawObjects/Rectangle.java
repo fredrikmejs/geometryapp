@@ -3,6 +3,9 @@ package com.example.geometryapp.DrawObjects;
 import com.example.geometryapp.Coordinate;
 import com.example.geometryapp.GameState;
 
+/**
+ * Used to give information about the Rectangle
+ */
 public class Rectangle {
 
     private Coordinate topLeft;

@@ -9,6 +9,9 @@ import android.view.View;
 import com.example.geometryapp.Fragment.TestFragment;
 import com.example.geometryapp.R;
 
+/**
+ * Empty activity to put the fragments in
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

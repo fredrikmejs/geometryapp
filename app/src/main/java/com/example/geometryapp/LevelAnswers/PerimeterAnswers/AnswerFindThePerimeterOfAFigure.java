@@ -42,7 +42,6 @@ public class AnswerFindThePerimeterOfAFigure implements LevelAnswer {
             }
         }
         if (gameState.getTriangle() != null) {
-            Log.d("test",""+gameState.getTriangle().getHeight(gameState.getXScale(),gameState.getYScale()));
             if (roundUp(gameState.getTriangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()), 1) == roundUp(answer, 1)
             || roundDown(gameState.getTriangle().calculatePerimeter(gameState.getXScale(),gameState.getYScale()), 1) == roundDown(answer, 1)) {
                 gameState.setAnsweredCorrectly(true);

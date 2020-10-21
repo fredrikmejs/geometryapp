@@ -32,9 +32,11 @@ public class CompleteFigureFromArea implements Level {
     private Triangle triangle = null;
     private ShapeFourCorners shapeFourCorners = null;
     private String targetAnswer;
+    private GameState gameState;
 
     //Creates the correct gameState
-    public CompleteFigureFromArea(int levelNum) {
+    public CompleteFigureFromArea(int levelNum, GameState gameState) {
+        this.gameState = gameState;
         if (levelNum == 0) {
             levelNum = randomPoint(1, 11);
         }
@@ -159,7 +161,7 @@ public class CompleteFigureFromArea implements Level {
         triangle = new Triangle(firstPoint
                 , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
                 , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
-        targetAnswer = "" + triangle.calculateArea(xScale, yScale);
+        targetAnswer = "" + triangle.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
     public void level8() {
@@ -187,7 +189,7 @@ public class CompleteFigureFromArea implements Level {
                 thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
             }
             triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
-            targetAnswer = "" + triangle.calculateArea(xScale, yScale);
+            targetAnswer = "" + triangle.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
         } else {
             int a;
             while (going) {
@@ -203,7 +205,7 @@ public class CompleteFigureFromArea implements Level {
 
             }
             triangle = new Triangle(firstPoint, secondPoint,thirdPoint);
-            targetAnswer = "" + triangle.calculateArea(xScale,yScale);
+            targetAnswer = "" + triangle.calculateArea(xScale,yScale,gameState.getLevel(),gameState.getCategory());
 
         }
     }
@@ -223,7 +225,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(3, 6));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.KITE);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale);
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
     }
 
     public void level10() {
@@ -241,7 +243,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(1, 3));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.PARALLELOGRAM);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale);
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
     public void level11() {
@@ -259,7 +261,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(1, 3));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.TRAPEZOID);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale);
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
     }
 
     private boolean isCoordinatesOnGrid(int width, int height, Coordinate bottomLeft) {
