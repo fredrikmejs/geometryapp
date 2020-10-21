@@ -64,6 +64,8 @@ public class OnDrawCompleteShapes extends View implements CanvasDraw {
         path.lineTo(realXEnd, realYEnd);
         path.close();
         canvas.drawPath(path, paintFillShape);
+
+        //FIlls the edges with a stroke
         int realXStartLine = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).first;
         int realYStartLine = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).second;
         int realXEndLine = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).first;
@@ -75,6 +77,22 @@ public class OnDrawCompleteShapes extends View implements CanvasDraw {
         realXEndLine = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopRight()).first;
         realYEndLine = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopRight()).second;
         canvas.drawLine(realXStartLine, realYStartLine, realXEndLine, realYEndLine, paintSymmetryLine);
+
+        int drawEdgeTopX = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).first;
+        int drawEdgeTopY = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second;
+        int drawEdgeBottomX = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).first;
+        int drawEdgeBottomY = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomLeft()).second;
+
+        canvas.drawLine(drawEdgeTopX,drawEdgeTopY,drawEdgeBottomX,drawEdgeBottomY,paintSymmetryLine);
+
+        drawEdgeTopX = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopRight()).first;
+        drawEdgeTopY = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopRight()).second;
+        drawEdgeBottomX = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).first;
+        drawEdgeBottomY = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getBottomRight()).second;
+
+        canvas.drawLine(drawEdgeTopX,drawEdgeTopY,drawEdgeBottomX,drawEdgeBottomY,paintSymmetryLine);
+
+
 
         int pointXTopL = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).first;
         int pointYTopL = coordinateSystem.getCanvasRealCoordinate(gameState.getRectangle().getTopLeft()).second;

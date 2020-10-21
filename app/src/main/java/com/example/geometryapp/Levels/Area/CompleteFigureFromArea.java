@@ -35,11 +35,9 @@ public class CompleteFigureFromArea implements Level {
     private Triangle triangle = null;
     private ShapeFourCorners shapeFourCorners = null;
     private String targetAnswer;
-    private GameState gameState;
 
     //Creates the correct gameState
-    public CompleteFigureFromArea(int levelNum, GameState gameState) {
-        this.gameState = gameState;
+    public CompleteFigureFromArea(int levelNum) {
         if (levelNum == 0) {
             levelNum = randomPoint(1, 11);
         }
@@ -187,7 +185,7 @@ public class CompleteFigureFromArea implements Level {
         triangle = new Triangle(firstPoint
                 , new Coordinate(firstPoint.getX(), firstPoint.getY() + height)
                 , new Coordinate(firstPoint.getX() + width, firstPoint.getY()));
-        targetAnswer = "" + triangle.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
+        targetAnswer = "" + triangle.calculateArea(xScale, yScale, 7, COMPLETEFIGUREFROMAREA);
     }
 
     /**
@@ -197,7 +195,6 @@ public class CompleteFigureFromArea implements Level {
         origin = new Coordinate(0, 0);
         xScale = 1;
         yScale = 1;
-        boolean going = true;
         Coordinate firstPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate secondPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
         Coordinate thirdPoint = new Coordinate(randomPoint(1, 9), randomPoint(1, 9));
@@ -220,22 +217,15 @@ public class CompleteFigureFromArea implements Level {
         } //Creates isolate triangles
         else {
             int a;
-            while (going) {
-
-                if (checkGrid(firstPoint, secondPoint, thirdPoint)) {
-                    going = false;
-                    break;
-                }
+            while (!checkGrid(firstPoint, secondPoint, thirdPoint)) {
                 firstPoint = new Coordinate(randomPoint(2, 6), randomPoint(1, 5));
                 secondPoint = new Coordinate(firstPoint.getX() + randomPoint(3, 6), firstPoint.getY());
                 a = (secondPoint.getX() + firstPoint.getX()) / 2;
                 thirdPoint = new Coordinate(a, firstPoint.getX() + randomPoint(3, 7));
-
             }
-
         }
         triangle = new Triangle(firstPoint, secondPoint, thirdPoint);
-        targetAnswer = "" + triangle.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
+        targetAnswer = "" + triangle.calculateArea(xScale, yScale,8, COMPLETEFIGUREFROMAREA);
     }
 
     /**
@@ -256,7 +246,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(3, 6));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.KITE);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale,gameState.getLevel(),gameState.getCategory());
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale,9, COMPLETEFIGUREFROMAREA);
     }
 
     /**
@@ -277,7 +267,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(1, 3));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.PARALLELOGRAM);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, 10,COMPLETEFIGUREFROMAREA);
     }
 
     /**
@@ -298,7 +288,7 @@ public class CompleteFigureFromArea implements Level {
             fourthPoint = new Coordinate(randomPoint(1, 3), randomPoint(1, 3));
         }
         shapeFourCorners = new ShapeFourCorners(firstPoint, secondPoint, thirdPoint, fourthPoint, ShapeType.TRAPEZOID);
-        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, gameState.getLevel(),gameState.getCategory());
+        targetAnswer = "" + shapeFourCorners.calculateArea(xScale, yScale, 11,COMPLETEFIGUREFROMAREA);
     }
 
     //Checks if the coordinate is on the grid

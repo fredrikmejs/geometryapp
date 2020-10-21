@@ -436,7 +436,8 @@ public class Canvas extends View {
         //Draws the correct answer if the game is over or correct
         if ((gameState.getAttempt() == 3 || gameState.isAnsweredCorrectly()) &&
                 !(gameState.getCategory() == Categories.COMPLETEFIGUREFROMPERIMETER || gameState.getCategory() == Categories.COMPLETEFIGUREFROMAREA ||
-                        gameState.getCategory() == Categories.FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY || gameState.getCategory() == Categories.FINDAREAFROMFIGURE)) {
+                        gameState.getCategory() == Categories.FINDFIGUREOFSYMMETRYTHROUGHPOINTOFSYMMETRY ||
+                        gameState.getCategory() == Categories.FINDAREAFROMFIGURE || gameState.getCategory() == Categories.FINDTHEPERIMETEROFAFIGURE)) {
             Singleton singleton = Singleton.getInstance();
 
             if (singleton.getXCoordinate() != -1 && singleton.getYCoordinate() != -1) {
@@ -564,11 +565,10 @@ public class Canvas extends View {
     }
 
     //Correct answer shapes are saved into these objects. So that users drawn shape does not affect them
-    // TODO: 5.7.2020 Canvas class should not have variables like these. They belong to the gameState. Redesining categories 9-11 for drawing shapes could be a good idea.
     boolean firstTime = true;
     Rectangle rectangle = null;
     Circle circle = null;
-    Triangle triangle;  // TODO: 5.7.2020 This method is huge and should be dived into multiple small methods= null;
+    Triangle triangle;
     ShapeFourCorners shapeFourCorners = null;
 
     private void onDrawCompleteEmptyShapes(android.graphics.Canvas canvas) {

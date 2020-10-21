@@ -299,7 +299,7 @@ public class DrawEmtpyShape extends View implements CanvasDraw {
                 String distance1String = String.valueOf(distance1_2).replace(".0","");
                 String distance2String = String.valueOf(distance1_3).replace(".0","");
                 String distance3String = String.valueOf(distance2_3).replace(".0","");
-                double permeter =  distance1_2 + distance1_3 + distance2_3;
+                double perimeter =  distance1_2 + distance1_3 + distance2_3;
 
                 //Draws math
                 canvas.drawPath(RoundedRect(xPos - canvas.getWidth() / 10 -25, yPos - (paintWhiteText.descent() - paintWhiteText.ascent()) * 2, xPos + canvas.getWidth() / 10 + 15
@@ -308,7 +308,7 @@ public class DrawEmtpyShape extends View implements CanvasDraw {
 
                 canvas.drawText("P = " + distance1String + " + " + distance2String + " + " +  distance3String, xPos,
                         yPos + (paintWhiteText.descent() - paintWhiteText.ascent()) * -1, paintWhiteText);
-                canvas.drawText(" = " + permeter, xPos
+                canvas.drawText(" = " + perimeter, xPos
                         , yPos, paintWhiteText);
             }
             if (num == 2){
